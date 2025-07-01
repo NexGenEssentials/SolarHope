@@ -14,7 +14,7 @@ const HeroSection = () => {
           communities. Join us in transforming lives and empowering futures.
         </p>
         <div className="flex items-center gap-8 justify-center font-bold">
-          <Button link="/donate" name="  Donate" />
+          <Button link="#get-involved" name="  Donate" />
           Partner
         </div>
       </div>

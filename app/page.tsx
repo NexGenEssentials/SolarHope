@@ -16,12 +16,12 @@ export default function Home() {
       <HeroSection />
       <AutoImageSlider />
       <MarqueeSlider/>
-      <ImpactSection />
-      <VisionSection />
-      <SolorJourneySection />
+       <ImpactSection id="impact" />
+      <VisionSection id="about" />
+      <SolorJourneySection id="services"/>
       <AchievementSection />
       <TestimonialSection />
-      <JoinSection />
+      <JoinSection id="get-involved" />
     </HomeTemplates>
   );
 }

@@ -1,8 +1,9 @@
 import React from "react";
 import Button from "../button/button";
 
-const JoinSection = () => {
+const JoinSection = ({ id }: { id?: string }) =>{
   return (
+    <section id={id}>
     <div className="relative text-white bg-[#0D1B39] overflow-hidden">
       <div className="absolute inset-0">
         <img
@@ -32,6 +33,7 @@ const JoinSection = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

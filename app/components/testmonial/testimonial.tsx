@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { SlArrowLeftCircle, SlArrowRightCircle } from "react-icons/sl";
 import p1 from "@/public/images/p1.jpg";
 import p2 from "@/public/images/p2.jpg";
-import p3 from "@/public/images/p3.jpg";
+import p3 from "@/public/images/p3.png";
 
 const testimonials = [
   {

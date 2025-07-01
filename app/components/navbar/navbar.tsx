@@ -8,9 +8,10 @@ import { HiMenu, HiX } from "react-icons/hi";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Our Impact", href: "/impact" },
-  { name: "Get Involved", href: "/get-involved" },
+  { name: "About Us", href: "#about" },
+  { name: "Our Impact", href: "#impact" },
+  { name: "Get Involved", href: "#get-involved" },
+  { name: "Services", href: "#services" },
 ];
 
 const Navbar = () => {
@@ -59,12 +60,12 @@ const Navbar = () => {
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center space-x-4">
           <Link
-            href="/signup"
+            href="/#get-involved"
             className="font-bold hover:text-yellow transition-colors"
           >
             Join
           </Link>
-          <Button link="/donate" name="Donate" />
+          <Button link="#get-involved" name="Donate" />
         </div>
 
         {/* Mobile Toggle */}
@@ -93,13 +94,13 @@ const Navbar = () => {
             </Link>
           ))}
           <Link
-            href="/signup"
+            href="/#get-involved"
             className="block hover:text-yellow"
             onClick={() => setMobileOpen(false)}
           >
             Join
           </Link>
-          <Button link="/donate" name="Donate" />
+          <Button link="#get-involved" name="Donate" />
         </div>
       )}
     </nav>

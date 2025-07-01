@@ -7,23 +7,24 @@ import Button from "../button/button";
 const visions = [
   {
     icon: <MdTransform />,
-    title: "Our Vision for Sustainable Energy Transformation",
-    desc: "We aim to be the leading catalyst for change.",
+    title: "Our Vision ",
+    desc: " To become the leading ,most trusted clean energy provider powering lives and development across Africa, one household and institution at a time through smart, scalable solar power",
   },
   {
     icon: <MdOutlineSolarPower />,
-    title: "Our Mission to Empower Communities",
-    desc: "We deliver solar energy systems that change lives.",
+    title: "Our Mission",
+    desc: "To deliver affordable, scalable solar energy solutions that light up dreams, drive productivity, and build climate-resilient communities.",
   },
   {
     icon: <LuLightbulbOff />,
-    title: "Join Us in Bridging the Energy Gap",
+    title: "Light Up the Gap",
     desc: "Together, we can transform rural Africa with light.",
   },
 ];
 
-const VisionSection = () => {
+const VisionSection = ({ id }: { id?: string }) =>  {
   return (
+    <section id={id}>
     <div className="text-white bg-linear-to-b from-[#2C98F0]  from-10% to-95% to-[#044376]">
       <div className="max-w-[1570px] mx-auto p-8 sm:px-28 sm:py-28 space-y-16 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -65,6 +66,7 @@ const VisionSection = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

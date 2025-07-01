@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import image1 from "@/public/images/p1.jpg";
 import image2 from "@/public/images/p2.jpg";
-import image3 from "@/public/images/p3.jpg";
+import image3 from "@/public/images/p3.png";
 import image4 from "@/public/images/pano1.png";
 import image5 from "@/public/images/pano4.png";
 import image6 from "@/public/images/pano3.png";

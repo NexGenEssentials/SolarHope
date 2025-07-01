@@ -8,9 +8,9 @@ import image3 from "@/public/images/gal3.png";
 import image4 from "@/public/images/gal4.jpg";
 import image5 from "@/public/images/gal5.jpg";
 import image6 from "@/public/images/gal6.png";
-import image7 from "@/public/images/gal7.jpg";
+// import image7 from "@/public/images/gal7.jpg";
 
-const images = [image1, image5, image3, image6, image2, image4, image7];
+const images = [image1, image5, image3, image6, image2, image4,];
 
 const MarqueeSlider = () => {
   return (

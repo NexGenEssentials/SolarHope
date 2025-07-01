@@ -28,15 +28,16 @@ const content = [
     title: "Maintenance",
     description: "We ensure systems run smoothly with regular maintenance.",
   },
-  {
-    image: site5.src,
-    title: "Community Training",
-    description: "We train locals to maintain and manage solar systems.",
-  },
+  // {
+  //   image: site5.src,
+  //   title: "Community Training",
+  //   description: "We train locals to maintain and manage solar systems.",
+  // },
 ];
 
-const SolarJourneySection = () => {
+const SolarJourneySection = ({ id }: { id?: string }) =>  {
   return (
+    <section id={id}>
     <div className="bg-white text-dark-blue">
       <div className="max-w-[1570px] mx-auto p-8 sm:p-20">
         <div className="flex flex-col items-center gap-16">
@@ -82,6 +83,7 @@ const SolarJourneySection = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 

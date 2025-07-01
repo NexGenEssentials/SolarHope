@@ -9,21 +9,21 @@ const contactLinks = [
   { title: "Home", link: "/" },
   { title: "About Us", link: "#" },
   { title: "Projects", link: "#" },
-  { title: "Partners", link: "#" },
-  { title: "Donate", link: "#" },
+  // { title: "Partners", link: "#" },
+  // { title: "Donate", link: "#" },
 ];
 
 const followLinks = [
-  { title: "Facebook", link: "https://facebook.com" },
-  { title: "Instagram", link: "https://instagram.com" },
-  { title: "LinkedIn", link: "https://linkedin.com" },
-  { title: "Contact Us", link: "/contact" },
-  { title: "Newsletter", link: "/newsletter" },
+  { title: "Facebook", link: "https://web.facebook.com/profile.php?id=61577751233011" },
+  { title: "Instagram", link: "https://www.instagram.com/solarhopeafrica/?next=%2F" },
+  { title: "LinkedIn", link: "https://www.linkedin.com/company/solar-hope-africa/?viewAsMember=true" },
+  // { title: "Contact Us", link: "/contact" },
+  // { title: "Newsletter", link: "/newsletter" },
 ];
 
 const updateLinks = [
-  { title: "Sign Up", link: "#" },
-  { title: "Get Involved", link: "#" },
+  // { title: "Sign Up", link: "#" },
+  // { title: "Get Involved", link: "#" },
   { title: "Volunteer", link: "#" },
   { title: "Sponsor System", link: "#" },
   { title: "Support Us", link: "#" },
@@ -136,9 +136,9 @@ const Footer = () => {
               <Link href="/terms" className="underline">
                 Terms of Service
               </Link>
-              <Link href="/cookies" className="underline">
-                Cookie Settings
-              </Link>
+          
+                info@solarhopeafrica.com
+              
             </div>
           </div>
           <div className="flex items-center gap-4 text-white text-xl">
@@ -146,7 +146,7 @@ const Footer = () => {
             <FaInstagram />
             <FaXTwitter />
             <FaLinkedinIn />
-            <FaYoutube />
+            {/* <FaYoutube /> */}
           </div>
         </div>
       </div>

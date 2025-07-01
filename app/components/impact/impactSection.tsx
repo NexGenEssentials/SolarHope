@@ -4,8 +4,9 @@ import pano1 from "@/public/images/pano1.png";
 import pano2 from "@/public/images/pano2.png";
 import pano3 from "@/public/images/pano3.png";
 
-const ImpactSection = () => {
+const ImpactSection = ({ id }: { id?: string }) => {
   return (
+    <section id={id}>
     <div className="px-4 py-16 bg-white">
       <div className="max-w-[1570px] mx-auto">
         <div className="flex flex-col md:flex-row gap-12 items-center">
@@ -56,6 +57,7 @@ const ImpactSection = () => {
         </div>
       </div>
     </div>
+    </section>
   );
 };
 
