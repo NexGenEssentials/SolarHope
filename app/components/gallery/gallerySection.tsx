@@ -41,26 +41,28 @@ const AutoImageSlider = () => {
   }, [autoplay]);
 
   return (
-    <div
-      className="overflow-hidden w-full pt-16"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="embla" ref={emblaRef}>
-        <div className="embla__container flex ">
-          {images.map((src, index) => (
-            <div
-              className=" h-[300px] relative embla__slide flex-[0_0_auto] w-[400px] p-4 overflow-hidden rounded-xl"
-              key={index}
-            >
-              <img
-                src={src.src}
-                alt={`Image ${index}`}
-                className=" object-cover w-full h-full rounded-xl hover:grayscale-100 hover:scale-120 duration-300 transition-transform"
-                loading="lazy"
-              />
-            </div>
-          ))}
+    <div className="max-w-[1570px] mx-auto">
+      <div
+        className="overflow-hidden w-full pt-16"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div className="embla" ref={emblaRef}>
+          <div className="embla__container flex ">
+            {images.map((src, index) => (
+              <div
+                className=" h-[300px] relative embla__slide flex-[0_0_auto] w-[400px] p-4 overflow-hidden rounded-xl"
+                key={index}
+              >
+                <img
+                  src={src.src}
+                  alt={`Image ${index}`}
+                  className=" object-cover w-full h-full rounded-xl hover:grayscale-100 hover:scale-120 duration-300 transition-transform"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
