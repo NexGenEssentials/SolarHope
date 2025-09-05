@@ -145,6 +145,7 @@ const Footer = () => {
                 Terms of Service
               </Link>
               info@solarhopeafrica.com
+             Tell/Whatsapp: +250780348624
             </div>
           </div>
           <div className="flex items-center gap-4 text-white text-xl">
