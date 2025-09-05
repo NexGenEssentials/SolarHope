@@ -44,12 +44,12 @@ const Footer = () => {
       <div className="max-w-[1570px] mx-auto p-8 lg:p-28 ">
         <div className="flex flex-row w-full justify-between flex-wrap gap-10 border-b border-white pb-10">
           <Link href="/" className="text-2xl font-bold mb-4">
-            <div className="relative w-32 h-8 text-lg font-bold">
+            <div className="relative w-48 h-26 text-lg font-bold">
               <Image
                 src={logo}
                 fill
                 alt="Solor Hope Logo"
-                className="object-cover w-full h-full"
+                className="object-contain w-full h-full"
               />
             </div>
           </Link>

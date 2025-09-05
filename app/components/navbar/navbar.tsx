@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import logo1 from "@/public/images/logo/log1.png";
 import logo from "@/public/images/logo/log2.png";
 import Link from "next/link";
 import Image from "next/image";
@@ -34,9 +35,9 @@ const Navbar = () => {
     >
       <div className="max-w-[1570px] mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="relative w-32 h-8">
+        <Link href="/" className="relative w-32 h-12">
           <Image
-            src={logo}
+            src={scrolled ? logo1 : logo}
             fill
             alt="Solar Hope Logo"
             className="object-contain"
