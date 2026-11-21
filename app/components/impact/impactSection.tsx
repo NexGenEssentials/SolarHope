@@ -21,7 +21,7 @@ const ImpactSection = ({ id }: { id?: string }) => {
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
               SolarHope Africa is a solar installation company based in Kigali.
               We work at every size: a family home, a bar or factory tired of
-              its REG bill, a boarding school, a clinic, a large commercial
+              high power bills, a boarding school, a clinic, a large commercial
               roof, or a rural building the grid has never reached. We look at
               the site, design the system, supply and install it, show your
               people how it works, and stay with you for the warranty and

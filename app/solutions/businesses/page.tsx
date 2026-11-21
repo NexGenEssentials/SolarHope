@@ -3,16 +3,7 @@ import HomeTemplates from "../../components/templates/homeTemplates";
 import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
 import { SITE } from "../../config/site";
-import {
-  KWH_PER_PANEL_PER_DAY,
-  RATE_RWF_PER_KWH,
-  dailyKwh,
-  monthlyValueRwf,
-  packageByName,
-  paybackYears,
-  rwf,
-  usableBatteryKwh,
-} from "../../config/packages";
+import { packageByName, paybackYears, rwf } from "../../config/packages";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
 import urbanRoof from "@/public/images/projects/roof-urban-panels.jpg";
 import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
@@ -20,7 +11,7 @@ import withFinishedInstall from "@/public/images/projects/technician-with-finish
 export const metadata: Metadata = {
   title: "Solar for businesses in Rwanda | SolarHope Africa",
   description:
-    "Cut your REG bill and keep trading through outages. Hybrid solar with battery for bars, restaurants, shops, offices, workshops and factories in Kigali and across Rwanda. Prices published, excluding VAT.",
+    "Stay open through power cuts, spend less on electricity and leave the generator behind. Solar with battery backup for bars, restaurants, shops, offices and factories across Rwanda.",
   alternates: { canonical: "/solutions/businesses" },
   openGraph: {
     title: "Solar for businesses in Rwanda | SolarHope Africa",
@@ -31,52 +22,64 @@ export const metadata: Metadata = {
   },
 };
 
-// Packages shown on this page, smallest to largest.
-const BUSINESS_PACKAGES = ["SHA Shine", "SHA Bright", "SHA Blaze", "SHA Peak"].map(
-  packageByName,
-);
-
-// Backup examples. Hours are usable battery ÷ load, rounded down to allow for
-// inverter losses. Usable = 90% of nominal (CLAUDE.md §4).
-const shine = packageByName("SHA Shine");
-const bright = packageByName("SHA Bright");
-const BACKUP_EXAMPLES = [
+const REASONS = [
   {
-    who: "A shop after dark",
-    load: "lights, two display fridges, the till and Wi-Fi",
-    loadKw: 1,
-    pkg: shine,
-    hours: 8,
+    title: "Power cuts cost you customers",
+    text: "When the lights go out, sales stop. Customers walk away, drinks warm up and staff stand waiting. With solar and a battery, your business switches over automatically and carries on.",
   },
   {
-    who: "A bar in full swing",
-    load: "lights, the sound system and three fridges",
-    loadKw: 2,
-    pkg: bright,
-    hours: 6,
+    title: "Generators are an expensive fix",
+    text: "Fuel every time the power goes, regular servicing, noise your customers can hear and fumes nobody wants near the door. Solar runs silently, burns nothing and needs no fuel at all.",
+  },
+  {
+    title: "Electricity bills keep growing",
+    text: "Every new fridge, light and machine adds to the monthly bill. With panels on your roof, you make much of your own power and buy far less of it.",
   },
 ];
 
 const PROFILES = [
   {
     title: "Bars, restaurants and lounges",
-    text: "Your busiest hours run from about 5 pm to 2 am, when the panels make nothing. The panels charge the battery through the quiet afternoon, and the battery carries the evening. For you, the size of the battery matters more than the number of panels.",
+    text: "Your busiest hours come after dark. The panels charge the battery through the quiet afternoon, and the battery carries you through the evening rush.",
   },
   {
     title: "Shops, offices and workshops",
-    text: "You trade in daylight, while the panels are producing, so most of their power is used as it is made. The battery covers closing time and keeps you open when REG drops during the day.",
+    text: "You work in daylight, when the sun is strongest, so you use solar power as it is made and keep the battery for the evening and for power cuts.",
   },
   {
     title: "Factories and larger sites",
-    text: "Bigger machines and often a three-phase supply. We design these from your bills and a site visit rather than from a package, and size the system to the loads that cannot stop.",
+    text: "Bigger machines need a system built around them. We design yours after a site visit, so the equipment that must never stop is covered first.",
   },
 ];
 
-const WARRANTY = [
-  ["Solar panels", "10 years"],
-  ["Inverter", "5 years"],
-  ["Battery", "5 years"],
-  ["Our installation work", "2 years"],
+const STEPS = [
+  "A site visit and a system designed around your business",
+  "Installation by our own trained technicians",
+  "Full testing before we switch you on",
+  "A walk-through for you and your staff",
+  "Remote monitoring, so we often spot a problem before you do",
+];
+
+const PACKAGES = [
+  { name: "SHA Shine", suits: "Small shops, salons and offices" },
+  { name: "SHA Bright", suits: "Busy bars, restaurants and larger shops" },
+  { name: "SHA Blaze", suits: "Restaurants with kitchen equipment and small workshops" },
+  { name: "SHA Peak", suits: "Larger businesses on a three-phase supply" },
+].map((p) => ({ ...p, pkg: packageByName(p.name) }));
+
+const BACKUP = [
+  {
+    who: "A small shop after dark",
+    running: "Lights, two display fridges, the till and Wi-Fi",
+    system: "SHA Shine",
+    hours: 8,
+  },
+  {
+    who: "A busy bar at night",
+    running: "Lights, the sound system and three fridges",
+    system: "SHA Bright",
+    hours: 6,
+  },
 ];
 
 const label = "text-amber-500 text-lg uppercase";
@@ -87,12 +90,11 @@ export default function BusinessesPage() {
       {/* Hero */}
       <div className="flex flex-col gap-8 w-3/4 md:w-1/2 mx-auto py-16 items-center text-center">
         <h1 className="text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold">
-          Solar for businesses
+          Keep the lights on. Keep the costs down.
         </h1>
         <p className="text-[#BABABA]">
-          Cut your REG bill and keep trading when the power goes. We install
-          solar panels and a battery alongside your grid connection, and the
-          system switches over on its own during an outage.
+          Solar power for bars, restaurants, shops, offices and factories
+          across Rwanda. When the grid goes off, your business stays open.
         </p>
         <div className="flex items-center gap-8 justify-center font-bold">
           <Button link="#quote" name="Get a quote" />
@@ -107,52 +109,56 @@ export default function BusinessesPage() {
         </div>
       </div>
 
-      {/* The problem */}
+      {/* Why businesses switch */}
       <section className="px-4 py-16 bg-white">
-        <div className="max-w-[1570px] mx-auto flex flex-col md:flex-row gap-12 items-center">
-          <div className="md:w-1/2 space-y-4 text-gray-600 text-lg leading-relaxed">
-            <p className={label}>The problem</p>
-            <h2 className="text-3xl font-bold text-gray-800">
-              Two costs every business in Kigali knows
-            </h2>
-            <p>
-              The first is the REG bill. Once every charge is added, business
-              power comes to about {RATE_RWF_PER_KWH} RWF for each unit you
-              use, and the bill grows with every fridge, light and machine you
-              add.
-            </p>
-            <p>
-              The second is the outage. When the grid drops, the music stops,
-              the fridges start to warm up and customers leave. A generator
-              helps, but you pay for fuel every hour it runs.
-            </p>
+        <div className="max-w-[1570px] mx-auto space-y-12">
+          <div className="flex flex-col md:flex-row gap-12 items-center">
+            <div className="md:w-1/2 space-y-4">
+              <p className={label}>Why businesses switch</p>
+              <h2 className="text-3xl font-bold text-gray-800">
+                Your power should work as hard as you do
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Power cuts, generator fuel and rising bills all eat into what
+                you earn. A solar system with battery backup takes care of all
+                three, quietly, every day.
+              </p>
+            </div>
+            <div className="md:w-1/2 flex justify-center">
+              <img
+                src={teamInstalling.src}
+                alt="Three SolarHope technicians installing a hybrid inverter and battery"
+                className="w-full max-w-md h-[380px] object-cover rounded-lg shadow-lg shadow-gray-500"
+              />
+            </div>
           </div>
-          <div className="md:w-1/2 flex justify-center">
-            <img
-              src={teamInstalling.src}
-              alt="Three SolarHope technicians installing a hybrid inverter and battery"
-              className="w-full max-w-md h-[420px] object-cover rounded-lg shadow-lg shadow-gray-500"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {REASONS.map((r) => (
+              <div key={r.title} className="p-6 bg-[#F2F4F7] rounded-lg space-y-3">
+                <h3 className="text-xl font-bold text-gray-800">{r.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{r.text}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Load profile */}
+      {/* Built around how you trade */}
       <section className="text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376]">
         <div className="max-w-[1570px] mx-auto p-8 sm:px-28 sm:py-28 space-y-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex flex-col gap-4">
               <span className="w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
-                Why it differs
+                Made to fit
               </span>
               <h2 className="font-bold text-4xl">
-                When you use power matters more than how much
+                Built around the way your business runs
               </h2>
             </div>
             <p className="self-end">
-              Panels only produce during the day. So the right system for your
-              business depends on when you are busy, and two businesses with
-              the same bill can need quite different set-ups.
+              A bar and a shop can have the same bill and still need very
+              different systems. We design yours around when you are busiest,
+              not around a standard kit.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -166,120 +172,91 @@ export default function BusinessesPage() {
         </div>
       </section>
 
-      {/* What we install */}
-      <section className="bg-white text-dark-blue">
-        <div className="max-w-[1570px] mx-auto p-8 sm:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <div className="space-y-4 text-gray-600 leading-relaxed">
-            <p className={label}>What we install</p>
+      {/* What you get */}
+      <section className="bg-white">
+        <div className="max-w-[1570px] mx-auto p-8 sm:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-5 text-gray-600 leading-relaxed">
+            <p className={label}>What you get</p>
             <h2 className="text-3xl font-bold text-gray-800">
-              Your grid connection stays. The outages stop mattering.
+              One team, from the first visit to years of support
             </h2>
-            <p>
-              Solar panels on your roof, a hybrid inverter and a lithium
-              battery, wired in alongside your REG connection. You stay on the
-              grid. When REG goes off, the system switches over by itself and
-              your lights and fridges keep running from the battery.
+            <p className="text-lg">
+              Panels on your roof, a battery on your wall, and a system that
+              works alongside the grid. You stay connected, and when the power
+              goes off, the switch happens by itself.
             </p>
-            <p>Every job includes:</p>
-            <ul className="list-disc pl-6 space-y-1">
-              <li>a site visit, and a design based on your actual bills</li>
-              <li>supply and installation by our own technicians</li>
-              <li>testing before the system is switched on</li>
-              <li>showing your staff how it works</li>
-              <li>remote monitoring once it is running</li>
+            <ul className="space-y-2">
+              {STEPS.map((s) => (
+                <li key={s} className="flex gap-3">
+                  <span className="text-amber-500 font-bold">✓</span>
+                  <span>{s}</span>
+                </li>
+              ))}
             </ul>
+            <p>
+              <strong className="text-gray-800">Covered for years:</strong>{" "}
+              panels guaranteed for 10 years, inverter and battery for 5, and
+              our own workmanship for 2.
+            </p>
           </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-gray-800">Warranty</h3>
-            <table className="w-full text-left text-gray-700">
-              <tbody>
-                {WARRANTY.map(([item, term]) => (
-                  <tr key={item} className="border-b border-gray-200">
-                    <td className="py-3">{item}</td>
-                    <td className="py-3 font-semibold text-right">{term}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="flex justify-center">
             <img
               src={withFinishedInstall.src}
               alt="SolarHope technician beside a finished inverter and battery installation"
-              className="w-full h-64 object-cover rounded-lg shadow-lg"
+              className="w-full max-w-md h-[460px] object-cover rounded-lg shadow-lg shadow-gray-500"
             />
           </div>
         </div>
       </section>
 
-      {/* Costs and savings */}
+      {/* Packages */}
       <section className="bg-white text-[#637083]">
         <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20">
-          <div className="bg-[#F2F4F7] p-8 md:p-14 rounded-lg space-y-6">
-            <p className={label}>Prices</p>
-            <h2 className="text-3xl font-bold text-gray-800">
-              What it costs and what it saves
-            </h2>
-            <p>
-              These are our standard business systems. All prices exclude VAT.
-            </p>
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[720px] text-left text-sm">
-                <thead className="text-gray-800">
-                  <tr className="border-b border-gray-300">
-                    <th className="py-3 pr-4">System</th>
-                    <th className="py-3 pr-4">Panels</th>
-                    <th className="py-3 pr-4">Usable battery</th>
-                    <th className="py-3 pr-4">Made on an average day</th>
-                    <th className="py-3 pr-4">Worth per month*</th>
-                    <th className="py-3 pr-4">Price (excl. VAT)</th>
-                    <th className="py-3">Pays back in*</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {BUSINESS_PACKAGES.map((p) => (
-                    <tr key={p.name} className="border-b border-gray-200">
-                      <td className="py-3 pr-4 font-semibold text-gray-800">
-                        {p.name}
-                        {p.threePhase ? " (three-phase)" : ""}
-                      </td>
-                      <td className="py-3 pr-4">{p.panels}</td>
-                      <td className="py-3 pr-4">
-                        {usableBatteryKwh(p).toFixed(1)} kWh
-                      </td>
-                      <td className="py-3 pr-4">{dailyKwh(p).toFixed(1)} kWh</td>
-                      <td className="py-3 pr-4">
-                        {rwf(Math.round(monthlyValueRwf(p) / 1000) * 1000)} RWF
-                      </td>
-                      <td className="py-3 pr-4 font-semibold text-gray-800">
-                        {rwf(p.priceRwf)} RWF
-                      </td>
-                      <td className="py-3">
-                        about {paybackYears(p).toFixed(1)} years
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <div className="text-sm space-y-2">
+          <div className="bg-[#F2F4F7] p-8 md:p-14 rounded-lg space-y-8">
+            <div className="space-y-3">
+              <p className={label}>Packages</p>
+              <h2 className="text-3xl font-bold text-gray-800">
+                Clear prices, no surprises
+              </h2>
               <p>
-                * <strong>How we worked it out.</strong> Each panel makes about{" "}
-                {KWH_PER_PANEL_PER_DAY} kWh on an average day here (a 445-watt
-                panel, 4 hours of full sun, 80% system efficiency). &ldquo;Worth
-                per month&rdquo; is that output over 30 days at{" "}
-                {RATE_RWF_PER_KWH} RWF a unit, which is what the same power
-                would cost you from REG. Payback is the price divided by a
-                year of that.
-              </p>
-              <p>
-                Both figures assume you use everything the panels make. Power
-                you can neither use nor store saves nothing, so a business that
-                does most of its trade after dark will save less unless the
-                battery is big enough. Your REG bill goes down, but it does not
-                go to zero.
+                Few installers in Rwanda publish their prices. We do, so you know
+                where you stand before we even talk.
               </p>
             </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {PACKAGES.map(({ name, suits, pkg }) => (
+                <div
+                  key={name}
+                  className="bg-white rounded-lg p-6 space-y-3 border-t-4 border-yellow"
+                >
+                  <h3 className="text-xl font-bold text-gray-800">{name}</h3>
+                  <p className="text-sm min-h-[40px]">{suits}</p>
+                  <p className="text-2xl font-extrabold text-dark-blue">
+                    {rwf(pkg.priceRwf)} RWF
+                  </p>
+                  <p className="text-xs">excluding VAT</p>
+                  <p className="text-sm text-gray-800">
+                    Can pay for itself in about{" "}
+                    <strong>{Math.round(paybackYears(pkg) * 2) / 2} years</strong>
+                  </p>
+                </div>
+              ))}
+            </div>
+            <details className="text-sm">
+              <summary className="cursor-pointer text-gray-800 font-semibold">
+                How we estimate payback
+              </summary>
+              <p className="mt-2 leading-relaxed">
+                We work out how much power each system makes on an average day
+                in Rwanda and what that power would cost to buy from the grid.
+                The payback assumes you use all of it. How close you get depends
+                on when your business uses power, so your bill will drop
+                but will not disappear. Your quote shows the figures for your
+                own business.
+              </p>
+            </details>
             <p className="text-gray-800">
-              Not sure which size you need? Send us a recent REG bill on{" "}
+              Not sure which one fits? Send us a recent electricity bill on{" "}
               <a
                 href={SITE.whatsappUrl}
                 target="_blank"
@@ -288,8 +265,8 @@ export default function BusinessesPage() {
               >
                 WhatsApp
               </a>{" "}
-              and we will size it for you. Bigger site than this? We design
-              larger systems from your bills and a site visit.
+              and we will recommend the right size. Need something bigger? We
+              design larger systems to order.
             </p>
           </div>
         </div>
@@ -299,43 +276,34 @@ export default function BusinessesPage() {
       <section className="bg-white text-gray-600">
         <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 space-y-8">
           <div className="max-w-3xl space-y-4">
-            <p className={label}>During an outage</p>
+            <p className={label}>When the power goes off</p>
             <h2 className="text-3xl font-bold text-gray-800">
-              How long will it keep you going?
+              How long will you stay open?
             </h2>
             <p className="text-lg leading-relaxed">
-              It depends on what you leave running, so we give backup in hours
-              at a load you can picture, never as a single headline number.
-              Two examples at night, with the panels making nothing:
+              It depends on what you keep running. That is why we never quote a
+              headline number. Here is what two of our systems do at night:
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {BACKUP_EXAMPLES.map((ex) => (
+            {BACKUP.map((b) => (
               <div
-                key={ex.who}
+                key={b.who}
                 className="p-8 rounded-lg border-2 border-yellow/60 space-y-3"
               >
-                <h3 className="text-xl font-bold text-gray-800">{ex.who}</h3>
-                <p>
-                  Running {ex.load}, on {ex.pkg.name}:
-                </p>
+                <h3 className="text-xl font-bold text-gray-800">{b.who}</h3>
+                <p>{b.running}</p>
                 <p className="text-4xl font-extrabold text-dark-blue">
-                  about {ex.hours} hours
+                  about {b.hours} hours
                 </p>
-                <p className="text-sm">
-                  That load is about {ex.loadKw} kW. The battery holds{" "}
-                  {usableBatteryKwh(ex.pkg).toFixed(1)} kWh you can use, so{" "}
-                  {usableBatteryKwh(ex.pkg).toFixed(1)} ÷ {ex.loadKw} ={" "}
-                  {(usableBatteryKwh(ex.pkg) / ex.loadKw).toFixed(1)} hours,
-                  less a little lost in the inverter.
-                </p>
+                <p className="text-sm">on {b.system}</p>
               </div>
             ))}
           </div>
           <p className="max-w-3xl">
-            If the grid goes off during the day, the panels keep supplying you
-            too, so you last longer. Your own quote will show the hours at
-            your real load.
+            During the day the panels keep supplying you as well, so you last
+            even longer. Your quote will tell you exactly how many hours your
+            own equipment gets.
           </p>
         </div>
       </section>
@@ -346,18 +314,18 @@ export default function BusinessesPage() {
           <div className="md:w-1/2 space-y-4 text-lg leading-relaxed">
             <p className={label}>Our work</p>
             <h2 className="text-3xl font-bold text-gray-800">
-              Businesses we have worked with
+              Trusted by businesses in Kigali
             </h2>
             <p>
               Our business clients include a manufacturer in Kimironko and a
-              bar in Kicukiro. We do not name clients without their written
-              permission, so you will see them described rather than named.
+              bar in Kicukiro. We respect our clients&rsquo; privacy, so we
+              describe them here rather than name them.
             </p>
           </div>
           <div className="md:w-1/2 flex justify-center">
             <img
               src={urbanRoof.src}
-              alt="Solar panels installed by SolarHope on a steep city rooftop"
+              alt="Solar panels installed by SolarHope on a city rooftop"
               className="w-full max-w-md h-[360px] object-cover rounded-lg shadow-lg shadow-gray-500"
             />
           </div>

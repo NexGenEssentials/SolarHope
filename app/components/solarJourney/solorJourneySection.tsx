@@ -11,7 +11,7 @@ const content = [
     image: inspecting.src,
     alt: "SolarHope technician inspecting an inverter installation",
     title: "Site Assessment",
-    description: "We visit your site, read your REG bills and work out what you actually use.",
+    description: "We visit your site, look at your electricity bills and work out what you really need.",
   },
   {
     image: site2.src,

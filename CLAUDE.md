@@ -140,6 +140,12 @@ Instagram handle. Reuse this pattern on the site footer for consistency.
 
 ## 6. Tone and content rules
 
+- **Write like a business, not an engineer (decided 21 Nov 2026).** Web pages are sales
+  copy: lead with what the customer gains (staying open, lower costs, no generator
+  fuel or noise), keep sentences short and confident. No calculations, kWh, kW or
+  tariff figures in the main copy; if working must be shown, put it in a collapsed
+  "how we estimate this" note. Do not name REG or quote the price of grid power;
+  say "your electricity bill" or "the grid". The honesty rules below still apply.
 - **Plain language over jargon.** Say "runs two fridges and a freezer", not "4 kW
   continuous load". Avoid watts, HP and kWp in customer-facing body copy — they belong in
   spec tables only.
