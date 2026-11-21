@@ -255,7 +255,7 @@ export default function BusinessesPage() {
               batteries for 5.
             </p>
           </div>
-          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
+          <ul className="grid grid-cols-2 md:grid-cols-3 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
             {EQUIPMENT_BRANDS.map((b) => (
               <li
                 key={b.name}
