@@ -11,7 +11,7 @@ const content = [
     image: inspecting.src,
     alt: "SolarHope technician inspecting an inverter installation",
     title: "Site Assessment",
-    description: "We assess energy needs to deliver tailored solar solutions.",
+    description: "We visit your site, read your REG bills and work out what you actually use.",
   },
   {
     image: site2.src,
@@ -23,14 +23,14 @@ const content = [
     image: crewValley.src,
     alt: "SolarHope crew installing panels on a roof",
     title: "Installation",
-    description: "Our team installs reliable solar systems with care.",
+    description: "Our own technicians fit the panels, inverter and battery, then test everything before switch-on.",
   },
   {
     image: "/videos/db-check-poster.jpg",
     video: "/videos/db-check.mp4",
     alt: "SolarHope technician checking a distribution board",
     title: "Maintenance",
-    description: "We ensure systems run smoothly with regular maintenance.",
+    description: "We watch your system remotely and come back when something needs attention.",
   },
 ];
 

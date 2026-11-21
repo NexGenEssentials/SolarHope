@@ -14,7 +14,13 @@ const label = "block text-sm font-semibold mb-1 text-left";
 
 type Status = "idle" | "sending" | "sent" | "mail" | "error";
 
-const QuoteSection = ({ id }: { id?: string }) => {
+const QuoteSection = ({
+  id,
+  defaultSegment = "business",
+}: {
+  id?: string;
+  defaultSegment?: Segment;
+}) => {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
 
@@ -48,7 +54,7 @@ const QuoteSection = ({ id }: { id?: string }) => {
       <div className="relative text-white bg-[#0D1B39] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/images/pano4.png"
+            src="/images/quote-background.jpg"
             alt=""
             aria-hidden="true"
             className="w-full h-full object-cover"
@@ -70,7 +76,7 @@ const QuoteSection = ({ id }: { id?: string }) => {
               role="status"
               className="max-w-2xl mx-auto text-center text-lg font-semibold"
             >
-              Thank you — we have your request and will contact you shortly.
+              Thank you. We have your request and will call or WhatsApp you shortly.
             </p>
           ) : (
             <form
@@ -111,7 +117,7 @@ const QuoteSection = ({ id }: { id?: string }) => {
                   id="q-segment"
                   name="segment"
                   required
-                  defaultValue="business"
+                  defaultValue={defaultSegment}
                   className={`${field} [&>option]:text-black`}
                 >
                   {SEGMENTS.map((s) => (
@@ -166,8 +172,8 @@ const QuoteSection = ({ id }: { id?: string }) => {
                 </p>
                 {status === "mail" && (
                   <p role="status" className="text-sm">
-                    Your email app should have opened with your request — just
-                    press send. If it did not, message us on{" "}
+                    Your email app should have opened with your request. Press
+                    send to finish. If it did not, message us on{" "}
                     <a href={SITE.whatsappUrl} className="underline">
                       WhatsApp
                     </a>

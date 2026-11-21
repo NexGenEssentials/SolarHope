@@ -5,7 +5,7 @@ export const SITE = {
   name: "SolarHope Africa",
   legalName: "SolarHope Africa Ltd",
   tagline: "Light Up Dreams, The Solar Way",
-  title: "SolarHope Africa — Solar systems for homes, businesses and institutions in Rwanda",
+  title: "SolarHope Africa | Solar systems for homes, businesses and institutions in Rwanda",
   description:
     "SolarHope Africa designs and installs solar systems across Rwanda for homes, businesses, schools, health facilities and large commercial sites. Hybrid systems with automatic changeover where there is grid, and stand-alone systems where there is none.",
   email: "info@solarhopeafrica.com",

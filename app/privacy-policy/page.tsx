@@ -3,12 +3,12 @@ import HomeTemplates from "../components/templates/homeTemplates";
 import { SITE } from "../config/site";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — SolarHope Africa",
+  title: "Privacy Policy | SolarHope Africa",
   description:
     "How SolarHope Africa collects, uses and protects the personal data you share with us.",
   alternates: { canonical: "/privacy-policy" },
   openGraph: {
-    title: "Privacy Policy — SolarHope Africa",
+    title: "Privacy Policy | SolarHope Africa",
     url: "/privacy-policy",
     siteName: SITE.name,
     images: ["/og-image.png"],

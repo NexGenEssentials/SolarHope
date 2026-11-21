@@ -11,6 +11,7 @@ const exploreLinks = [
   { title: "About Us", link: "/#about" },
   { title: "What We Do", link: "/#impact" },
   { title: "Services", link: "/#services" },
+  { title: "For Businesses", link: "/solutions/businesses" },
   { title: "Get a quote", link: "/#quote" },
 ];
 
@@ -30,7 +31,7 @@ const Footer = () => {
               <Image
                 src={logo}
                 fill
-                alt="SolarHope Africa — home"
+                alt="SolarHope Africa home page"
                 className="object-contain w-full h-full"
               />
             </div>

@@ -13,7 +13,7 @@ const videos = [
     src: "/videos/team-at-work.mp4",
     poster: "/videos/team-at-work-poster.jpg",
     title: "Our team at work",
-    desc: "Wiring, battery connection and testing, done properly.",
+    desc: "Wiring the inverter, connecting the battery and testing before switch-on.",
   },
 ];
 

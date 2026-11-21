@@ -1,4 +1,5 @@
 import React from "react";
+import { BsArrowRight } from "react-icons/bs";
 import technicianOnArray from "@/public/images/projects/roof-technician-on-array.jpg";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
 import finishedArray from "@/public/images/projects/roof-finished-array.jpg";
@@ -14,17 +15,26 @@ const ImpactSection = ({ id }: { id?: string }) => {
             <h1 className="text-amber-500 text-lg">WHAT WE DO</h1>
 
             <h2 className="text-3xl w-3/4 font-bold text-gray-800 mb-6">
-              Empowering Communities with the Power of the Sun
+              From a family home to a factory roof
             </h2>
 
             <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              SolarHope Africa is a solar installation company based in Kigali,
-              working at every scale: a modern family home, a bar or factory
-              cutting its REG bill, a boarding school, a clinic, a large
-              commercial site, or a rural site the grid has never reached. We
-              assess the site, then design, supply and install the system,
-              train your team, and stay on for warranty and remote monitoring.
+              SolarHope Africa is a solar installation company based in Kigali.
+              We work at every size: a family home, a bar or factory tired of
+              its REG bill, a boarding school, a clinic, a large commercial
+              roof, or a rural building the grid has never reached. We look at
+              the site, design the system, supply and install it, show your
+              people how it works, and stay with you for the warranty and
+              remote monitoring.
             </p>
+
+            <a
+              href="/solutions/businesses"
+              className="flex items-end gap-4 w-fit hover:underline"
+            >
+              <span className="text-amber-500 text-sm">Solar for businesses</span>
+              <BsArrowRight className="text-[#E58411] text-xl" />
+            </a>
           </div>
 
           <div className="md:w-1/2 rounded-lg flex items-center gap-2 justify-center">

@@ -13,6 +13,7 @@ const navLinks = [
   { name: "About Us", href: "/#about" },
   { name: "What We Do", href: "/#impact" },
   { name: "Services", href: "/#services" },
+  { name: "For Businesses", href: "/solutions/businesses" },
 ];
 
 const Navbar = () => {

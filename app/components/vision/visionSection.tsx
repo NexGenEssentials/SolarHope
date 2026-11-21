@@ -40,9 +40,9 @@ const VisionSection = ({ id }: { id?: string }) =>  {
             <p className="">
               At SolarHope Africa, we envision a future where every home,
               business and institution, in the city or far from the grid, runs
-              on reliable, affordable solar power. Our job is to make that
-              practical: systems sized honestly to your load, installed
-              properly, and looked after for years.
+              on reliable, affordable solar power. Our part is the practical
+              work: sizing each system to what you really use, installing it
+              properly and looking after it for years.
             </p>
           </div>
         </div>
