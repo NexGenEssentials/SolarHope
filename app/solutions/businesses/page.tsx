@@ -208,8 +208,8 @@ export default function BusinessesPage() {
       {/* Outages */}
       <section className="bg-white text-gray-600">
         <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 space-y-12">
-          <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 items-center">
-            <div className="space-y-4">
+          <div className="space-y-10">
+            <div className="space-y-4 max-w-3xl">
               <p className={label}>When the power goes off</p>
               <h2 className="text-3xl font-bold text-gray-800">
                 How long will you stay open?

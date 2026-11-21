@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
-// Energy flow built from SolarHope's own installation photos, styled after
-// a monitoring app: glowing wires with a travelling pulse of light, and
-// callouts (small label, bold status) joined to each part by a dotted line.
-// Two modes: daytime and a power cut at night. Readings are illustrative.
+// A realistic scene of a small Kigali café on solar (original image made for
+// SolarHope; day and night versions share the same framing). Glowing lines are
+// drawn exactly over the cables in the picture, with a pulse of light moving
+// along whichever runs are live. Labels are app-style cards. Illustrative only.
 
 type Mode = "day" | "night";
 
@@ -13,178 +13,79 @@ const MODES: { key: Mode; tab: string; caption: string }[] = [
   { key: "night", tab: "Power cut at night", caption: "The grid goes off. The battery takes over by itself, and your lights stay on." },
 ];
 
-const GOLD = "#FBBF24";
-const AMBER = "#F59E0B";
-const NAVY = "#0f202e";
+// Image coordinate space (both images are 1672 × 941).
+const W = 1672;
+const H = 941;
 
-const PHOTOS = {
-  panels: "/images/projects/roof-finished-array.jpg",
-  grid: "/images/projects/grid-meter-board.jpg",
-  inverter: "/images/projects/wall-install-inverter-battery.jpg",
+// Cable runs traced from the picture.
+const RUNS = {
+  // roof panels -> under the eave -> down the wall conduit -> inverter
+  panels: "M 520 262 L 360 262 Q 356 262 356 268 L 356 430 L 362 436",
+  // pole top -> down the pole -> curve onto the wall -> inverter
+  grid: "M 186 92 L 179 130 L 177 345 Q 178 425 250 426 L 362 428",
+  // inverter -> the two battery cabinets
+  battery: "M 392 510 L 392 568 M 406 510 L 406 556 L 476 556 L 476 568",
+  // battery cabinets -> along the base of the wall -> into the café
+  shop: "M 512 688 L 612 688 L 700 688",
 };
 
-/** A wire: a soft glowing line when live, with a bright pulse travelling along it. */
-function Wire({ d, live, reverse = false, day }: { d: string; live: boolean; reverse?: boolean; day: boolean }) {
+const GREEN = "#4ADE80";
+
+function Run({ d, live, reverse = false }: { d: string; live: boolean; reverse?: boolean }) {
   return (
-    <g>
-      <path d={d} fill="none" stroke={day ? "#D5DCE6" : "#2C3E5C"} strokeWidth={5} strokeLinecap="round" />
-      <g className="transition-opacity duration-700" style={{ opacity: live ? 1 : 0 }}>
-        <path d={d} fill="none" stroke={GOLD} strokeWidth={10} strokeLinecap="round" opacity={0.25} filter="url(#glow)" />
-        <path d={d} fill="none" stroke={GOLD} strokeWidth={4} strokeLinecap="round" opacity={0.9} />
-        <path
-          d={d}
-          pathLength={100}
-          fill="none"
-          stroke="#FFF7D6"
-          strokeWidth={6}
-          strokeLinecap="round"
-          strokeDasharray="14 86"
-          filter="url(#glow)"
-          className="animate-[comet_1.6s_linear_infinite]"
-          style={{ animationDirection: reverse ? "reverse" : "normal" }}
-        />
-      </g>
+    <g className="transition-opacity duration-700" style={{ opacity: live ? 1 : 0 }}>
+      <path d={d} fill="none" stroke={GREEN} strokeWidth={18} strokeLinecap="round" strokeLinejoin="round" opacity={0.35} filter="url(#glow)" />
+      <path d={d} fill="none" stroke={GREEN} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d={d}
+        pathLength={100}
+        fill="none"
+        stroke="#F0FFF4"
+        strokeWidth={9}
+        strokeLinecap="round"
+        strokeDasharray="10 90"
+        filter="url(#glow)"
+        className="animate-[comet_1.8s_linear_infinite]"
+        style={{ animationDirection: reverse ? "reverse" : "normal" }}
+      />
     </g>
   );
 }
 
-/** Circular photo; gold ring and soft pulse when the part is active. */
-function PhotoNode({ id, cx, cy, r, src, active, dim = false }: {
-  id: string; cx: number; cy: number; r: number; src: string; active: boolean; dim?: boolean;
+/** App-style card: small label, bold status, a dot on the part it describes. */
+function Card({ x, y, label, value, to, tone = "#0f202e", w = 250, k = 1, anchorRight = false }: {
+  x: number; y: number; label: string; value: string; to: [number, number]; tone?: string; w?: number;
+  k?: number; anchorRight?: boolean;
 }) {
+  // k enlarges the card on narrow screens; anchorRight keeps right-hand cards inside the frame.
+  const cw = w * k;
+  const ch = 92 * k;
+  const cx = anchorRight ? Math.min(x, W - cw - 16) : Math.min(x, W - cw - 16);
   return (
     <g>
-      <defs>
-        <clipPath id={`clip-${id}`}>
-          <circle cx={cx} cy={cy} r={r} />
-        </clipPath>
-      </defs>
-      {active && (
-        <circle cx={cx} cy={cy} r={r + 6} fill="none" stroke={GOLD} strokeWidth={3}
-          className="animate-[pulsering_2.2s_ease-out_infinite]" style={{ transformOrigin: `${cx}px ${cy}px` }} />
-      )}
-      <image href={src} x={cx - r} y={cy - r} width={r * 2} height={r * 2}
-        preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${id})`}
-        style={{ filter: dim ? "grayscale(1) brightness(0.45)" : "none", transition: "filter 0.7s" }} />
-      <circle cx={cx} cy={cy} r={r} fill="none" stroke={active ? GOLD : "#E2E8F0"} strokeWidth={5}
-        style={{ transition: "stroke 0.5s" }} />
+      <line x1={cx + 20 * k} y1={y + ch} x2={to[0]} y2={to[1]} stroke="#fff" strokeWidth={3 * k} strokeDasharray={`${4 * k} ${8 * k}`} opacity={0.9} />
+      <circle cx={to[0]} cy={to[1]} r={9 * k} fill={GREEN} stroke="#fff" strokeWidth={3 * k} />
+      <rect x={cx} y={y} width={cw} height={ch} rx={18 * k} fill="#ffffff" opacity={0.93} />
+      <text x={cx + 22 * k} y={y + 34 * k} fontSize={22 * k} fontWeight={600} letterSpacing={2 * k} fill="#64748B">{label}</text>
+      <text x={cx + 22 * k} y={y + 74 * k} fontSize={36 * k} fontWeight={800} fill={tone}>{value}</text>
     </g>
   );
 }
 
-/** Rounded-rectangle photo in its own 3:4 shape, so the whole picture shows. */
-function PhotoCard({ id, cx, cy, w, h, src }: { id: string; cx: number; cy: number; w: number; h: number; src: string }) {
-  const x = cx - w / 2;
-  const y = cy - h / 2;
-  return (
-    <g>
-      <defs>
-        <clipPath id={`clip-${id}`}>
-          <rect x={x} y={y} width={w} height={h} rx={18} />
-        </clipPath>
-      </defs>
-      <rect x={x - 6} y={y - 6} width={w + 12} height={h + 12} rx={22} fill="none" stroke={GOLD} strokeWidth={3}
-        className="animate-[pulsering_2.2s_ease-out_infinite]" style={{ transformOrigin: `${cx}px ${cy}px` }} />
-      <image href={src} x={x} y={y} width={w} height={h} preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${id})`} />
-      <rect x={x} y={y} width={w} height={h} rx={18} fill="none" stroke={GOLD} strokeWidth={5} />
-    </g>
-  );
-}
-
-/**
- * A small shop drawn in a 2.5D style: front and side walls, a pitched roof
- * carrying solar panels, a striped awning, a shop window and a door. The
- * windows stay lit in both modes; at night a warm glow shows it is still open.
- */
-function Shop({ day }: { day: boolean }) {
-  const wall = day ? "#FFFFFF" : "#E9EEF5";
-  const side = day ? "#DCE4EE" : "#B8C3D3";
-  const roof = day ? "#8B5A44" : "#6B4636";
-  const roofSide = day ? "#6E4636" : "#4F3328";
-  const lit = "#FDE68A";
-  const panelCells = [];
-  for (let row = 0; row < 2; row++) {
-    for (let col = 0; col < 4; col++) {
-      // front roof slope runs from y=228 (eave) up to y=176 (ridge); cells sit on it
-      const t0 = 0.18 + row * 0.38;
-      const t1 = t0 + 0.32;
-      const yA = 228 - (228 - 176) * t0;
-      const yB = 228 - (228 - 176) * t1;
-      const inset = (t: number) => 18 + 22 * t; // slope narrows towards the ridge
-      const xL = (t: number) => 660 + inset(t) + col * ((150 - 2 * inset(t)) / 4);
-      const xR = (t: number) => xL(t) + (150 - 2 * inset(t)) / 4 - 4;
-      panelCells.push(
-        <polygon
-          key={`${row}-${col}`}
-          points={`${xL(t0)},${yA} ${xR(t0)},${yA} ${xR(t1)},${yB} ${xL(t1)},${yB}`}
-          fill={day ? "#1E3A8A" : "#1E293B"}
-          stroke={day ? "#93C5FD" : "#334155"}
-          strokeWidth="1"
-        />,
-      );
-    }
-  }
-  return (
-    <g>
-      {/* warm glow behind the building */}
-      <ellipse cx="752" cy="262" rx="120" ry="95" fill={GOLD} opacity={day ? 0.12 : 0.22}
-        className="animate-[pulsering_2.8s_ease-out_infinite]" style={{ transformOrigin: "752px 262px" }} />
-      {/* ground shadow */}
-      <ellipse cx="760" cy="338" rx="118" ry="13" fill={day ? "#CBD5E1" : "#0B1626"} opacity="0.8" />
-
-      {/* side wall */}
-      <polygon points="810,228 855,205 855,312 810,336" fill={side} stroke={NAVY} strokeWidth="2" strokeLinejoin="round" />
-      {/* side roof slope */}
-      <polygon points="822,228 868,205 840,166 798,176" fill={roofSide} stroke={NAVY} strokeWidth="2" strokeLinejoin="round" />
-      {/* front wall */}
-      <rect x="668" y="228" width="142" height="108" fill={wall} stroke={NAVY} strokeWidth="2" />
-      {/* front roof slope with panels */}
-      <polygon points="652,230 826,230 798,176 680,176" fill={roof} stroke={NAVY} strokeWidth="2" strokeLinejoin="round" />
-      {panelCells}
-
-      {/* awning */}
-      <g>
-        <rect x="676" y="244" width="78" height="12" fill={GOLD} stroke={NAVY} strokeWidth="1.5" />
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <rect key={i} x={676 + i * 13} y="244" width="6.5" height="12" fill="#fff" opacity="0.85" />
-        ))}
-        <path d="M 676 256 q 6.5 7 13 0 q 6.5 7 13 0 q 6.5 7 13 0 q 6.5 7 13 0 q 6.5 7 13 0 q 6.5 7 13 0"
-          fill={GOLD} stroke={NAVY} strokeWidth="1.5" />
-      </g>
-      {/* shop window */}
-      <rect x="680" y="266" width="70" height="44" rx="3" fill={lit} stroke={NAVY} strokeWidth="2" />
-      <line x1="715" y1="266" x2="715" y2="310" stroke={NAVY} strokeWidth="1.5" />
-      <rect x="686" y="292" width="58" height="4" fill="#F59E0B" opacity="0.6" />
-      {/* door */}
-      <rect x="764" y="262" width="34" height="74" rx="2" fill={lit} stroke={NAVY} strokeWidth="2" />
-      <circle cx="791" cy="300" r="2.5" fill={NAVY} />
-      {/* side window */}
-      <polygon points="824,252 842,243 842,268 824,277" fill={lit} stroke={NAVY} strokeWidth="1.5" />
-      {/* night light spill from windows */}
-      <g className="transition-opacity duration-700" style={{ opacity: day ? 0 : 1 }}>
-        <ellipse cx="715" cy="340" rx="44" ry="8" fill={lit} opacity="0.35" />
-        <ellipse cx="781" cy="340" rx="24" ry="6" fill={lit} opacity="0.35" />
-      </g>
-    </g>
-  );
-}
-
-/** App-style callout: small label, bold status, dotted leader to the part. */
-function Callout({ x, y, label, value, to, day, align = "start", valueColor }: {
-  x: number; y: number; label: string; value: string; to: [number, number]; day: boolean;
-  align?: "start" | "middle" | "end"; valueColor?: string;
-}) {
-  return (
-    <g>
-      <path d={`M ${x} ${y + 12} L ${to[0]} ${to[1]}`} stroke={AMBER} strokeWidth={1.5} strokeDasharray="2 5" fill="none" opacity={0.8} />
-      <text x={x} y={y - 22} textAnchor={align} fontSize="14" fontWeight="600" letterSpacing="1.5" fill={day ? "#64748B" : "#94A3B8"}>
-        {label}
-      </text>
-      <text x={x} y={y + 4} textAnchor={align} fontSize="26" fontWeight="800" fill={valueColor ?? (day ? NAVY : "#fff")}>
-        {value}
-      </text>
-    </g>
-  );
+/** Scale factor for labels: 1 on wide screens, up to ~2 on phones. */
+function useLabelScale(ref: React.RefObject<HTMLDivElement | null>) {
+  const [k, setK] = useState(1);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => {
+      const width = e.contentRect.width;
+      setK(Math.max(1, Math.min(2.1, 760 / width)));
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [ref]);
+  return k;
 }
 
 /** Battery percentage that counts towards its target. */
@@ -213,6 +114,8 @@ export default function EnergyFlow() {
   const [auto, setAuto] = useState(true);
   const day = mode === "day";
   const battery = useCountTo(day ? 92 : 41);
+  const frame = useRef<HTMLDivElement>(null);
+  const k = useLabelScale(frame);
 
   useEffect(() => {
     if (!auto) return;
@@ -223,7 +126,7 @@ export default function EnergyFlow() {
   const current = MODES.find((m) => m.key === mode)!;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       <div role="tablist" aria-label="When" className="inline-flex rounded-full bg-[#F2F4F7] p-1">
         {MODES.map((m) => (
           <button
@@ -240,65 +143,51 @@ export default function EnergyFlow() {
         ))}
       </div>
 
-      <div className={`rounded-2xl overflow-hidden transition-colors duration-700 ${
-        day ? "bg-linear-to-b from-[#FFF8E1] via-[#F4F8FC] to-[#EAF1F8]" : "bg-linear-to-b from-[#0b1626] to-[#1b2b4a]"
-      }`}>
-        <svg viewBox="0 0 900 470" className="w-full h-auto" role="img" aria-label={current.caption}>
+      <div ref={frame} className="relative w-full overflow-hidden rounded-2xl shadow-xl" style={{ aspectRatio: `${W} / ${H}` }}>
+        <img
+          src="/images/scene/shop-day.jpg"
+          alt="A café with solar panels on its roof and an inverter and batteries on its outside wall, in daylight"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <img
+          src="/images/scene/shop-night.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+          style={{ opacity: day ? 0 : 1 }}
+        />
+
+        <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 w-full h-full" role="img" aria-label={current.caption}>
           <defs>
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="5" />
+              <feGaussianBlur stdDeviation="6" />
             </filter>
           </defs>
 
-          {/* sun / moon */}
-          <g className="transition-opacity duration-700" style={{ opacity: day ? 1 : 0 }}>
-            <circle cx="60" cy="56" r="40" fill={GOLD} opacity="0.18" className="animate-[pulsering_3s_ease-out_infinite]" style={{ transformOrigin: "60px 56px" }} />
-            <circle cx="60" cy="56" r="20" fill={GOLD} />
-          </g>
-          <g className="transition-opacity duration-700" style={{ opacity: day ? 0 : 1 }}>
-            <circle cx="60" cy="56" r="18" fill="#E2E8F0" />
-            <circle cx="69" cy="49" r="15" fill="#0f1d33" />
-            {[[150, 26], [470, 40], [610, 22], [840, 60], [880, 150]].map(([x, y], i) => (
-              <circle key={i} cx={x} cy={y} r="1.8" fill="#fff" opacity="0.7" />
-            ))}
-          </g>
+          <Run d={RUNS.panels} live={day} />
+          <Run d={RUNS.grid} live={false} />
+          <Run d={RUNS.battery} live reverse={!day} />
+          <Run d={RUNS.shop} live />
 
-          {/* wires */}
-          <Wire day={day} d="M 262 150 C 330 150, 330 225, 384 232" live={day} />
-          <Wire day={day} d="M 245 360 C 330 360, 330 270, 384 262" live={false} />
-          <Wire day={day} d="M 540 247 C 600 247, 610 288, 668 288" live />
-
-          {/* grid off marker */}
+          {/* grid off marker on the pole cable */}
           <g className="transition-opacity duration-500" style={{ opacity: day ? 0 : 1 }}>
-            <circle cx="320" cy="318" r="16" fill="#EF4444" />
-            <path d="M 313 311 L 327 325 M 327 311 L 313 325" stroke="#fff" strokeWidth="3" strokeLinecap="round" />
+            <circle cx="178" cy="300" r="26" fill="#EF4444" stroke="#fff" strokeWidth="4" />
+            <path d="M 166 288 L 190 312 M 190 288 L 166 312" stroke="#fff" strokeWidth="6" strokeLinecap="round" />
           </g>
 
-          {/* parts */}
-          <PhotoNode id="panels" cx={190} cy={150} r={72} src={PHOTOS.panels} active={day} dim={!day} />
-          <PhotoNode id="grid" cx={190} cy={360} r={55} src={PHOTOS.grid} active={false} dim={!day} />
-          <PhotoCard id="inverter" cx={462} cy={247} w={156} h={208} src={PHOTOS.inverter} />
-
-          <Shop day={day} />
-
-          {/* callouts */}
-          <Callout day={day} x={300} y={62} label="SOLAR PANELS" value={day ? "Producing" : "Resting"} to={[248, 104]} />
-          <Callout day={day} x={300} y={440} label="THE GRID" value={day ? "Connected" : "Off"} to={[236, 392]}
-            valueColor={day ? undefined : "#F87171"} />
-          <Callout day={day} x={566} y={392} label="BATTERY" value={`${battery}%`} to={[542, 330]}
-            valueColor={day ? undefined : GOLD} />
-          <text x={566} y={418} textAnchor="start" fontSize="15" fill={day ? "#475569" : "#CBD5E1"}>
-            {day ? "Charging from the sun" : "Powering your shop"}
-          </text>
-          <Callout day={day} x={752} y={80} align="middle" label="YOUR SHOP" value="Running" to={[738, 162]}
-            valueColor={day ? undefined : GOLD} />
+          <Card k={k} x={k > 1.2 ? 700 : 980} y={24} label="SOLAR PANELS" value={day ? "Producing" : "Resting"} to={[1040, 215]}
+            tone={day ? "#0f202e" : "#64748B"} />
+          <Card k={k} x={16} y={k > 1.2 ? 520 : 470} label="THE GRID" value={day ? "Connected" : "Off"} to={[178, 400]}
+            tone={day ? "#0f202e" : "#DC2626"} w={230} />
+          <Card k={k} x={560} y={k > 1.2 ? 720 : 560} label="BATTERY" value={`${battery}%`} to={[478, 600]} w={210} />
+          <Card k={k} anchorRight x={1290} y={k > 1.2 ? 330 : 150} label="YOUR BUSINESS" value="Running" to={[1300, 470]} w={270} />
         </svg>
       </div>
 
       <p key={mode} className="text-lg text-gray-700 font-medium animate-[rise_0.5s_ease-out_both]">
         {current.caption}
       </p>
-      <p className="text-xs text-gray-400 -mt-4">Illustration. Your own system&rsquo;s readings appear in its monitoring app.</p>
+      <p className="text-xs text-gray-400 -mt-3">Illustration. Your own system&rsquo;s readings appear in its monitoring app.</p>
     </div>
   );
 }
