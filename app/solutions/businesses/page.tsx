@@ -3,13 +3,7 @@ import HomeTemplates from "../../components/templates/homeTemplates";
 import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
 import { SITE } from "../../config/site";
-import {
-  DREAM_SERIES,
-  HOPE_SERIES,
-  LOWEST_PRICE_RWF,
-  paybackYears,
-  rwf,
-} from "../../config/packages";
+import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
 import urbanRoof from "@/public/images/projects/roof-urban-panels.jpg";
 import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
@@ -207,100 +201,6 @@ export default function BusinessesPage() {
               alt="SolarHope technician beside a finished inverter and battery installation"
               className="w-full max-w-md h-[460px] object-cover rounded-lg shadow-lg shadow-gray-500"
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Packages */}
-      <section className="bg-white text-[#637083]">
-        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20">
-          <div className="bg-[#F2F4F7] p-8 md:p-14 rounded-lg space-y-8">
-            <div className="space-y-3 max-w-3xl">
-              <p className={label}>Packages</p>
-              <h2 className="text-3xl font-bold text-gray-800">
-                Start with what you need. Grow when you are ready.
-              </h2>
-              <p>
-                You do not need a big system on day one. Our Hope Series is
-                built from separate panels, inverter and battery, so you can
-                start small and add more as your business grows. Prices are
-                published, so you know where you stand before we even talk.
-              </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {HOPE_SERIES.map((pkg) => (
-                <div
-                  key={pkg.name}
-                  className="bg-white rounded-lg p-6 flex flex-col gap-3 border-t-4 border-yellow"
-                >
-                  <h3 className="text-xl font-bold text-gray-800">{pkg.name}</h3>
-                  <p className="text-sm text-gray-500 font-semibold">What it runs</p>
-                  <p className="text-sm flex-1">{pkg.runs}</p>
-                  <p className="text-2xl font-extrabold text-dark-blue">
-                    {rwf(pkg.priceRwf)} RWF
-                  </p>
-                  <p className="text-xs -mt-2">excluding VAT</p>
-                  <p className="text-sm text-gray-800">
-                    Can pay for itself in about{" "}
-                    <strong>{Math.round(paybackYears(pkg) * 2) / 2} years</strong>
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="bg-white rounded-lg p-6 space-y-4">
-              <div>
-                <h3 className="text-xl font-bold text-gray-800">
-                  Just need backup? Try our plug-and-play units
-                </h3>
-                <p className="text-sm">
-                  Our Dream Series units are all-in-one and quick to set up.
-                  They are fixed at purchase rather than expandable, which keeps
-                  them simple and affordable.
-                </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {DREAM_SERIES.map((d) => (
-                  <div key={d.name} className="space-y-1">
-                    <p className="font-bold text-gray-800">{d.name}</p>
-                    <p className="text-sm">{d.runs}</p>
-                    <p className="font-extrabold text-dark-blue">
-                      {rwf(d.priceRwf)} RWF{" "}
-                      <span className="text-xs font-normal text-[#637083]">
-                        excl. VAT
-                      </span>
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <details className="text-sm">
-              <summary className="cursor-pointer text-gray-800 font-semibold">
-                How we estimate payback
-              </summary>
-              <p className="mt-2 leading-relaxed">
-                We work out how much power each Hope Series system makes on an
-                average day in Rwanda and what that power would cost to buy
-                from the grid. The payback assumes you use all of it. How close
-                you get depends on when your business uses power, so your bill
-                will drop but will not disappear. Your quote shows the figures
-                for your own business.
-              </p>
-            </details>
-            <p className="text-gray-800">
-              Not sure which one fits? Send us a recent electricity bill on{" "}
-              <a
-                href={SITE.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline"
-              >
-                WhatsApp
-              </a>{" "}
-              and we will recommend the right size. Need something bigger? We
-              design larger systems to order.
-            </p>
           </div>
         </div>
       </section>
