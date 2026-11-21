@@ -5,7 +5,6 @@ import QuoteSection from "../../components/quote/quoteSection";
 import { EQUIPMENT_BRANDS, SITE } from "../../config/site";
 import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
-import wallInstall from "@/public/images/projects/wall-install-inverter-battery.jpg";
 import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
 
 export const metadata: Metadata = {
@@ -243,8 +242,8 @@ export default function BusinessesPage() {
 
       {/* Equipment we trust */}
       <section className="bg-white text-gray-600">
-        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 flex flex-col md:flex-row gap-12 items-center">
-          <div className="md:w-1/2 space-y-6 text-lg leading-relaxed">
+        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 space-y-10">
+          <div className="max-w-3xl space-y-4 text-lg leading-relaxed">
             <p className={label}>Equipment we trust</p>
             <h2 className="text-3xl font-bold text-gray-800">
               Built with brands that last
@@ -255,30 +254,28 @@ export default function BusinessesPage() {
               by us. Panels are guaranteed for 10 years, inverters and
               batteries for 5.
             </p>
-            <ul className="grid grid-cols-2 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
-              {EQUIPMENT_BRANDS.map((b) => (
-                <li
-                  key={b.name}
-                  className="bg-white h-20 flex items-center justify-center px-4"
-                >
-                  {b.logo ? (
-                    <img src={b.logo} alt={b.name} className="max-h-10 w-auto object-contain" />
-                  ) : (
-                    <span className="text-lg font-bold tracking-wide text-gray-500">
-                      {b.name}
-                    </span>
-                  )}
-                </li>
-              ))}
-            </ul>
           </div>
-          <div className="md:w-1/2 flex justify-center">
-            <img
-              src={wallInstall.src}
-              alt="A hybrid inverter and lithium battery installed by SolarHope"
-              className="w-full max-w-md h-[420px] object-cover rounded-lg shadow-lg shadow-gray-500"
-            />
-          </div>
+          <ul className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
+            {EQUIPMENT_BRANDS.map((b) => (
+              <li
+                key={b.name}
+                className="group bg-white h-32 flex items-center justify-center px-8"
+              >
+                {b.logo ? (
+                  <img
+                    src={b.logo}
+                    alt={b.name}
+                    loading="lazy"
+                    className={`${b.stacked ? "max-h-24" : "max-h-14"} max-w-full w-auto object-contain grayscale opacity-70 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100`}
+                  />
+                ) : (
+                  <span className="text-lg font-bold tracking-wide text-gray-500">
+                    {b.name}
+                  </span>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

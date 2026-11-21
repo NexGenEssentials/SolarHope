@@ -23,12 +23,13 @@ export const SITE = {
 // Equipment manufacturers whose products SolarHope installs. Manufacturers
 // only: never the distributor SolarHope buys through (CLAUDE.md §8). Add a
 // `logo` path (e.g. "/images/brands/deye.svg") once official logo files are
-// supplied; until then the name is shown as text.
-export const EQUIPMENT_BRANDS: { name: string; logo?: string }[] = [
-  { name: "Felicity Solar" },
-  { name: "Deye" },
-  { name: "SRNE" },
-  { name: "LVTOPSUN" },
+// supplied; until then the name is shown as text. Logos are the official
+// files from each manufacturer's own website.
+export const EQUIPMENT_BRANDS: { name: string; logo?: string; stacked?: boolean }[] = [
+  { name: "Felicity Solar", logo: "/images/brands/felicity-solar.png" },
+  { name: "Deye", logo: "/images/brands/deye.svg" },
+  { name: "SRNE", logo: "/images/brands/srne.png" },
+  { name: "LVTOPSUN", logo: "/images/brands/lvtopsun.png", stacked: true },
 ];
 
 // Phase 0.3 — the achievements counters stay off until the figures are worth
