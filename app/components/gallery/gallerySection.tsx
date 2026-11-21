@@ -9,16 +9,20 @@ import crewValley from "@/public/images/projects/roof-crew-valley-view.jpg";
 import finishedRows from "@/public/images/projects/roof-finished-rows.jpg";
 import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
 import wallInstall from "@/public/images/projects/wall-install-inverter-battery.jpg";
+import crewWide from "@/public/images/projects/roof-crew-wide.jpg";
+import wiringInverter from "@/public/images/projects/technician-wiring-inverter.jpg";
 
-// SolarHope's own installation photos.
+// SolarHope's own installation photos (rooftop set: a family home in Nyagatare).
 const images = [
-  { src: crewFitting, alt: "SolarHope technicians fitting solar panels on a roof, with hills behind" },
+  { src: crewFitting, alt: "SolarHope technicians fitting solar panels on a family home in Nyagatare, with hills behind" },
   { src: withFinishedInstall, alt: "SolarHope technician beside a finished inverter and battery installation" },
+  { src: crewWide, alt: "SolarHope crew laying out solar panels on a roof in Nyagatare" },
   { src: crewCloseUp, alt: "SolarHope crew securing a row of solar panels on a roof" },
-  { src: crewValley, alt: "SolarHope crew on a roof installation overlooking a valley" },
+  { src: wiringInverter, alt: "SolarHope technician wiring a hybrid inverter above its battery" },
+  { src: crewValley, alt: "SolarHope crew on a rooftop installation in Nyagatare overlooking the valley" },
   { src: crewMidInstall, alt: "SolarHope technicians fixing panels into place during an installation" },
   { src: wallInstall, alt: "A wall-mounted hybrid inverter above its lithium battery, installed by SolarHope" },
-  { src: finishedRows, alt: "Rows of newly installed solar panels on a corrugated roof" },
+  { src: finishedRows, alt: "Rows of newly installed solar panels on a corrugated roof in Nyagatare" },
 ];
 
 const AutoImageSlider = () => {
