@@ -3,9 +3,13 @@ import HomeTemplates from "../../components/templates/homeTemplates";
 import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
 import { SITE } from "../../config/site";
-import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
-import { DrainingBattery, Eyebrow, MotionRoot, Reveal } from "./_components/motion";
-import { DayStory, ParallaxHero, ParallaxImage, WordReveal } from "./_components/scroll";
+import {
+  DREAM_SERIES,
+  HOPE_SERIES,
+  LOWEST_PRICE_RWF,
+  paybackYears,
+  rwf,
+} from "../../config/packages";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
 import urbanRoof from "@/public/images/projects/roof-urban-panels.jpg";
 import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
@@ -24,162 +28,344 @@ export const metadata: Metadata = {
   },
 };
 
+const REASONS = [
+  {
+    title: "Power cuts cost you customers",
+    text: "When the lights go out, sales stop. Customers walk away, drinks warm up and staff stand waiting. With solar and a battery, your business switches over automatically and carries on.",
+  },
+  {
+    title: "Generators are an expensive fix",
+    text: "Fuel every time the power goes, regular servicing, noise your customers can hear and fumes nobody wants near the door. Solar runs silently, burns nothing and needs no fuel at all.",
+  },
+  {
+    title: "Electricity bills keep growing",
+    text: "Every new fridge, light and machine adds to the monthly bill. With panels on your roof, you make much of your own power and buy far less of it.",
+  },
+];
+
+const PROFILES = [
+  {
+    title: "Bars, restaurants and lounges",
+    text: "Your busiest hours come after dark. The panels charge the battery through the quiet afternoon, and the battery carries you through the evening rush.",
+  },
+  {
+    title: "Shops, offices and workshops",
+    text: "You work in daylight, when the sun is strongest, so you use solar power as it is made and keep the battery for the evening and for power cuts.",
+  },
+  {
+    title: "Factories and larger sites",
+    text: "Bigger machines need a system built around them. We design yours after a site visit, so the equipment that must never stop is covered first.",
+  },
+];
+
 const STEPS = [
   "A site visit and a system designed around your business",
   "Installation by our own trained technicians",
   "Full testing before we switch you on",
   "A walk-through for you and your staff",
-  "Remote monitoring once it is running",
+  "Remote monitoring of your system once it is running",
 ];
 
 const BACKUP = [
-  { who: "A small shop after dark", running: "Lights, two display fridges, the till and Wi-Fi", system: "SHA Shine", hours: 8 },
-  { who: "A busy bar at night", running: "Lights, the sound system and three fridges", system: "SHA Bright", hours: 6 },
+  {
+    who: "A small shop after dark",
+    running: "Lights, two display fridges, the till and Wi-Fi",
+    system: "SHA Shine",
+    hours: 8,
+  },
+  {
+    who: "A busy bar at night",
+    running: "Lights, the sound system and three fridges",
+    system: "SHA Bright",
+    hours: 6,
+  },
 ];
 
-const STATEMENT =
-  "Power cuts cost you customers. Generators cost you fuel, noise and fumes. Bills keep climbing. Solar with a battery quietly fixes all three.";
+const label = "text-amber-500 text-lg uppercase";
 
 export default function BusinessesPage() {
   return (
     <HomeTemplates>
-      <MotionRoot>
-        {/* 1. Parallax hero */}
-        <ParallaxHero
-          image={teamInstalling.src}
-          alt="Three SolarHope technicians installing a hybrid inverter and battery"
-        >
-          <div className="max-w-3xl space-y-7 animate-[rise_0.9s_cubic-bezier(0.22,1,0.36,1)_both]">
-            <Eyebrow light>Solar for businesses</Eyebrow>
-            <h1 className="text-[2.6rem] sm:text-7xl font-bold italic leading-[1.02] tracking-tight">
-              <span className="block text-white">Keep the lights on.</span>
-              <span className="block text-yellow">Keep the costs down.</span>
-            </h1>
-            <p className="text-white/75 text-lg max-w-xl">
-              Solar power for bars, restaurants, shops, offices and factories
-              across Rwanda. When the grid goes off, you stay open.
+      {/* Hero */}
+      <div className="flex flex-col gap-8 w-3/4 md:w-1/2 mx-auto py-16 items-center text-center">
+        <h1 className="text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold">
+          Keep the lights on. Keep the costs down.
+        </h1>
+        <p className="text-[#BABABA]">
+          Solar power for bars, restaurants, shops, offices and factories
+          across Rwanda. When the grid goes off, your business stays open.
+        </p>
+        <p className="text-yellow font-semibold">
+          Packages from {rwf(LOWEST_PRICE_RWF)} RWF, excluding VAT
+        </p>
+        <div className="flex items-center gap-8 justify-center font-bold">
+          <Button link="#quote" name="Get a quote" />
+          <a
+            href={SITE.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow transition-colors"
+          >
+            WhatsApp us
+          </a>
+        </div>
+      </div>
+
+      {/* Why businesses switch */}
+      <section className="px-4 py-16 bg-white">
+        <div className="max-w-[1570px] mx-auto space-y-12">
+          <div className="flex flex-col md:flex-row gap-12 items-center">
+            <div className="md:w-1/2 space-y-4">
+              <p className={label}>Why businesses switch</p>
+              <h2 className="text-3xl font-bold text-gray-800">
+                Your power should work as hard as you do
+              </h2>
+              <p className="text-lg text-gray-600 leading-relaxed">
+                Power cuts, generator fuel and rising bills all eat into what
+                you earn. A solar system with battery backup takes care of all
+                three, quietly, every day.
+              </p>
+            </div>
+            <div className="md:w-1/2 flex justify-center">
+              <img
+                src={teamInstalling.src}
+                alt="Three SolarHope technicians installing a hybrid inverter and battery"
+                className="w-full max-w-md h-[380px] object-cover rounded-lg shadow-lg shadow-gray-500"
+              />
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {REASONS.map((r) => (
+              <div key={r.title} className="p-6 bg-[#F2F4F7] rounded-lg space-y-3">
+                <h3 className="text-xl font-bold text-gray-800">{r.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{r.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Built around how you trade */}
+      <section className="text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376]">
+        <div className="max-w-[1570px] mx-auto p-8 sm:px-28 sm:py-28 space-y-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="flex flex-col gap-4">
+              <span className="w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
+                Made to fit
+              </span>
+              <h2 className="font-bold text-4xl">
+                Built around the way your business runs
+              </h2>
+            </div>
+            <p className="self-end">
+              A bar and a shop can have the same bill and still need very
+              different systems. We design yours around when you are busiest,
+              not around a standard kit.
             </p>
-            <div className="flex flex-wrap items-center gap-8 font-bold">
-              <Button link="#quote" name="Get a quote" />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {PROFILES.map((p) => (
+              <div key={p.title} className="p-6 bg-white/7 rounded space-y-4">
+                <h3 className="text-2xl font-bold leading-normal">{p.title}</h3>
+                <p className="text-sm leading-relaxed">{p.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What you get */}
+      <section className="bg-white">
+        <div className="max-w-[1570px] mx-auto p-8 sm:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-5 text-gray-600 leading-relaxed">
+            <p className={label}>What you get</p>
+            <h2 className="text-3xl font-bold text-gray-800">
+              One team, from the first visit to years of support
+            </h2>
+            <p className="text-lg">
+              Panels on your roof, a battery on your wall, and a system that
+              works alongside the grid. You stay connected, and when the power
+              goes off, the switch happens by itself.
+            </p>
+            <ul className="space-y-2">
+              {STEPS.map((s) => (
+                <li key={s} className="flex gap-3">
+                  <span className="text-amber-500 font-bold">✓</span>
+                  <span>{s}</span>
+                </li>
+              ))}
+            </ul>
+            <p>
+              <strong className="text-gray-800">Covered for years:</strong>{" "}
+              panels guaranteed for 10 years, inverter and battery for 5, and
+              our own workmanship for 2.
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <img
+              src={withFinishedInstall.src}
+              alt="SolarHope technician beside a finished inverter and battery installation"
+              className="w-full max-w-md h-[460px] object-cover rounded-lg shadow-lg shadow-gray-500"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Packages */}
+      <section className="bg-white text-[#637083]">
+        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20">
+          <div className="bg-[#F2F4F7] p-8 md:p-14 rounded-lg space-y-8">
+            <div className="space-y-3 max-w-3xl">
+              <p className={label}>Packages</p>
+              <h2 className="text-3xl font-bold text-gray-800">
+                Start with what you need. Grow when you are ready.
+              </h2>
+              <p>
+                You do not need a big system on day one. Our Hope Series is
+                built from separate panels, inverter and battery, so you can
+                start small and add more as your business grows. Prices are
+                published, so you know where you stand before we even talk.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {HOPE_SERIES.map((pkg) => (
+                <div
+                  key={pkg.name}
+                  className="bg-white rounded-lg p-6 flex flex-col gap-3 border-t-4 border-yellow"
+                >
+                  <h3 className="text-xl font-bold text-gray-800">{pkg.name}</h3>
+                  <p className="text-sm text-gray-500 font-semibold">What it runs</p>
+                  <p className="text-sm flex-1">{pkg.runs}</p>
+                  <p className="text-2xl font-extrabold text-dark-blue">
+                    {rwf(pkg.priceRwf)} RWF
+                  </p>
+                  <p className="text-xs -mt-2">excluding VAT</p>
+                  <p className="text-sm text-gray-800">
+                    Can pay for itself in about{" "}
+                    <strong>{Math.round(paybackYears(pkg) * 2) / 2} years</strong>
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-white rounded-lg p-6 space-y-4">
+              <div>
+                <h3 className="text-xl font-bold text-gray-800">
+                  Just need backup? Try our plug-and-play units
+                </h3>
+                <p className="text-sm">
+                  Our Dream Series units are all-in-one and quick to set up.
+                  They are fixed at purchase rather than expandable, which keeps
+                  them simple and affordable.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {DREAM_SERIES.map((d) => (
+                  <div key={d.name} className="space-y-1">
+                    <p className="font-bold text-gray-800">{d.name}</p>
+                    <p className="text-sm">{d.runs}</p>
+                    <p className="font-extrabold text-dark-blue">
+                      {rwf(d.priceRwf)} RWF{" "}
+                      <span className="text-xs font-normal text-[#637083]">
+                        excl. VAT
+                      </span>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <details className="text-sm">
+              <summary className="cursor-pointer text-gray-800 font-semibold">
+                How we estimate payback
+              </summary>
+              <p className="mt-2 leading-relaxed">
+                We work out how much power each Hope Series system makes on an
+                average day in Rwanda and what that power would cost to buy
+                from the grid. The payback assumes you use all of it. How close
+                you get depends on when your business uses power, so your bill
+                will drop but will not disappear. Your quote shows the figures
+                for your own business.
+              </p>
+            </details>
+            <p className="text-gray-800">
+              Not sure which one fits? Send us a recent electricity bill on{" "}
               <a
                 href={SITE.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-yellow transition-colors"
+                className="underline"
               >
-                WhatsApp us
-              </a>
-            </div>
-            <p className="text-sm text-white/50">
-              Packages from {rwf(LOWEST_PRICE_RWF)} RWF, excluding VAT
+                WhatsApp
+              </a>{" "}
+              and we will recommend the right size. Need something bigger? We
+              design larger systems to order.
             </p>
           </div>
-        </ParallaxHero>
-
-        <div className="bg-white">
-          {/* 2. Statement, lit word by word */}
-          <section className="max-w-5xl mx-auto px-6 sm:px-10 py-32 sm:py-44">
-            <WordReveal text={STATEMENT} accentFrom={STATEMENT.split(" ").length - 6} />
-          </section>
         </div>
+      </section>
 
-        {/* 3. One day, told by scrolling */}
-        <DayStory />
-
-        <div className="bg-white">
-          {/* 4. One team */}
-          <section className="max-w-6xl mx-auto px-6 sm:px-10 py-28 grid lg:grid-cols-2 gap-16 items-center">
-            <ParallaxImage
-              src={withFinishedInstall.src}
-              alt="SolarHope technician beside a finished inverter and battery installation"
-              className="h-[520px] rounded-lg"
-            />
-            <div className="space-y-8">
-              <Reveal className="space-y-5">
-                <Eyebrow>What you get</Eyebrow>
-                <h2 className="text-3xl sm:text-4xl font-bold italic leading-tight tracking-tight">
-                  <span className="block text-dark-blue">One team, from first visit</span>
-                  <span className="block text-amber-500">to years of support.</span>
-                </h2>
-              </Reveal>
-              <div role="list">
-                {STEPS.map((s, i) => (
-                  <Reveal key={s} delay={i * 0.07}>
-                    <div role="listitem" className="flex gap-5 border-t border-gray-100 py-4">
-                      <span className="text-sm text-amber-500 font-semibold w-5">{i + 1}</span>
-                      <span className="text-gray-700">{s}</span>
-                    </div>
-                  </Reveal>
-                ))}
-              </div>
-              <Reveal>
-                <p className="text-sm text-gray-500">
-                  Panels guaranteed for 10 years, inverter and battery for 5,
-                  our workmanship for 2.
-                </p>
-              </Reveal>
-            </div>
-          </section>
-
-          {/* 5. Backup */}
-          <section className="border-t border-gray-100">
-            <div className="max-w-6xl mx-auto px-6 sm:px-10 py-28 space-y-14">
-              <Reveal className="max-w-2xl space-y-5">
-                <Eyebrow>When the power goes off</Eyebrow>
-                <h2 className="text-3xl sm:text-4xl font-bold italic leading-tight tracking-tight">
-                  <span className="block text-dark-blue">How long will</span>
-                  <span className="block text-amber-500">you stay open?</span>
-                </h2>
-                <p className="text-gray-600">
-                  It depends on what you keep running, so we never quote a
-                  headline number. Two examples at night:
-                </p>
-              </Reveal>
-              <div className="grid md:grid-cols-2 gap-12">
-                {BACKUP.map((b, i) => (
-                  <Reveal key={b.who} delay={i * 0.1} className="border-t border-gray-200 pt-6 space-y-5">
-                    <div>
-                      <h3 className="text-lg font-semibold text-dark-blue">{b.who}</h3>
-                      <p className="text-gray-500">{b.running}</p>
-                    </div>
-                    <DrainingBattery hours={b.hours} />
-                    <p className="text-sm text-gray-400">on {b.system}</p>
-                  </Reveal>
-                ))}
-              </div>
-            </div>
-          </section>
-        </div>
-
-        {/* 6. Our work, full-bleed parallax */}
-        <section className="relative">
-          <ParallaxImage
-            src={urbanRoof.src}
-            alt="Solar panels installed by SolarHope on a city rooftop"
-            className="h-[80vh] min-h-[520px]"
-            strength={18}
-          />
-          <div className="absolute inset-0 bg-linear-to-t from-dark-blue via-dark-blue/50 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0">
-            <div className="max-w-6xl mx-auto px-6 sm:px-10 pb-16">
-            <Reveal className="max-w-2xl space-y-5">
-              <Eyebrow light>Our work</Eyebrow>
-              <h2 className="text-3xl sm:text-5xl font-bold italic leading-tight tracking-tight">
-                <span className="block text-white">Trusted by businesses</span>
-                <span className="block text-yellow">in Kigali.</span>
-              </h2>
-              <p className="text-white/75">
-                Our business clients include a manufacturer in Kimironko and a
-                bar in Kicukiro. We respect our clients&rsquo; privacy, so we
-                describe them rather than name them.
-              </p>
-            </Reveal>
-            </div>
+      {/* Outages */}
+      <section className="bg-white text-gray-600">
+        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 space-y-8">
+          <div className="max-w-3xl space-y-4">
+            <p className={label}>When the power goes off</p>
+            <h2 className="text-3xl font-bold text-gray-800">
+              How long will you stay open?
+            </h2>
+            <p className="text-lg leading-relaxed">
+              It depends on what you keep running. That is why we never quote a
+              headline number. Here is what two of our systems do at night:
+            </p>
           </div>
-        </section>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {BACKUP.map((b) => (
+              <div
+                key={b.who}
+                className="p-8 rounded-lg border-2 border-yellow/60 space-y-3"
+              >
+                <h3 className="text-xl font-bold text-gray-800">{b.who}</h3>
+                <p>{b.running}</p>
+                <p className="text-4xl font-extrabold text-dark-blue">
+                  about {b.hours} hours
+                </p>
+                <p className="text-sm">on {b.system}</p>
+              </div>
+            ))}
+          </div>
+          <p className="max-w-3xl">
+            During the day the panels keep supplying you as well, so you last
+            even longer. Your quote will tell you exactly how many hours your
+            own equipment gets.
+          </p>
+        </div>
+      </section>
 
-        <QuoteSection id="quote" defaultSegment="business" />
-      </MotionRoot>
+      {/* Our work */}
+      <section className="bg-white text-gray-600">
+        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 flex flex-col md:flex-row gap-12 items-center">
+          <div className="md:w-1/2 space-y-4 text-lg leading-relaxed">
+            <p className={label}>Our work</p>
+            <h2 className="text-3xl font-bold text-gray-800">
+              Trusted by businesses in Kigali
+            </h2>
+            <p>
+              Our business clients include a manufacturer in Kimironko and a
+              bar in Kicukiro. We respect our clients&rsquo; privacy, so we
+              describe them here rather than name them.
+            </p>
+          </div>
+          <div className="md:w-1/2 flex justify-center">
+            <img
+              src={urbanRoof.src}
+              alt="Solar panels installed by SolarHope on a city rooftop"
+              className="w-full max-w-md h-[360px] object-cover rounded-lg shadow-lg shadow-gray-500"
+            />
+          </div>
+        </div>
+      </section>
+
+      <QuoteSection id="quote" defaultSegment="business" />
     </HomeTemplates>
   );
 }

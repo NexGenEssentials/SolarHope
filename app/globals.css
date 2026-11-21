@@ -16,17 +16,6 @@ body {
   }
 }
 
-/* Entrance for above-the-fold content: pure CSS, so it runs before
-   JavaScript loads and never leaves the hero blank on a slow connection. */
-@keyframes rise {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: none; }
-}
-/* "Scroll" cue under the hero. */
-@keyframes scrollcue {
-  0% { transform: translateY(-100%); }
-  100% { transform: translateY(200%); }
-}
 @media (prefers-reduced-motion: reduce) {
   [class*="animate-"] { animation: none !important; }
 }
