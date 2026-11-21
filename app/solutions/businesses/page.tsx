@@ -255,27 +255,33 @@ export default function BusinessesPage() {
               batteries for 5.
             </p>
           </div>
-          <ul className="grid grid-cols-2 md:grid-cols-3 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
-            {EQUIPMENT_BRANDS.map((b) => (
-              <li
-                key={b.name}
-                className="group bg-white h-32 flex items-center justify-center px-8"
-              >
-                {b.logo ? (
-                  <img
-                    src={b.logo}
-                    alt={b.name}
-                    loading="lazy"
-                    className={`${b.stacked ? "max-h-24" : "max-h-14"} max-w-full w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
-                  />
-                ) : (
-                  <span className="text-lg font-bold tracking-wide text-gray-500">
-                    {b.name}
-                  </span>
-                )}
-              </li>
-            ))}
-          </ul>
+          <div className="overflow-hidden border-y border-gray-200 py-6 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <ul className="flex w-max items-center animate-[marquee_35s_linear_infinite] hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center">
+              {[...EQUIPMENT_BRANDS, ...EQUIPMENT_BRANDS].map((b, i) => {
+                const copy = i >= EQUIPMENT_BRANDS.length;
+                return (
+                  <li
+                    key={i}
+                    aria-hidden={copy ? true : undefined}
+                    className={`group shrink-0 w-56 h-24 flex items-center justify-center px-8 ${copy ? "motion-reduce:hidden" : ""}`}
+                  >
+                    {b.logo ? (
+                      <img
+                        src={b.logo}
+                        alt={copy ? "" : b.name}
+                        loading="lazy"
+                        className={`${b.stacked ? "max-h-20" : "max-h-12"} max-w-full w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
+                      />
+                    ) : (
+                      <span className="text-lg font-bold tracking-wide text-gray-500">
+                        {b.name}
+                      </span>
+                    )}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </section>
 
