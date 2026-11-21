@@ -255,7 +255,7 @@ export default function BusinessesPage() {
               batteries for 5.
             </p>
           </div>
-          <ul className="grid grid-cols-2 md:grid-cols-4 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
+          <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
             {EQUIPMENT_BRANDS.map((b) => (
               <li
                 key={b.name}
@@ -266,7 +266,7 @@ export default function BusinessesPage() {
                     src={b.logo}
                     alt={b.name}
                     loading="lazy"
-                    className={`${b.stacked ? "max-h-24" : "max-h-14"} max-w-full w-auto object-contain grayscale opacity-70 transition duration-300 group-hover:grayscale-0 group-hover:opacity-100`}
+                    className={`${b.stacked ? "max-h-24" : "max-h-14"} max-w-full w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
                   />
                 ) : (
                   <span className="text-lg font-bold tracking-wide text-gray-500">

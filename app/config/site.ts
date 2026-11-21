@@ -30,6 +30,7 @@ export const EQUIPMENT_BRANDS: { name: string; logo?: string; stacked?: boolean 
   { name: "Deye", logo: "/images/brands/deye.svg" },
   { name: "SRNE", logo: "/images/brands/srne.png" },
   { name: "LVTOPSUN", logo: "/images/brands/lvtopsun.png", stacked: true },
+  { name: "Dyness", logo: "/images/brands/dyness.svg" },
 ];
 
 // Phase 0.3 — the achievements counters stay off until the figures are worth
