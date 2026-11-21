@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { MdStorefront } from "react-icons/md";
 
 // Energy flow built from SolarHope's own installation photos, styled after
 // a monitoring app: glowing wires with a travelling pulse of light, and
@@ -88,6 +87,84 @@ function PhotoCard({ id, cx, cy, w, h, src }: { id: string; cx: number; cy: numb
         className="animate-[pulsering_2.2s_ease-out_infinite]" style={{ transformOrigin: `${cx}px ${cy}px` }} />
       <image href={src} x={x} y={y} width={w} height={h} preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${id})`} />
       <rect x={x} y={y} width={w} height={h} rx={18} fill="none" stroke={GOLD} strokeWidth={5} />
+    </g>
+  );
+}
+
+/**
+ * A small shop drawn in a 2.5D style: front and side walls, a pitched roof
+ * carrying solar panels, a striped awning, a shop window and a door. The
+ * windows stay lit in both modes; at night a warm glow shows it is still open.
+ */
+function Shop({ day }: { day: boolean }) {
+  const wall = day ? "#FFFFFF" : "#E9EEF5";
+  const side = day ? "#DCE4EE" : "#B8C3D3";
+  const roof = day ? "#8B5A44" : "#6B4636";
+  const roofSide = day ? "#6E4636" : "#4F3328";
+  const lit = "#FDE68A";
+  const panelCells = [];
+  for (let row = 0; row < 2; row++) {
+    for (let col = 0; col < 4; col++) {
+      // front roof slope runs from y=228 (eave) up to y=176 (ridge); cells sit on it
+      const t0 = 0.18 + row * 0.38;
+      const t1 = t0 + 0.32;
+      const yA = 228 - (228 - 176) * t0;
+      const yB = 228 - (228 - 176) * t1;
+      const inset = (t: number) => 18 + 22 * t; // slope narrows towards the ridge
+      const xL = (t: number) => 660 + inset(t) + col * ((150 - 2 * inset(t)) / 4);
+      const xR = (t: number) => xL(t) + (150 - 2 * inset(t)) / 4 - 4;
+      panelCells.push(
+        <polygon
+          key={`${row}-${col}`}
+          points={`${xL(t0)},${yA} ${xR(t0)},${yA} ${xR(t1)},${yB} ${xL(t1)},${yB}`}
+          fill={day ? "#1E3A8A" : "#1E293B"}
+          stroke={day ? "#93C5FD" : "#334155"}
+          strokeWidth="1"
+        />,
+      );
+    }
+  }
+  return (
+    <g>
+      {/* warm glow behind the building */}
+      <ellipse cx="752" cy="262" rx="120" ry="95" fill={GOLD} opacity={day ? 0.12 : 0.22}
+        className="animate-[pulsering_2.8s_ease-out_infinite]" style={{ transformOrigin: "752px 262px" }} />
+      {/* ground shadow */}
+      <ellipse cx="760" cy="338" rx="118" ry="13" fill={day ? "#CBD5E1" : "#0B1626"} opacity="0.8" />
+
+      {/* side wall */}
+      <polygon points="810,228 855,205 855,312 810,336" fill={side} stroke={NAVY} strokeWidth="2" strokeLinejoin="round" />
+      {/* side roof slope */}
+      <polygon points="822,228 868,205 840,166 798,176" fill={roofSide} stroke={NAVY} strokeWidth="2" strokeLinejoin="round" />
+      {/* front wall */}
+      <rect x="668" y="228" width="142" height="108" fill={wall} stroke={NAVY} strokeWidth="2" />
+      {/* front roof slope with panels */}
+      <polygon points="652,230 826,230 798,176 680,176" fill={roof} stroke={NAVY} strokeWidth="2" strokeLinejoin="round" />
+      {panelCells}
+
+      {/* awning */}
+      <g>
+        <rect x="676" y="244" width="78" height="12" fill={GOLD} stroke={NAVY} strokeWidth="1.5" />
+        {[0, 1, 2, 3, 4, 5].map((i) => (
+          <rect key={i} x={676 + i * 13} y="244" width="6.5" height="12" fill="#fff" opacity="0.85" />
+        ))}
+        <path d="M 676 256 q 6.5 7 13 0 q 6.5 7 13 0 q 6.5 7 13 0 q 6.5 7 13 0 q 6.5 7 13 0 q 6.5 7 13 0"
+          fill={GOLD} stroke={NAVY} strokeWidth="1.5" />
+      </g>
+      {/* shop window */}
+      <rect x="680" y="266" width="70" height="44" rx="3" fill={lit} stroke={NAVY} strokeWidth="2" />
+      <line x1="715" y1="266" x2="715" y2="310" stroke={NAVY} strokeWidth="1.5" />
+      <rect x="686" y="292" width="58" height="4" fill="#F59E0B" opacity="0.6" />
+      {/* door */}
+      <rect x="764" y="262" width="34" height="74" rx="2" fill={lit} stroke={NAVY} strokeWidth="2" />
+      <circle cx="791" cy="300" r="2.5" fill={NAVY} />
+      {/* side window */}
+      <polygon points="824,252 842,243 842,268 824,277" fill={lit} stroke={NAVY} strokeWidth="1.5" />
+      {/* night light spill from windows */}
+      <g className="transition-opacity duration-700" style={{ opacity: day ? 0 : 1 }}>
+        <ellipse cx="715" cy="340" rx="44" ry="8" fill={lit} opacity="0.35" />
+        <ellipse cx="781" cy="340" rx="24" ry="6" fill={lit} opacity="0.35" />
+      </g>
     </g>
   );
 }
@@ -189,7 +266,7 @@ export default function EnergyFlow() {
           {/* wires */}
           <Wire day={day} d="M 262 150 C 330 150, 330 225, 384 232" live={day} />
           <Wire day={day} d="M 245 360 C 330 360, 330 270, 384 262" live={false} />
-          <Wire day={day} d="M 540 247 L 662 247" live />
+          <Wire day={day} d="M 540 247 C 600 247, 610 288, 668 288" live />
 
           {/* grid off marker */}
           <g className="transition-opacity duration-500" style={{ opacity: day ? 0 : 1 }}>
@@ -202,12 +279,7 @@ export default function EnergyFlow() {
           <PhotoNode id="grid" cx={190} cy={360} r={55} src={PHOTOS.grid} active={false} dim={!day} />
           <PhotoCard id="inverter" cx={462} cy={247} w={156} h={208} src={PHOTOS.inverter} />
 
-          <g>
-            <circle cx="752" cy="247" r="88" fill={GOLD} opacity="0.16" className="animate-[pulsering_2.6s_ease-out_infinite]" style={{ transformOrigin: "752px 247px" }} />
-            <circle cx="752" cy="247" r="74" fill="#fff" stroke={GOLD} strokeWidth="5" />
-            <MdStorefront x={702} y={197} size={100} color={NAVY} />
-            <circle cx="752" cy="212" r="6" fill={GOLD} />
-          </g>
+          <Shop day={day} />
 
           {/* callouts */}
           <Callout day={day} x={300} y={62} label="SOLAR PANELS" value={day ? "Producing" : "Resting"} to={[248, 104]} />
@@ -218,7 +290,7 @@ export default function EnergyFlow() {
           <text x={566} y={418} textAnchor="start" fontSize="15" fill={day ? "#475569" : "#CBD5E1"}>
             {day ? "Charging from the sun" : "Powering your shop"}
           </text>
-          <Callout day={day} x={752} y={80} align="middle" label="YOUR SHOP" value="Running" to={[752, 170]}
+          <Callout day={day} x={752} y={80} align="middle" label="YOUR SHOP" value="Running" to={[738, 162]}
             valueColor={day ? undefined : GOLD} />
         </svg>
       </div>
