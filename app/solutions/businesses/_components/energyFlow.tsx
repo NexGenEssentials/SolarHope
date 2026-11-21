@@ -199,7 +199,6 @@ export default function EnergyFlow() {
       <p key={mode} className="text-lg text-gray-700 font-medium animate-[rise_0.5s_ease-out_both]">
         {current.caption}
       </p>
-      <p className="text-xs text-gray-400 -mt-3">Illustration. Your own system&rsquo;s readings appear in its monitoring app.</p>
     </div>
   );
 }
