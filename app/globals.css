@@ -34,12 +34,6 @@ body {
   to { stroke-dashoffset: -32; }
 }
 
-/* A bright pulse travelling along a diagram wire (paths use pathLength=100). */
-@keyframes comet {
-  from { stroke-dashoffset: 100; }
-  to { stroke-dashoffset: 0; }
-}
-
 /* Soft expanding ring around active diagram nodes. */
 @keyframes pulsering {
   0% { transform: scale(0.96); opacity: 0.9; }

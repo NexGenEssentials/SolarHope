@@ -60,20 +60,6 @@ const STEPS = [
   "Remote monitoring of your system once it is running",
 ];
 
-const BACKUP = [
-  {
-    who: "A small shop after dark",
-    running: "Lights, two display fridges, the till and Wi-Fi",
-    system: "SHA Shine",
-    hours: 8,
-  },
-  {
-    who: "A busy bar at night",
-    running: "Lights, the sound system and three fridges",
-    system: "SHA Bright",
-    hours: 6,
-  },
-];
 
 const label = "text-amber-500 text-lg uppercase";
 
@@ -228,26 +214,6 @@ export default function BusinessesPage() {
             <EnergyFlow />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {BACKUP.map((b) => (
-              <div
-                key={b.who}
-                className="rounded-xl bg-[#F2F4F7] p-7 flex items-center justify-between gap-6"
-              >
-                <div className="space-y-1">
-                  <h3 className="text-lg font-bold text-gray-800">{b.who}</h3>
-                  <p className="text-sm">{b.running}</p>
-                  <p className="text-xs text-gray-400">on {b.system}</p>
-                </div>
-                <p className="text-right shrink-0">
-                  <span className="block text-4xl font-extrabold text-dark-blue leading-none">
-                    {b.hours}h
-                  </span>
-                  <span className="text-xs text-gray-500">about, at night</span>
-                </p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 

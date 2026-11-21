@@ -13,9 +13,14 @@ const MODES: { key: Mode; tab: string; caption: string }[] = [
   { key: "night", tab: "Power cut at night", caption: "The grid goes off. The battery takes over by itself, and your lights stay on." },
 ];
 
-// Image coordinate space (both images are 1672 × 941).
+// Image coordinate space (both images are 1672 × 941). The frame shows a
+// wide band of it (Y0 to Y0 + HC) to keep the section short.
 const W = 1672;
 const H = 941;
+// Wide screens get a short band; phones (where labels are enlarged) get the
+// full picture so the cards do not crowd it.
+const CROP_WIDE = { y0: 96, hc: 640 };
+const CROP_FULL = { y0: 0, hc: H };
 
 // Cable runs traced from the picture.
 const RUNS = {
@@ -31,23 +36,26 @@ const RUNS = {
 
 const GREEN = "#4ADE80";
 
+/**
+ * A live cable: a faint glow marks the run, and a continuous stream of bright
+ * particles flows along it in the direction of the power, at constant speed.
+ */
 function Run({ d, live, reverse = false }: { d: string; live: boolean; reverse?: boolean }) {
+  const flow = {
+    animationDirection: reverse ? "reverse" : "normal",
+  } as const;
   return (
     <g className="transition-opacity duration-700" style={{ opacity: live ? 1 : 0 }}>
-      <path d={d} fill="none" stroke={GREEN} strokeWidth={18} strokeLinecap="round" strokeLinejoin="round" opacity={0.35} filter="url(#glow)" />
-      <path d={d} fill="none" stroke={GREEN} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round" />
-      <path
-        d={d}
-        pathLength={100}
-        fill="none"
-        stroke="#F0FFF4"
-        strokeWidth={9}
-        strokeLinecap="round"
-        strokeDasharray="10 90"
-        filter="url(#glow)"
-        className="animate-[comet_1.8s_linear_infinite]"
-        style={{ animationDirection: reverse ? "reverse" : "normal" }}
-      />
+      <path d={d} fill="none" stroke={GREEN} strokeWidth={14} strokeLinecap="round" strokeLinejoin="round" opacity={0.22} filter="url(#glow)" />
+      <path d={d} fill="none" stroke={GREEN} strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" opacity={0.45} />
+      {/* soft halo of the moving current */}
+      <path d={d} fill="none" stroke={GREEN} strokeWidth={14} strokeLinecap="round" strokeLinejoin="round"
+        strokeDasharray="10 22" filter="url(#glow)" opacity={0.95}
+        className="animate-[flow_0.7s_linear_infinite]" style={flow} />
+      {/* bright core of the moving current */}
+      <path d={d} fill="none" stroke="#ECFDF5" strokeWidth={6} strokeLinecap="round" strokeLinejoin="round"
+        strokeDasharray="3 29"
+        className="animate-[flow_0.7s_linear_infinite]" style={flow} />
     </g>
   );
 }
@@ -116,6 +124,9 @@ export default function EnergyFlow() {
   const battery = useCountTo(day ? 92 : 41);
   const frame = useRef<HTMLDivElement>(null);
   const k = useLabelScale(frame);
+  const narrow = k > 1.2;
+  const { y0: Y0, hc: HC } = narrow ? CROP_FULL : CROP_WIDE;
+  const objectPosition = `50% ${HC === H ? 0 : (Y0 / (H - HC)) * 100}%`;
 
   useEffect(() => {
     if (!auto) return;
@@ -143,21 +154,22 @@ export default function EnergyFlow() {
         ))}
       </div>
 
-      <div ref={frame} className="relative w-full overflow-hidden rounded-2xl shadow-xl" style={{ aspectRatio: `${W} / ${H}` }}>
+      <div ref={frame} className="relative w-full overflow-hidden rounded-2xl shadow-xl" style={{ aspectRatio: `${W} / ${HC}` }}>
         <img
           src="/images/scene/shop-day.jpg"
           alt="A café with solar panels on its roof and an inverter and batteries on its outside wall, in daylight"
           className="absolute inset-0 w-full h-full object-cover"
+          style={{ objectPosition }}
         />
         <img
           src="/images/scene/shop-night.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
-          style={{ opacity: day ? 0 : 1 }}
+          style={{ opacity: day ? 0 : 1, objectPosition }}
         />
 
-        <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 w-full h-full" role="img" aria-label={current.caption}>
+        <svg viewBox={`0 ${Y0} ${W} ${HC}`} className="absolute inset-0 w-full h-full" role="img" aria-label={current.caption}>
           <defs>
             <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="6" />
@@ -175,12 +187,12 @@ export default function EnergyFlow() {
             <path d="M 166 288 L 190 312 M 190 288 L 166 312" stroke="#fff" strokeWidth="6" strokeLinecap="round" />
           </g>
 
-          <Card k={k} x={k > 1.2 ? 700 : 980} y={24} label="SOLAR PANELS" value={day ? "Producing" : "Resting"} to={[1040, 215]}
+          <Card k={k} x={narrow ? 700 : 980} y={Y0 + (narrow ? 20 : 14)} label="SOLAR PANELS" value={day ? "Producing" : "Resting"} to={[1040, 215]}
             tone={day ? "#0f202e" : "#64748B"} />
-          <Card k={k} x={16} y={k > 1.2 ? 520 : 470} label="THE GRID" value={day ? "Connected" : "Off"} to={[178, 400]}
+          <Card k={k} x={16} y={narrow ? 520 : 470} label="THE GRID" value={day ? "Connected" : "Off"} to={[178, 400]}
             tone={day ? "#0f202e" : "#DC2626"} w={230} />
-          <Card k={k} x={560} y={k > 1.2 ? 720 : 560} label="BATTERY" value={`${battery}%`} to={[478, 600]} w={210} />
-          <Card k={k} anchorRight x={1290} y={k > 1.2 ? 330 : 150} label="YOUR BUSINESS" value="Running" to={[1300, 470]} w={270} />
+          <Card k={k} x={560} y={narrow ? 720 : 560} label="BATTERY" value={`${battery}%`} to={[478, 600]} w={210} />
+          <Card k={k} anchorRight x={1290} y={narrow ? 330 : Y0 + 80} label="YOUR BUSINESS" value="Running" to={[1300, 470]} w={270} />
         </svg>
       </div>
 
