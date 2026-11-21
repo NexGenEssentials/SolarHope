@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { SITE } from "@/app/config/site";
 import React from "react";
 import { LuLightbulbOff } from "react-icons/lu";
 import { MdOutlineSolarPower, MdTransform } from "react-icons/md";
@@ -29,23 +29,20 @@ const VisionSection = ({ id }: { id?: string }) =>  {
       <div className="max-w-[1570px] mx-auto p-8 sm:px-28 sm:py-28 space-y-16 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="flex flex-col gap-4">
-            <Link href={"#"}>
-              <button className="border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
-                Vision
-              </button>
-            </Link>
+            <span className="w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
+              Vision
+            </span>
             <span className="font-bold text-4xl">
               Our Mission and Vision for the Future
             </span>
           </div>
           <div>
             <p className="">
-              At SolarHope Africa, we envision a future where every rural
-              community has access to sustainable solar energy. Our mission is
-              to empower these communities by providing high-quality solar
-              systems that illuminate homes, schools, and public spaces.
-              Together, we are bridging the energy gap and fostering inclusive
-              development across the continent.
+              At SolarHope Africa, we envision a future where every home,
+              business and institution, in the city or far from the grid, runs
+              on reliable, affordable solar power. Our job is to make that
+              practical: systems sized honestly to your load, installed
+              properly, and looked after for years.
             </p>
           </div>
         </div>
@@ -61,8 +58,15 @@ const VisionSection = ({ id }: { id?: string }) =>  {
           ))}
         </div>
         <div className="flex item-center flex-wrap gap-4">
-          <Button link="#" name="Learn More" />
-          <button className="text-sm font-medium">Get involved</button>
+          <Button link="/#quote" name="Get a quote" />
+          <a
+            href={SITE.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium self-center hover:text-yellow transition-colors"
+          >
+            WhatsApp us
+          </a>
         </div>
       </div>
     </div>

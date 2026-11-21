@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../button/button";
 import { GoDotFill } from "react-icons/go";
+import { SITE } from "@/app/config/site";
 
 const HeroSection = () => {
   return (
@@ -10,12 +11,21 @@ const HeroSection = () => {
           Light Up Dreams, The Solar Way
         </h1>
         <p className="text-[#BABABA]">
-          At SolarHope Africa, we bring clean, sustainable solar energy to rural
-          communities. Join us in transforming lives and empowering futures.
+          Solar systems for homes, businesses, schools, health facilities and
+          large commercial sites across Rwanda: connected to the grid in town,
+          and standing on their own where the grid does not reach. Designed,
+          installed and looked after by one team based in Kigali.
         </p>
         <div className="flex items-center gap-8 justify-center font-bold">
-          <Button link="#get-involved" name="  Donate" />
-          Partner
+          <Button link="/#quote" name="Get a quote" />
+          <a
+            href={SITE.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-yellow transition-colors"
+          >
+            WhatsApp us
+          </a>
         </div>
       </div>
       <div className=" absolute top-1/3 right-4 sm:right-18 w-8 h-8 border border-white backdrop-blur-sm flex items-center justify-center rounded-full bg-slate-500/60">

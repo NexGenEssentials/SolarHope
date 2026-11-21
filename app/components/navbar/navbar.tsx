@@ -6,13 +6,13 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "../button/button";
 import { HiMenu, HiX } from "react-icons/hi";
+import { SITE } from "@/app/config/site";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "#about" },
-  { name: "Our Impact", href: "#impact" },
-  { name: "Get Involved", href: "#get-involved" },
-  { name: "Services", href: "#services" },
+  { name: "About Us", href: "/#about" },
+  { name: "What We Do", href: "/#impact" },
+  { name: "Services", href: "/#services" },
 ];
 
 const Navbar = () => {
@@ -39,7 +39,7 @@ const Navbar = () => {
           <Image
             src={scrolled ? logo1 : logo}
             fill
-            alt="Solar Hope Logo"
+            alt="SolarHope Africa"
             className="object-contain"
           />
         </Link>
@@ -60,22 +60,27 @@ const Navbar = () => {
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex items-center space-x-4">
-          <Link
-            href="/#get-involved"
+          <a
+            href={SITE.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="font-bold hover:text-yellow transition-colors"
           >
-            Join
-          </Link>
-          <Button link="#get-involved" name="Donate" />
+            WhatsApp us
+          </a>
+          <Button link="/#quote" name="Get a quote" />
         </div>
 
         {/* Mobile Toggle */}
         <div className="md:hidden text-3xl cursor-pointer">
-          {mobileOpen ? (
-            <HiX onClick={() => setMobileOpen(false)} />
-          ) : (
-            <HiMenu onClick={() => setMobileOpen(true)} />
-          )}
+          <button
+            type="button"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            onClick={() => setMobileOpen((o) => !o)}
+          >
+            {mobileOpen ? <HiX /> : <HiMenu />}
+          </button>
         </div>
       </div>
 
@@ -94,14 +99,16 @@ const Navbar = () => {
               {link.name}
             </Link>
           ))}
-          <Link
-            href="/#get-involved"
+          <a
+            href={SITE.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="block hover:text-yellow"
             onClick={() => setMobileOpen(false)}
           >
-            Join
-          </Link>
-          <Button link="#get-involved" name="Donate" />
+            WhatsApp us
+          </a>
+          <Button link="/#quote" name="Get a quote" />
         </div>
       )}
     </nav>

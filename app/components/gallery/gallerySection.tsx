@@ -2,21 +2,23 @@
 
 import React, { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import image1 from "@/public/images/p1.jpg";
-import image2 from "@/public/images/p2.jpg";
-import image3 from "@/public/images/p3.png";
-import image4 from "@/public/images/pano1.png";
-import image5 from "@/public/images/pano4.png";
-import image6 from "@/public/images/pano3.png";
+import crewFitting from "@/public/images/projects/roof-crew-fitting-panels.jpg";
+import crewCloseUp from "@/public/images/projects/roof-crew-close-up.jpg";
+import crewMidInstall from "@/public/images/projects/roof-crew-mid-install.jpg";
+import crewValley from "@/public/images/projects/roof-crew-valley-view.jpg";
+import finishedRows from "@/public/images/projects/roof-finished-rows.jpg";
+import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
+import wallInstall from "@/public/images/projects/wall-install-inverter-battery.jpg";
 
+// SolarHope's own installation photos.
 const images = [
-  image1,
-  image5,
-  image3,
-  image6,
-  image2,
-  image4,
-  
+  { src: crewFitting, alt: "SolarHope technicians fitting solar panels on a roof, with hills behind" },
+  { src: withFinishedInstall, alt: "SolarHope technician beside a finished inverter and battery installation" },
+  { src: crewCloseUp, alt: "SolarHope crew securing a row of solar panels on a roof" },
+  { src: crewValley, alt: "SolarHope crew on a roof installation overlooking a valley" },
+  { src: crewMidInstall, alt: "SolarHope technicians fixing panels into place during an installation" },
+  { src: wallInstall, alt: "A wall-mounted hybrid inverter above its lithium battery, installed by SolarHope" },
+  { src: finishedRows, alt: "Rows of newly installed solar panels on a corrugated roof" },
 ];
 
 const AutoImageSlider = () => {
@@ -49,14 +51,14 @@ const AutoImageSlider = () => {
       >
         <div className="embla" ref={emblaRef}>
           <div className="embla__container flex ">
-            {images.map((src, index) => (
+            {images.map(({ src, alt }, index) => (
               <div
                 className=" h-[300px] relative embla__slide flex-[0_0_auto] w-[400px] p-4 overflow-hidden rounded-xl"
                 key={index}
               >
                 <img
                   src={src.src}
-                  alt={`Image ${index}`}
+                  alt={alt}
                   className=" object-cover w-full h-full rounded-xl hover:grayscale-100 hover:scale-120 duration-300 transition-transform"
                   loading="lazy"
                 />

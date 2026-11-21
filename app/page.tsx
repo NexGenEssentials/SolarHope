@@ -1,11 +1,10 @@
-import Image from "next/image";
 import HomeTemplates from "./components/templates/homeTemplates";
 import HeroSection from "./components/hero/heroSection";
 import ImpactSection from "./components/impact/impactSection";
 import VisionSection from "./components/vision/visionSection";
 import AchievementSection from "./components/achievement/achievementSection";
-import TestimonialSection from "./components/testmonial/testimonial";
-import JoinSection from "./components/join/joinSection";
+import QuoteSection from "./components/quote/quoteSection";
+import VideoSection from "./components/videos/videoSection";
 import SolorJourneySection from "./components/solarJourney/solorJourneySection";
 import AutoImageSlider from "./components/gallery/gallerySection";
 import MarqueeSlider from "./components/gallery/gallerySection2";
@@ -15,13 +14,14 @@ export default function Home() {
     <HomeTemplates>
       <HeroSection />
       <AutoImageSlider />
-      <MarqueeSlider/>
-       <ImpactSection id="impact" />
+      <MarqueeSlider />
+      <ImpactSection id="impact" />
       <VisionSection id="about" />
-      <SolorJourneySection id="services"/>
+      <SolorJourneySection id="services" />
+      <VideoSection id="videos" />
+      {/* Hidden until SHOW_ACHIEVEMENTS is on — see app/config/site.ts */}
       <AchievementSection />
-      <TestimonialSection />
-      <JoinSection id="get-involved" />
+      <QuoteSection id="quote" />
     </HomeTemplates>
   );
 }

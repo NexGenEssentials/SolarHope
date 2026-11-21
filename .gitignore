@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw phone photos (unreviewed; may contain client data). Copy chosen, compressed images into public/images/projects/.
+/sha-pic/

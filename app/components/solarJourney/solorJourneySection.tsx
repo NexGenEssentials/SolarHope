@@ -1,38 +1,37 @@
 import React from "react";
 import Button from "../button/button";
-import site1 from "@/public/images/site1.webp";
 import site2 from "@/public/images/site2.jpg";
-import site3 from "@/public/images/site3.webp";
-import site4 from "@/public/images/site4.webp";
-import site5 from "@/public/images/site5.jpeg";
+import crewValley from "@/public/images/projects/roof-crew-valley-view.jpg";
+import LoopVideo from "../media/loopVideo";
+import inspecting from "@/public/images/projects/technician-inspecting-inverter.jpg";
 import {  PiArrowBendUpRightBold } from "react-icons/pi";
 
 const content = [
   {
-    image: site1.src,
+    image: inspecting.src,
+    alt: "SolarHope technician inspecting an inverter installation",
     title: "Site Assessment",
     description: "We assess energy needs to deliver tailored solar solutions.",
   },
   {
     image: site2.src,
+    alt: "Technician in a hard hat checking a tablet on a solar array",
     title: "Agreement",
-    description: "We define clear roles and timelines with community partners.",
+    description: "We agree the system, the price and the timeline with you in writing.",
   },
   {
-    image: site3.src,
+    image: crewValley.src,
+    alt: "SolarHope crew installing panels on a roof",
     title: "Installation",
     description: "Our team installs reliable solar systems with care.",
   },
   {
-    image: site4.src,
+    image: "/videos/db-check-poster.jpg",
+    video: "/videos/db-check.mp4",
+    alt: "SolarHope technician checking a distribution board",
     title: "Maintenance",
     description: "We ensure systems run smoothly with regular maintenance.",
   },
-  // {
-  //   image: site5.src,
-  //   title: "Community Training",
-  //   description: "We train locals to maintain and manage solar systems.",
-  // },
 ];
 
 const SolarJourneySection = ({ id }: { id?: string }) =>  {
@@ -60,11 +59,20 @@ const SolarJourneySection = ({ id }: { id?: string }) =>  {
                   />
                 )}
                 <div className="flex flex-col items-center gap-6 relative max-w-[180px]">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="w-36 h-36 rounded-full object-cover shadow-lg border-4 border-yellow"
-                  />
+                  {"video" in item && item.video ? (
+                    <LoopVideo
+                      src={item.video}
+                      poster={item.image}
+                      label={item.alt}
+                      className="w-36 h-36 rounded-full object-cover shadow-lg border-4 border-yellow"
+                    />
+                  ) : (
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      className="w-36 h-36 rounded-full object-cover shadow-lg border-4 border-yellow"
+                    />
+                  )}
                   <div className="absolute top-0 right-4 bg-yellow text-dark-blue font-bold text-sm px-3 py-2.5 rounded-full">
                     0{index + 1}
                   </div>
@@ -79,7 +87,7 @@ const SolarJourneySection = ({ id }: { id?: string }) =>  {
             ))}
           </div>
 
-          <Button link="#" name="Explore All Services" />
+          <Button link="/#quote" name="Get a quote" />
         </div>
       </div>
     </div>
