@@ -3,6 +3,7 @@ import HomeTemplates from "../../components/templates/homeTemplates";
 import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
 import { EQUIPMENT_BRANDS, SITE } from "../../config/site";
+import EnergyFlow from "./_components/energyFlow";
 import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
 import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
@@ -206,37 +207,47 @@ export default function BusinessesPage() {
 
       {/* Outages */}
       <section className="bg-white text-gray-600">
-        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 space-y-8">
-          <div className="max-w-3xl space-y-4">
-            <p className={label}>When the power goes off</p>
-            <h2 className="text-3xl font-bold text-gray-800">
-              How long will you stay open?
-            </h2>
-            <p className="text-lg leading-relaxed">
-              It depends on what you keep running. That is why we never quote a
-              headline number. Here is what two of our systems do at night:
-            </p>
+        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 space-y-12">
+          <div className="grid lg:grid-cols-[1fr_1.5fr] gap-12 items-center">
+            <div className="space-y-4">
+              <p className={label}>When the power goes off</p>
+              <h2 className="text-3xl font-bold text-gray-800">
+                How long will you stay open?
+              </h2>
+              <p className="text-lg leading-relaxed">
+                Your system works alongside the grid. When the power goes off,
+                the battery takes over by itself, with no switch to flip and no
+                generator to start.
+              </p>
+              <p className="leading-relaxed">
+                How long it lasts depends on what you keep running, so we never
+                quote a headline number. Your quote shows the hours for your own
+                equipment.
+              </p>
+            </div>
+            <EnergyFlow />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {BACKUP.map((b) => (
               <div
                 key={b.who}
-                className="p-8 rounded-lg border-2 border-yellow/60 space-y-3"
+                className="rounded-xl bg-[#F2F4F7] p-7 flex items-center justify-between gap-6"
               >
-                <h3 className="text-xl font-bold text-gray-800">{b.who}</h3>
-                <p>{b.running}</p>
-                <p className="text-4xl font-extrabold text-dark-blue">
-                  about {b.hours} hours
+                <div className="space-y-1">
+                  <h3 className="text-lg font-bold text-gray-800">{b.who}</h3>
+                  <p className="text-sm">{b.running}</p>
+                  <p className="text-xs text-gray-400">on {b.system}</p>
+                </div>
+                <p className="text-right shrink-0">
+                  <span className="block text-4xl font-extrabold text-dark-blue leading-none">
+                    {b.hours}h
+                  </span>
+                  <span className="text-xs text-gray-500">about, at night</span>
                 </p>
-                <p className="text-sm">on {b.system}</p>
               </div>
             ))}
           </div>
-          <p className="max-w-3xl">
-            During the day the panels keep supplying you as well, so you last
-            even longer. Your quote will tell you exactly how many hours your
-            own equipment gets.
-          </p>
         </div>
       </section>
 

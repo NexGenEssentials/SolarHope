@@ -23,6 +23,17 @@ body {
   to { transform: translateX(-50%); }
 }
 
+/* Gentle fade-and-rise for text that changes in place. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* Moving dashes along the energy-flow diagram lines. */
+@keyframes flow {
+  to { stroke-dashoffset: -32; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   [class*="animate-"] { animation: none !important; }
 }
