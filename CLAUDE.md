@@ -111,6 +111,12 @@ advertised as a default.
 
 ## 5. Brand
 
+**Design direction: minimalistic (decided 21 Nov 2026).** Generous white space, one accent
+colour (gold/yellow), thin lines instead of heavy cards and shadows, and few elements per
+section. Motion is quiet: a gentle fade-in on scroll and one purposeful interaction per
+page at most. No decorative clutter (floating shapes, patterns, pulsing badges, tilted
+photos, glows).
+
 **The existing site design stays.** This work is an extension, not a redesign. Every new
 page and section must be built from the visual language already on the site and in the
 company's marketing material — same colours, same type treatment, same component shapes.
