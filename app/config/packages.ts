@@ -13,18 +13,52 @@ export type HopePackage = {
   panels: number;
   batteryKwh: number;
   priceRwf: number; // excluding VAT
+  runs: string; // "What it runs", from the package sheet
 };
 
-// Hope Series, September 2026 package sheet. All prices confirmed for
-// publication (SHA Peak confirmed 21 Nov 2026).
+// Hope Series, September 2026 package sheet: full installed systems built from
+// separate panels, inverter and battery, expandable over time. All prices
+// confirmed for publication (SHA Peak confirmed 21 Nov 2026).
 export const HOPE_SERIES: HopePackage[] = [
-  { name: "SHA Spark", inverterKw: 1, panels: 3, batteryKwh: 2.56, priceRwf: 2_654_200 },
-  { name: "SHA Glow", inverterKw: 4, panels: 9, batteryKwh: 5, priceRwf: 4_750_000 },
-  { name: "SHA Shine", inverterKw: 6, panels: 12, batteryKwh: 10, priceRwf: 7_950_000 },
-  { name: "SHA Bright", inverterKw: 8, panels: 18, batteryKwh: 15, priceRwf: 10_902_000 },
-  { name: "SHA Blaze", inverterKw: 10, panels: 22, batteryKwh: 15, priceRwf: 11_991_300 },
-  { name: "SHA Peak", inverterKw: 12, threePhase: true, panels: 26, batteryKwh: 30, priceRwf: 18_761_400 },
+  {
+    name: "SHA Spark", inverterKw: 1, panels: 3, batteryKwh: 2.56, priceRwf: 2_654_200,
+    runs: "Lighting, phone and laptop charging, a TV, Wi-Fi and a radio",
+  },
+  {
+    name: "SHA Glow", inverterKw: 4, panels: 9, batteryKwh: 5, priceRwf: 4_750_000,
+    runs: "Everything in Spark, plus a fridge, a couple of fans, a microwave and a kettle",
+  },
+  {
+    name: "SHA Shine", inverterKw: 6, panels: 12, batteryKwh: 10, priceRwf: 7_950_000,
+    runs: "Two fridges, a chest freezer, a washing machine, an air conditioner and security cameras",
+  },
+  {
+    name: "SHA Bright", inverterKw: 8, panels: 18, batteryKwh: 15, priceRwf: 10_902_000,
+    runs: "Two fridges, a freezer, two air conditioners, a few computers, a printer, a small water pump and security cameras",
+  },
+  {
+    name: "SHA Blaze", inverterKw: 10, panels: 22, batteryKwh: 15, priceRwf: 11_991_300,
+    runs: "Everything Bright runs, all at the same time, plus a hot water system and a third air conditioner",
+  },
+  {
+    name: "SHA Peak", inverterKw: 12, threePhase: true, panels: 26, batteryKwh: 30, priceRwf: 18_761_400,
+    runs: "Two large display fridges, a backroom fridge, an air conditioner, checkout systems, security cameras and around 30 lights",
+  },
 ];
+
+// Dream Series: self-contained plug-and-play units. Simple and fast, but fixed
+// at purchase and not expandable. "Runs" text and hours are from the sheet.
+export type DreamPackage = { name: string; priceRwf: number; runs: string };
+export const DREAM_SERIES: DreamPackage[] = [
+  { name: "SHA Lite", priceRwf: 905_000, runs: "A few lights and phone charging, for around 5 hours" },
+  { name: "SHA Beam", priceRwf: 1_980_000, runs: "Lights, phone and laptop charging, a TV, Wi-Fi and DSTV, for around 6 to 8 hours" },
+  { name: "SHA Flare", priceRwf: 5_469_500, runs: "A fridge, fans, a microwave and short use of a kettle, for over 12 hours" },
+];
+
+export const LOWEST_PRICE_RWF = Math.min(
+  ...HOPE_SERIES.map((p) => p.priceRwf),
+  ...DREAM_SERIES.map((p) => p.priceRwf),
+);
 
 export function packageByName(name: string) {
   const p = HOPE_SERIES.find((x) => x.name === name);
