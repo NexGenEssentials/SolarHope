@@ -73,6 +73,25 @@ function PhotoNode({ id, cx, cy, r, src, active, dim = false }: {
   );
 }
 
+/** Rounded-rectangle photo in its own 3:4 shape, so the whole picture shows. */
+function PhotoCard({ id, cx, cy, w, h, src }: { id: string; cx: number; cy: number; w: number; h: number; src: string }) {
+  const x = cx - w / 2;
+  const y = cy - h / 2;
+  return (
+    <g>
+      <defs>
+        <clipPath id={`clip-${id}`}>
+          <rect x={x} y={y} width={w} height={h} rx={18} />
+        </clipPath>
+      </defs>
+      <rect x={x - 6} y={y - 6} width={w + 12} height={h + 12} rx={22} fill="none" stroke={GOLD} strokeWidth={3}
+        className="animate-[pulsering_2.2s_ease-out_infinite]" style={{ transformOrigin: `${cx}px ${cy}px` }} />
+      <image href={src} x={x} y={y} width={w} height={h} preserveAspectRatio="xMidYMid slice" clipPath={`url(#clip-${id})`} />
+      <rect x={x} y={y} width={w} height={h} rx={18} fill="none" stroke={GOLD} strokeWidth={5} />
+    </g>
+  );
+}
+
 /** App-style callout: small label, bold status, dotted leader to the part. */
 function Callout({ x, y, label, value, to, day, align = "start", valueColor }: {
   x: number; y: number; label: string; value: string; to: [number, number]; day: boolean;
@@ -168,9 +187,9 @@ export default function EnergyFlow() {
           </g>
 
           {/* wires */}
-          <Wire day={day} d="M 262 150 C 330 150, 330 225, 372 232" live={day} />
-          <Wire day={day} d="M 245 360 C 330 360, 330 270, 372 262" live={false} />
-          <Wire day={day} d="M 552 247 L 662 247" live />
+          <Wire day={day} d="M 262 150 C 330 150, 330 225, 384 232" live={day} />
+          <Wire day={day} d="M 245 360 C 330 360, 330 270, 384 262" live={false} />
+          <Wire day={day} d="M 540 247 L 662 247" live />
 
           {/* grid off marker */}
           <g className="transition-opacity duration-500" style={{ opacity: day ? 0 : 1 }}>
@@ -181,7 +200,7 @@ export default function EnergyFlow() {
           {/* parts */}
           <PhotoNode id="panels" cx={190} cy={150} r={72} src={PHOTOS.panels} active={day} dim={!day} />
           <PhotoNode id="grid" cx={190} cy={360} r={55} src={PHOTOS.grid} active={false} dim={!day} />
-          <PhotoNode id="inverter" cx={462} cy={247} r={90} src={PHOTOS.inverter} active />
+          <PhotoCard id="inverter" cx={462} cy={247} w={156} h={208} src={PHOTOS.inverter} />
 
           <g>
             <circle cx="752" cy="247" r="88" fill={GOLD} opacity="0.16" className="animate-[pulsering_2.6s_ease-out_infinite]" style={{ transformOrigin: "752px 247px" }} />
@@ -194,9 +213,9 @@ export default function EnergyFlow() {
           <Callout day={day} x={300} y={62} label="SOLAR PANELS" value={day ? "Producing" : "Resting"} to={[248, 104]} />
           <Callout day={day} x={300} y={440} label="THE GRID" value={day ? "Connected" : "Off"} to={[236, 392]}
             valueColor={day ? undefined : "#F87171"} />
-          <Callout day={day} x={462} y={385} align="middle" label="BATTERY" value={`${battery}%`} to={[462, 340]}
+          <Callout day={day} x={566} y={392} label="BATTERY" value={`${battery}%`} to={[542, 330]}
             valueColor={day ? undefined : GOLD} />
-          <text x={462} y={410} textAnchor="middle" fontSize="15" fill={day ? "#475569" : "#CBD5E1"}>
+          <text x={566} y={418} textAnchor="start" fontSize="15" fill={day ? "#475569" : "#CBD5E1"}>
             {day ? "Charging from the sun" : "Powering your shop"}
           </text>
           <Callout day={day} x={752} y={80} align="middle" label="YOUR SHOP" value="Running" to={[752, 170]}
