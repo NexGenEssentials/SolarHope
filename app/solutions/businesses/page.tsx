@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import HomeTemplates from "../../components/templates/homeTemplates";
 import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
-import { SITE } from "../../config/site";
+import { EQUIPMENT_BRANDS, SITE } from "../../config/site";
 import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
-import urbanRoof from "@/public/images/projects/roof-urban-panels.jpg";
+import wallInstall from "@/public/images/projects/wall-install-inverter-battery.jpg";
 import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
 
 export const metadata: Metadata = {
@@ -241,25 +241,42 @@ export default function BusinessesPage() {
         </div>
       </section>
 
-      {/* Our work */}
+      {/* Equipment we trust */}
       <section className="bg-white text-gray-600">
         <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 flex flex-col md:flex-row gap-12 items-center">
-          <div className="md:w-1/2 space-y-4 text-lg leading-relaxed">
-            <p className={label}>Our work</p>
+          <div className="md:w-1/2 space-y-6 text-lg leading-relaxed">
+            <p className={label}>Equipment we trust</p>
             <h2 className="text-3xl font-bold text-gray-800">
-              Trusted by businesses in Kigali
+              Built with brands that last
             </h2>
             <p>
-              Our business clients include a manufacturer in Kimironko and a
-              bar in Kicukiro. We respect our clients&rsquo; privacy, so we
-              describe them here rather than name them.
+              We install inverters, batteries and panels from established
+              manufacturers, so your system is backed twice: by the maker and
+              by us. Panels are guaranteed for 10 years, inverters and
+              batteries for 5.
             </p>
+            <ul className="grid grid-cols-2 gap-px bg-gray-200 border border-gray-200 rounded-lg overflow-hidden">
+              {EQUIPMENT_BRANDS.map((b) => (
+                <li
+                  key={b.name}
+                  className="bg-white h-20 flex items-center justify-center px-4"
+                >
+                  {b.logo ? (
+                    <img src={b.logo} alt={b.name} className="max-h-10 w-auto object-contain" />
+                  ) : (
+                    <span className="text-lg font-bold tracking-wide text-gray-500">
+                      {b.name}
+                    </span>
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
           <div className="md:w-1/2 flex justify-center">
             <img
-              src={urbanRoof.src}
-              alt="Solar panels installed by SolarHope on a city rooftop"
-              className="w-full max-w-md h-[360px] object-cover rounded-lg shadow-lg shadow-gray-500"
+              src={wallInstall.src}
+              alt="A hybrid inverter and lithium battery installed by SolarHope"
+              className="w-full max-w-md h-[420px] object-cover rounded-lg shadow-lg shadow-gray-500"
             />
           </div>
         </div>

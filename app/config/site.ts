@@ -20,6 +20,17 @@ export const SITE = {
   },
 } as const;
 
+// Equipment manufacturers whose products SolarHope installs. Manufacturers
+// only: never the distributor SolarHope buys through (CLAUDE.md §8). Add a
+// `logo` path (e.g. "/images/brands/deye.svg") once official logo files are
+// supplied; until then the name is shown as text.
+export const EQUIPMENT_BRANDS: { name: string; logo?: string }[] = [
+  { name: "Felicity Solar" },
+  { name: "Deye" },
+  { name: "SRNE" },
+  { name: "LVTOPSUN" },
+];
+
 // Phase 0.3 — the achievements counters stay off until the figures are worth
 // publishing. Turning this on does nothing until every `total` in
 // achievementSection.tsx is filled in with a real, checked number.
