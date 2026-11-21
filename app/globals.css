@@ -13,3 +13,18 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* Slow float for decorative shapes (businesses page hero). */
+@keyframes drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
+/* Entrance for above-the-fold content: pure CSS, so it runs before
+   JavaScript loads and never leaves the hero blank on a slow connection. */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-"] { animation: none !important; }
+}

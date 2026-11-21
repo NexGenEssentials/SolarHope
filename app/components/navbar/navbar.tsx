@@ -40,6 +40,8 @@ const Navbar = () => {
           <Image
             src={scrolled ? logo1 : logo}
             fill
+            priority
+            sizes="128px"
             alt="SolarHope Africa"
             className="object-contain"
           />

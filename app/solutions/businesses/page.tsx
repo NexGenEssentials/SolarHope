@@ -10,6 +10,16 @@ import {
   paybackYears,
   rwf,
 } from "../../config/packages";
+import {
+  BlockMark,
+  DrainingBattery,
+  Eyebrow,
+  MotionRoot,
+  Reveal,
+  Stagger,
+  StaggerItem,
+} from "./_components/motion";
+import DayTimeline from "./_components/dayTimeline";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
 import urbanRoof from "@/public/images/projects/roof-urban-panels.jpg";
 import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
@@ -43,21 +53,6 @@ const REASONS = [
   },
 ];
 
-const PROFILES = [
-  {
-    title: "Bars, restaurants and lounges",
-    text: "Your busiest hours come after dark. The panels charge the battery through the quiet afternoon, and the battery carries you through the evening rush.",
-  },
-  {
-    title: "Shops, offices and workshops",
-    text: "You work in daylight, when the sun is strongest, so you use solar power as it is made and keep the battery for the evening and for power cuts.",
-  },
-  {
-    title: "Factories and larger sites",
-    text: "Bigger machines need a system built around them. We design yours after a site visit, so the equipment that must never stop is covered first.",
-  },
-];
-
 const STEPS = [
   "A site visit and a system designed around your business",
   "Installation by our own trained technicians",
@@ -81,291 +76,369 @@ const BACKUP = [
   },
 ];
 
-const label = "text-amber-500 text-lg uppercase";
+// Two-colour italic headline, as in SolarHope's marketing material.
+function Headline({
+  first,
+  second,
+  light = false,
+  className = "",
+}: {
+  first: string;
+  second: string;
+  light?: boolean;
+  className?: string;
+}) {
+  return (
+    <h2 className={`font-extrabold italic leading-[1.05] tracking-tight text-4xl sm:text-5xl ${className}`}>
+      <span className={`block ${light ? "text-white" : "text-dark-blue"}`}>{first}</span>
+      <span className="block text-amber-500">{second}</span>
+    </h2>
+  );
+}
+
+// Stair-step offsets so the package grid rises left to right on large screens.
+const STEP_OFFSET = ["lg:mt-16", "lg:mt-8", "lg:mt-0"];
 
 export default function BusinessesPage() {
   return (
     <HomeTemplates>
-      {/* Hero */}
-      <div className="flex flex-col gap-8 w-3/4 md:w-1/2 mx-auto py-16 items-center text-center">
-        <h1 className="text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold">
-          Keep the lights on. Keep the costs down.
-        </h1>
-        <p className="text-[#BABABA]">
-          Solar power for bars, restaurants, shops, offices and factories
-          across Rwanda. When the grid goes off, your business stays open.
-        </p>
-        <p className="text-yellow font-semibold">
-          Packages from {rwf(LOWEST_PRICE_RWF)} RWF, excluding VAT
-        </p>
-        <div className="flex items-center gap-8 justify-center font-bold">
-          <Button link="#quote" name="Get a quote" />
-          <a
-            href={SITE.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-yellow transition-colors"
-          >
-            WhatsApp us
-          </a>
-        </div>
-      </div>
+      <MotionRoot>
+        {/* Hero */}
+        <section className="relative overflow-hidden">
+          <div aria-hidden="true" className="pointer-events-none absolute -right-24 top-6 hidden md:flex items-end gap-4 opacity-[0.08] animate-[drift_14s_ease-in-out_infinite]">
+            <span className="block w-40 h-24 bg-yellow -skew-x-12 rounded-xl" />
+            <span className="block w-40 h-44 bg-yellow -skew-x-12 rounded-xl" />
+            <span className="block w-40 h-64 bg-yellow -skew-x-12 rounded-xl" />
+          </div>
 
-      {/* Why businesses switch */}
-      <section className="px-4 py-16 bg-white">
-        <div className="max-w-[1570px] mx-auto space-y-12">
-          <div className="flex flex-col md:flex-row gap-12 items-center">
-            <div className="md:w-1/2 space-y-4">
-              <p className={label}>Why businesses switch</p>
-              <h2 className="text-3xl font-bold text-gray-800">
-                Your power should work as hard as you do
-              </h2>
+          <div className="relative max-w-[1570px] mx-auto px-6 sm:px-20 pt-16 pb-24 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
+            <div className="space-y-8">
+              <div className="animate-[rise_0.8s_cubic-bezier(0.22,1,0.36,1)_both]" style={{ animationDelay: "0s" }}>
+                <Eyebrow light>Solar for businesses</Eyebrow>
+              </div>
+              <h1 className="font-extrabold italic leading-[0.95] tracking-tight text-5xl sm:text-7xl">
+                <span className="block animate-[rise_0.8s_cubic-bezier(0.22,1,0.36,1)_both]" style={{ animationDelay: "0.1s" }}>
+                  <span className="block text-white">Keep the lights on.</span>
+                </span>
+                <span className="block animate-[rise_0.8s_cubic-bezier(0.22,1,0.36,1)_both]" style={{ animationDelay: "0.25s" }}>
+                  <span className="block text-yellow">Keep the costs down.</span>
+                </span>
+              </h1>
+              <div className="animate-[rise_0.8s_cubic-bezier(0.22,1,0.36,1)_both]" style={{ animationDelay: "0.4s" }}>
+                <p className="text-[#BABABA] text-lg max-w-xl">
+                  Solar power for bars, restaurants, shops, offices and
+                  factories across Rwanda. When the grid goes off, your
+                  business stays open.
+                </p>
+              </div>
+              <div className="animate-[rise_0.8s_cubic-bezier(0.22,1,0.36,1)_both]" style={{ animationDelay: "0.5s" }}>
+                <div className="flex flex-wrap items-center gap-8 font-bold">
+                  <Button link="#quote" name="Get a quote" />
+                  <a
+                    href={SITE.whatsappUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-yellow transition-colors"
+                  >
+                    WhatsApp us
+                  </a>
+                </div>
+              </div>
+              <div className="animate-[rise_0.8s_cubic-bezier(0.22,1,0.36,1)_both]" style={{ animationDelay: "0.6s" }}>
+                <p className="inline-flex items-center gap-3 rounded-full border border-yellow/40 bg-yellow/10 px-5 py-2 text-yellow font-semibold">
+                  <span className="relative flex h-2.5 w-2.5">
+                    <span className="absolute inline-flex h-full w-full rounded-full bg-yellow opacity-75 animate-ping" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-yellow" />
+                  </span>
+                  Packages from {rwf(LOWEST_PRICE_RWF)} RWF, excluding VAT
+                </p>
+              </div>
+            </div>
+
+            <div className="relative animate-[rise_0.8s_cubic-bezier(0.22,1,0.36,1)_both]" style={{ animationDelay: "0.3s" }}>
+              <img
+                src={teamInstalling.src}
+                alt="Three SolarHope technicians installing a hybrid inverter and battery"
+                className="w-full h-[460px] object-cover rounded-2xl shadow-2xl rotate-[1.5deg]"
+              />
+              <div className="absolute -bottom-6 -left-6 bg-yellow text-dark-blue rounded-xl px-6 py-4 shadow-xl -rotate-2">
+                <p className="text-xs font-bold uppercase tracking-widest">Our own team</p>
+                <p className="text-lg font-extrabold italic">Installed. Tested. Supported.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Why businesses switch */}
+        <section className="bg-white px-6 sm:px-20 py-24">
+          <div className="max-w-[1570px] mx-auto space-y-14">
+            <Reveal className="grid md:grid-cols-2 gap-8 items-end">
+              <div className="space-y-5">
+                <Eyebrow>Why businesses switch</Eyebrow>
+                <Headline first="Your power should work" second="as hard as you do" />
+              </div>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Power cuts, generator fuel and rising bills all eat into what
                 you earn. A solar system with battery backup takes care of all
                 three, quietly, every day.
               </p>
-            </div>
-            <div className="md:w-1/2 flex justify-center">
-              <img
-                src={teamInstalling.src}
-                alt="Three SolarHope technicians installing a hybrid inverter and battery"
-                className="w-full max-w-md h-[380px] object-cover rounded-lg shadow-lg shadow-gray-500"
-              />
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {REASONS.map((r) => (
-              <div key={r.title} className="p-6 bg-[#F2F4F7] rounded-lg space-y-3">
-                <h3 className="text-xl font-bold text-gray-800">{r.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{r.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Built around how you trade */}
-      <section className="text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376]">
-        <div className="max-w-[1570px] mx-auto p-8 sm:px-28 sm:py-28 space-y-12">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex flex-col gap-4">
-              <span className="w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
-                Made to fit
-              </span>
-              <h2 className="font-bold text-4xl">
-                Built around the way your business runs
-              </h2>
-            </div>
-            <p className="self-end">
-              A bar and a shop can have the same bill and still need very
-              different systems. We design yours around when you are busiest,
-              not around a standard kit.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {PROFILES.map((p) => (
-              <div key={p.title} className="p-6 bg-white/7 rounded space-y-4">
-                <h3 className="text-2xl font-bold leading-normal">{p.title}</h3>
-                <p className="text-sm leading-relaxed">{p.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* What you get */}
-      <section className="bg-white">
-        <div className="max-w-[1570px] mx-auto p-8 sm:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-5 text-gray-600 leading-relaxed">
-            <p className={label}>What you get</p>
-            <h2 className="text-3xl font-bold text-gray-800">
-              One team, from the first visit to years of support
-            </h2>
-            <p className="text-lg">
-              Panels on your roof, a battery on your wall, and a system that
-              works alongside the grid. You stay connected, and when the power
-              goes off, the switch happens by itself.
-            </p>
-            <ul className="space-y-2">
-              {STEPS.map((s) => (
-                <li key={s} className="flex gap-3">
-                  <span className="text-amber-500 font-bold">✓</span>
-                  <span>{s}</span>
-                </li>
+            </Reveal>
+            <Stagger className="grid md:grid-cols-3 gap-6">
+              {REASONS.map((r, i) => (
+                <StaggerItem key={r.title}>
+                  <div className="group relative h-full overflow-hidden rounded-2xl bg-[#F2F4F7] p-8 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl">
+                    <span className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-yellow transition-transform duration-500 group-hover:scale-x-100" />
+                    <p className="text-6xl font-extrabold italic text-transparent [-webkit-text-stroke:1.5px_#f59e0b] leading-none">
+                      0{i + 1}
+                    </p>
+                    <h3 className="mt-6 text-xl font-bold text-gray-800">{r.title}</h3>
+                    <p className="mt-3 text-gray-600 leading-relaxed">{r.text}</p>
+                  </div>
+                </StaggerItem>
               ))}
-            </ul>
-            <p>
-              <strong className="text-gray-800">Covered for years:</strong>{" "}
-              panels guaranteed for 10 years, inverter and battery for 5, and
-              our own workmanship for 2.
-            </p>
+            </Stagger>
           </div>
-          <div className="flex justify-center">
-            <img
-              src={withFinishedInstall.src}
-              alt="SolarHope technician beside a finished inverter and battery installation"
-              className="w-full max-w-md h-[460px] object-cover rounded-lg shadow-lg shadow-gray-500"
-            />
-          </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Packages */}
-      <section className="bg-white text-[#637083]">
-        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20">
-          <div className="bg-[#F2F4F7] p-8 md:p-14 rounded-lg space-y-8">
-            <div className="space-y-3 max-w-3xl">
-              <p className={label}>Packages</p>
-              <h2 className="text-3xl font-bold text-gray-800">
-                Start with what you need. Grow when you are ready.
-              </h2>
-              <p>
+        {/* Day timeline */}
+        <section className="relative text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376] px-6 sm:px-20 py-24 overflow-hidden">
+          <div className="max-w-[1570px] mx-auto grid lg:grid-cols-[1fr_1.6fr] gap-12 items-center">
+            <Reveal className="space-y-6">
+              <Eyebrow light>Made to fit</Eyebrow>
+              <Headline light first="Built around" second="the way you trade" />
+              <p className="text-white/85 text-lg leading-relaxed">
+                A bar and a shop can have the same bill and still need very
+                different systems. We design yours around when you are busiest,
+                not around a standard kit.
+              </p>
+              <p className="text-white/70 text-sm leading-relaxed border-l-2 border-yellow pl-4">
+                Running a factory or a larger site? Bigger machines need a
+                system built around them. We design yours after a site visit,
+                so the equipment that must never stop is covered first.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <DayTimeline />
+            </Reveal>
+          </div>
+        </section>
+
+        {/* What you get */}
+        <section className="bg-white px-6 sm:px-20 py-24">
+          <div className="max-w-[1570px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <Reveal y={40} className="relative order-2 lg:order-1">
+              <img
+                src={withFinishedInstall.src}
+                loading="lazy"
+                alt="SolarHope technician beside a finished inverter and battery installation"
+                className="w-full max-w-lg h-[520px] object-cover rounded-2xl shadow-2xl"
+              />
+              <div className="absolute -right-2 sm:right-8 -bottom-8 bg-dark-blue text-white rounded-2xl p-6 shadow-2xl w-64">
+                <p className="text-xs uppercase tracking-widest text-yellow font-bold">Covered for years</p>
+                <ul className="mt-3 space-y-1 text-sm">
+                  <li className="flex justify-between"><span>Panels</span><strong>10 years</strong></li>
+                  <li className="flex justify-between"><span>Inverter</span><strong>5 years</strong></li>
+                  <li className="flex justify-between"><span>Battery</span><strong>5 years</strong></li>
+                  <li className="flex justify-between"><span>Our workmanship</span><strong>2 years</strong></li>
+                </ul>
+              </div>
+            </Reveal>
+            <div className="order-1 lg:order-2 space-y-6 text-gray-600 leading-relaxed">
+              <Reveal className="space-y-5">
+                <Eyebrow>What you get</Eyebrow>
+                <Headline first="One team, from first visit" second="to years of support" />
+                <p className="text-lg">
+                  Panels on your roof, a battery on your wall, and a system
+                  that works alongside the grid. You stay connected, and when
+                  the power goes off, the switch happens by itself.
+                </p>
+              </Reveal>
+              <Stagger className="space-y-3">
+                {STEPS.map((s, i) => (
+                  <StaggerItem key={s}>
+                    <div className="flex items-center gap-4 rounded-xl border border-gray-200 px-5 py-4 transition-colors hover:border-yellow hover:bg-yellow/5">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-dark-blue text-yellow font-extrabold italic -skew-x-6">
+                        {i + 1}
+                      </span>
+                      <span className="text-gray-800 font-medium">{s}</span>
+                    </div>
+                  </StaggerItem>
+                ))}
+              </Stagger>
+            </div>
+          </div>
+        </section>
+
+        {/* Packages */}
+        <section className="relative bg-[#0D1B39] text-white px-6 sm:px-20 py-24 overflow-hidden">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:repeating-linear-gradient(115deg,#FBBF24_0_2px,transparent_2px_46px)]" />
+          <div className="relative max-w-[1570px] mx-auto space-y-14">
+            <Reveal className="grid md:grid-cols-2 gap-8 items-end">
+              <div className="space-y-5">
+                <Eyebrow light>Packages</Eyebrow>
+                <Headline light first="Start with what you need." second="Grow when you are ready." />
+              </div>
+              <p className="text-white/80 text-lg leading-relaxed">
                 You do not need a big system on day one. Our Hope Series is
                 built from separate panels, inverter and battery, so you can
-                start small and add more as your business grows. Prices are
-                published, so you know where you stand before we even talk.
+                start small and add more as your business grows. Few installers
+                in Rwanda publish their prices. We do.
               </p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {HOPE_SERIES.map((pkg) => (
-                <div
-                  key={pkg.name}
-                  className="bg-white rounded-lg p-6 flex flex-col gap-3 border-t-4 border-yellow"
-                >
-                  <h3 className="text-xl font-bold text-gray-800">{pkg.name}</h3>
-                  <p className="text-sm text-gray-500 font-semibold">What it runs</p>
-                  <p className="text-sm flex-1">{pkg.runs}</p>
-                  <p className="text-2xl font-extrabold text-dark-blue">
-                    {rwf(pkg.priceRwf)} RWF
-                  </p>
-                  <p className="text-xs -mt-2">excluding VAT</p>
-                  <p className="text-sm text-gray-800">
-                    Can pay for itself in about{" "}
-                    <strong>{Math.round(paybackYears(pkg) * 2) / 2} years</strong>
+            </Reveal>
+
+            <Stagger className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+              {HOPE_SERIES.map((pkg, i) => (
+                <StaggerItem key={pkg.name} className={STEP_OFFSET[i % 3]}>
+                  <div className="group relative flex flex-col gap-4 rounded-2xl bg-white text-[#637083] p-7 shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_24px_60px_-20px_rgba(251,191,36,0.55)]">
+                    <span className="absolute left-7 top-0 h-1.5 w-16 rounded-b bg-yellow transition-all duration-500 group-hover:w-[calc(100%-3.5rem)]" />
+                    <div className="flex items-start justify-between">
+                      <h3 className="text-2xl font-extrabold italic text-dark-blue">{pkg.name}</h3>
+                      <span className="text-xs font-bold uppercase tracking-wider text-amber-600 bg-yellow/15 rounded-full px-3 py-1">
+                        Step {i + 1}
+                      </span>
+                    </div>
+                    <div className="flex flex-wrap gap-[3px]" aria-label={`${pkg.panels} solar panels`}>
+                      {Array.from({ length: pkg.panels }).map((_, n) => (
+                        <span key={n} className="h-3 w-2 rounded-[1px] bg-dark-blue/80 -skew-x-12" />
+                      ))}
+                    </div>
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-wider text-gray-400">What it runs</p>
+                      <p className="mt-1 text-sm leading-relaxed">{pkg.runs}</p>
+                    </div>
+                    <div className="mt-auto pt-4 border-t border-gray-100">
+                      <p className="text-3xl font-extrabold text-dark-blue">
+                        {rwf(pkg.priceRwf)} <span className="text-base font-bold">RWF</span>
+                      </p>
+                      <p className="text-xs">excluding VAT</p>
+                      <p className="mt-2 text-sm text-gray-800">
+                        Can pay for itself in about{" "}
+                        <strong>{Math.round(paybackYears(pkg) * 2) / 2} years</strong>
+                      </p>
+                    </div>
+                  </div>
+                </StaggerItem>
+              ))}
+            </Stagger>
+
+            <Reveal>
+              <div className="rounded-2xl border border-yellow/30 bg-white/5 p-8 space-y-6">
+                <div>
+                  <h3 className="text-2xl font-extrabold italic">
+                    Just need backup? <span className="text-yellow">Go plug-and-play.</span>
+                  </h3>
+                  <p className="mt-2 text-white/75 max-w-2xl">
+                    Our Dream Series units are all-in-one and quick to set up.
+                    They are fixed at purchase rather than expandable, which
+                    keeps them simple and affordable.
                   </p>
                 </div>
-              ))}
-            </div>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {DREAM_SERIES.map((d) => (
+                    <div key={d.name} className="rounded-xl bg-white/5 p-5 transition-colors hover:bg-white/10">
+                      <p className="font-extrabold italic text-yellow">{d.name}</p>
+                      <p className="mt-2 text-sm text-white/80">{d.runs}</p>
+                      <p className="mt-3 text-xl font-extrabold">
+                        {rwf(d.priceRwf)} RWF{" "}
+                        <span className="text-xs font-normal text-white/60">excl. VAT</span>
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
 
-            <div className="bg-white rounded-lg p-6 space-y-4">
-              <div>
-                <h3 className="text-xl font-bold text-gray-800">
-                  Just need backup? Try our plug-and-play units
-                </h3>
-                <p className="text-sm">
-                  Our Dream Series units are all-in-one and quick to set up.
-                  They are fixed at purchase rather than expandable, which keeps
-                  them simple and affordable.
+            <Reveal className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+              <details className="text-sm text-white/70 max-w-2xl">
+                <summary className="cursor-pointer text-white font-semibold">
+                  How we estimate payback
+                </summary>
+                <p className="mt-2 leading-relaxed">
+                  We work out how much power each Hope Series system makes on
+                  an average day in Rwanda and what that power would cost to
+                  buy from the grid. The payback assumes you use all of it. How
+                  close you get depends on when your business uses power, so
+                  your bill will drop but will not disappear. Your quote shows
+                  the figures for your own business.
                 </p>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {DREAM_SERIES.map((d) => (
-                  <div key={d.name} className="space-y-1">
-                    <p className="font-bold text-gray-800">{d.name}</p>
-                    <p className="text-sm">{d.runs}</p>
-                    <p className="font-extrabold text-dark-blue">
-                      {rwf(d.priceRwf)} RWF{" "}
-                      <span className="text-xs font-normal text-[#637083]">
-                        excl. VAT
-                      </span>
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <details className="text-sm">
-              <summary className="cursor-pointer text-gray-800 font-semibold">
-                How we estimate payback
-              </summary>
-              <p className="mt-2 leading-relaxed">
-                We work out how much power each Hope Series system makes on an
-                average day in Rwanda and what that power would cost to buy
-                from the grid. The payback assumes you use all of it. How close
-                you get depends on when your business uses power, so your bill
-                will drop but will not disappear. Your quote shows the figures
-                for your own business.
+              </details>
+              <p className="text-white/90 max-w-md">
+                Not sure which one fits? Send us a recent electricity bill on{" "}
+                <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" className="underline text-yellow">
+                  WhatsApp
+                </a>{" "}
+                and we will recommend the right size. Need something bigger?
+                We design larger systems to order.
               </p>
-            </details>
-            <p className="text-gray-800">
-              Not sure which one fits? Send us a recent electricity bill on{" "}
-              <a
-                href={SITE.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline"
-              >
-                WhatsApp
-              </a>{" "}
-              and we will recommend the right size. Need something bigger? We
-              design larger systems to order.
-            </p>
+            </Reveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Outages */}
-      <section className="bg-white text-gray-600">
-        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 space-y-8">
-          <div className="max-w-3xl space-y-4">
-            <p className={label}>When the power goes off</p>
-            <h2 className="text-3xl font-bold text-gray-800">
-              How long will you stay open?
-            </h2>
-            <p className="text-lg leading-relaxed">
-              It depends on what you keep running. That is why we never quote a
-              headline number. Here is what two of our systems do at night:
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {BACKUP.map((b) => (
-              <div
-                key={b.who}
-                className="p-8 rounded-lg border-2 border-yellow/60 space-y-3"
-              >
-                <h3 className="text-xl font-bold text-gray-800">{b.who}</h3>
-                <p>{b.running}</p>
-                <p className="text-4xl font-extrabold text-dark-blue">
-                  about {b.hours} hours
-                </p>
-                <p className="text-sm">on {b.system}</p>
+        {/* Outages */}
+        <section className="bg-white px-6 sm:px-20 py-24">
+          <div className="max-w-[1570px] mx-auto space-y-12">
+            <Reveal className="grid md:grid-cols-2 gap-8 items-end">
+              <div className="space-y-5">
+                <Eyebrow>When the power goes off</Eyebrow>
+                <Headline first="How long will" second="you stay open?" />
               </div>
-            ))}
+              <p className="text-lg text-gray-600 leading-relaxed">
+                It depends on what you keep running. That is why we never quote
+                a headline number. Here is what two of our systems do at night.
+              </p>
+            </Reveal>
+            <Stagger className="grid md:grid-cols-2 gap-6">
+              {BACKUP.map((b) => (
+                <StaggerItem key={b.who}>
+                  <div className="h-full rounded-2xl bg-[#F2F4F7] p-8 space-y-6">
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-800">{b.who}</h3>
+                      <p className="text-gray-600">{b.running}</p>
+                    </div>
+                    <DrainingBattery hours={b.hours} />
+                    <p className="text-sm font-semibold text-amber-600">on {b.system}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </Stagger>
+            <Reveal>
+              <p className="max-w-3xl text-gray-600">
+                During the day the panels keep supplying you as well, so you
+                last even longer. Your quote will tell you exactly how many
+                hours your own equipment gets.
+              </p>
+            </Reveal>
           </div>
-          <p className="max-w-3xl">
-            During the day the panels keep supplying you as well, so you last
-            even longer. Your quote will tell you exactly how many hours your
-            own equipment gets.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* Our work */}
-      <section className="bg-white text-gray-600">
-        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 flex flex-col md:flex-row gap-12 items-center">
-          <div className="md:w-1/2 space-y-4 text-lg leading-relaxed">
-            <p className={label}>Our work</p>
-            <h2 className="text-3xl font-bold text-gray-800">
-              Trusted by businesses in Kigali
-            </h2>
-            <p>
-              Our business clients include a manufacturer in Kimironko and a
-              bar in Kicukiro. We respect our clients&rsquo; privacy, so we
-              describe them here rather than name them.
-            </p>
+        {/* Our work */}
+        <section className="bg-white px-6 sm:px-20 pb-24">
+          <div className="max-w-[1570px] mx-auto grid md:grid-cols-2 gap-0 items-stretch rounded-3xl bg-dark-blue text-white overflow-hidden">
+            <Reveal className="p-10 sm:p-14 space-y-5">
+              <Eyebrow light>Our work</Eyebrow>
+              <Headline light first="Trusted by businesses" second="in Kigali" />
+              <p className="text-white/80 text-lg leading-relaxed">
+                Our business clients include a manufacturer in Kimironko and a
+                bar in Kicukiro. We respect our clients&rsquo; privacy, so we
+                describe them here rather than name them.
+              </p>
+              <div className="pt-2">
+                <BlockMark className="scale-150 origin-left" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.15} className="h-full min-h-[360px]">
+              <img
+                src={urbanRoof.src}
+                loading="lazy"
+                alt="Solar panels installed by SolarHope on a city rooftop"
+                className="w-full h-full object-cover"
+              />
+            </Reveal>
           </div>
-          <div className="md:w-1/2 flex justify-center">
-            <img
-              src={urbanRoof.src}
-              alt="Solar panels installed by SolarHope on a city rooftop"
-              className="w-full max-w-md h-[360px] object-cover rounded-lg shadow-lg shadow-gray-500"
-            />
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <QuoteSection id="quote" defaultSegment="business" />
+        <QuoteSection id="quote" defaultSegment="business" />
+      </MotionRoot>
     </HomeTemplates>
   );
 }
