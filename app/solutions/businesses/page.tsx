@@ -15,6 +15,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/solutions/businesses" },
   openGraph: {
     title: "Solar for businesses in Rwanda | SolarHope Africa",
+    description:
+      "Stay open through power cuts, spend less on electricity and leave the generator behind.",
     url: "/solutions/businesses",
     siteName: SITE.name,
     images: ["/og-image.png"],
@@ -60,8 +62,9 @@ const STEPS = [
   "Remote monitoring of your system once it is running",
 ];
 
-
-const label = "text-amber-500 text-lg uppercase";
+const label = "text-amber-700 text-lg uppercase";
+// One container so every section shares the same left and right edges.
+const container = "max-w-[1570px] mx-auto px-6 sm:px-20";
 
 export default function BusinessesPage() {
   return (
@@ -69,7 +72,8 @@ export default function BusinessesPage() {
       {/* Hero */}
       <div className="flex flex-col gap-8 w-3/4 md:w-1/2 mx-auto py-16 items-center text-center">
         <h1 className="text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold">
-          Keep the lights on. Keep the costs down.
+          <span className="block">Keep the lights on.</span>
+          <span className="block">Keep the costs down.</span>
         </h1>
         <p className="text-[#BABABA]">
           Solar power for bars, restaurants, shops, offices and factories
@@ -92,8 +96,8 @@ export default function BusinessesPage() {
       </div>
 
       {/* Why businesses switch */}
-      <section className="px-4 py-16 bg-white">
-        <div className="max-w-[1570px] mx-auto space-y-12">
+      <section className="bg-white py-20">
+        <div className={`${container} space-y-12`}>
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="md:w-1/2 space-y-4">
               <p className={label}>Why businesses switch</p>
@@ -127,13 +131,13 @@ export default function BusinessesPage() {
 
       {/* Built around how you trade */}
       <section className="text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376]">
-        <div className="max-w-[1570px] mx-auto p-8 sm:px-28 sm:py-28 space-y-12">
+        <div className={`${container} py-20 space-y-12`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex flex-col gap-4">
               <span className="w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
                 Made to fit
               </span>
-              <h2 className="font-bold text-4xl">
+              <h2 className="font-bold text-3xl">
                 Built around the way your business runs
               </h2>
             </div>
@@ -156,7 +160,7 @@ export default function BusinessesPage() {
 
       {/* What you get */}
       <section className="bg-white">
-        <div className="max-w-[1570px] mx-auto p-8 sm:p-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className={`${container} py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center`}>
           <div className="space-y-5 text-gray-600 leading-relaxed">
             <p className={label}>What you get</p>
             <h2 className="text-3xl font-bold text-gray-800">
@@ -193,8 +197,7 @@ export default function BusinessesPage() {
 
       {/* Outages */}
       <section className="bg-white text-gray-600">
-        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 space-y-12">
-          <div className="space-y-10">
+        <div className={`${container} pb-20 space-y-10`}>
             <div className="space-y-4 max-w-3xl">
               <p className={label}>When the power goes off</p>
               <h2 className="text-3xl font-bold text-gray-800">
@@ -212,14 +215,12 @@ export default function BusinessesPage() {
               </p>
             </div>
             <EnergyFlow />
-          </div>
-
         </div>
       </section>
 
       {/* Equipment we trust */}
       <section className="bg-white text-gray-600">
-        <div className="max-w-[1570px] mx-auto px-8 sm:px-20 pb-20 space-y-10">
+        <div className={`${container} pb-20 space-y-10`}>
           <div className="max-w-3xl space-y-4 text-lg leading-relaxed">
             <p className={label}>Equipment we trust</p>
             <h2 className="text-3xl font-bold text-gray-800">
@@ -227,9 +228,8 @@ export default function BusinessesPage() {
             </h2>
             <p>
               We install inverters, batteries and panels from established
-              manufacturers, so your system is backed twice: by the maker and
-              by us. Panels are guaranteed for 10 years, inverters and
-              batteries for 5.
+              manufacturers, so your system is backed twice: by the
+              maker&rsquo;s warranty and by our own.
             </p>
           </div>
           <div className="overflow-hidden border-y border-gray-200 py-6 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">

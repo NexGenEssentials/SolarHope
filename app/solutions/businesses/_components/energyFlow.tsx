@@ -146,7 +146,7 @@ export default function EnergyFlow() {
             aria-selected={mode === m.key}
             onClick={() => { setAuto(false); setMode(m.key); }}
             className={`px-5 py-2 text-sm font-semibold rounded-full transition-colors ${
-              mode === m.key ? "bg-dark-blue text-white" : "text-gray-500 hover:text-gray-800"
+              mode === m.key ? "bg-dark-blue text-white" : "text-gray-600 hover:text-gray-900"
             }`}
           >
             {m.tab}
