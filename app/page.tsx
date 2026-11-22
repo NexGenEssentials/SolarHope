@@ -4,7 +4,6 @@ import ImpactSection from "./components/impact/impactSection";
 import VisionSection from "./components/vision/visionSection";
 import AchievementSection from "./components/achievement/achievementSection";
 import QuoteSection from "./components/quote/quoteSection";
-import VideoSection from "./components/videos/videoSection";
 import SolorJourneySection from "./components/solarJourney/solorJourneySection";
 import MarqueeSlider from "./components/gallery/gallerySection2";
 import BrandMarquee from "./components/brands/brandMarquee";
@@ -17,7 +16,6 @@ export default function Home() {
       <ImpactSection id="impact" />
       <VisionSection id="about" />
       <SolorJourneySection id="services" />
-      <VideoSection id="videos" />
       {/* Equipment we trust */}
       <section className="bg-white">
         <div className="max-w-[1570px] mx-auto px-6 sm:px-20 pb-16 space-y-6">
