@@ -81,7 +81,7 @@ export default function SetupOptions({
   container,
   variant = "white",
 }: {
-  who: "home" | "business";
+  who: "home" | "business" | "home or business";
   labelClass: string;
   container: string;
   /** "blue" uses the businesses page blue-band design. */

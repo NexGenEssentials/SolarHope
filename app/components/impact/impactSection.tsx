@@ -7,12 +7,12 @@ import finishedArray from "@/public/images/projects/roof-finished-array.jpg";
 const ImpactSection = ({ id }: { id?: string }) => {
   return (
     <section id={id}>
-    <div className="px-4 py-16 bg-white">
-      <div className="max-w-[1570px] mx-auto">
+    <div className="py-16 bg-white">
+      <div className="max-w-[1570px] mx-auto px-6 sm:px-20">
         <div className="flex flex-col md:flex-row gap-12 items-center">
           {/* Text Content */}
           <div className="md:w-1/2 space-y-4">
-            <h1 className="text-amber-500 text-lg">WHAT WE DO</h1>
+            <h1 className="text-amber-500 text-lg">ABOUT US</h1>
 
             <h2 className="text-3xl w-3/4 font-bold text-gray-800 mb-6">
               From a family home to a factory roof
@@ -28,13 +28,22 @@ const ImpactSection = ({ id }: { id?: string }) => {
               remote monitoring.
             </p>
 
-            <a
-              href="/solutions/businesses"
-              className="flex items-end gap-4 w-fit hover:underline"
-            >
-              <span className="text-amber-500 text-sm">Solar for businesses</span>
-              <BsArrowRight className="text-[#E58411] text-xl" />
-            </a>
+            <div className="flex flex-wrap gap-x-10 gap-y-3">
+              <a
+                href="/solutions/businesses"
+                className="flex items-end gap-4 w-fit hover:underline"
+              >
+                <span className="text-amber-500 text-sm">Solar for businesses</span>
+                <BsArrowRight className="text-[#E58411] text-xl" />
+              </a>
+              <a
+                href="/solutions/homes"
+                className="flex items-end gap-4 w-fit hover:underline"
+              >
+                <span className="text-amber-500 text-sm">Solar for homes</span>
+                <BsArrowRight className="text-[#E58411] text-xl" />
+              </a>
+            </div>
           </div>
 
           <div className="md:w-1/2 rounded-lg flex items-center gap-2 justify-center">
