@@ -95,18 +95,11 @@ export default function HomesPage() {
       {/* A power cut at home: one line, then the day/night scene */}
       <section className="bg-white py-16">
         <div className={`${container} space-y-8`}>
-          <div className="grid md:grid-cols-2 gap-x-10 gap-y-3 items-end">
-            <div className="space-y-3">
-              <p className={label}>An ordinary evening</p>
-              <h2 className="text-3xl font-bold text-gray-800">
-                The only sign of a power cut is the dark street outside
-              </h2>
-            </div>
-            <p className="text-gray-600 leading-relaxed">
-              Most homes use the most power in the morning and the evening, when
-              the sun is weakest, so a good home system is as much about the
-              battery as the panels. Switch to night to see it.
-            </p>
+          <div className="space-y-3">
+            <p className={label}>An ordinary evening</p>
+            <h2 className="text-3xl font-bold text-gray-800">
+              The only sign of a power cut is the dark street outside
+            </h2>
           </div>
           <SolarScene config={HOME_SCENE} />
         </div>
