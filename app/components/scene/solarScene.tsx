@@ -59,23 +59,6 @@ function Run({ d, reverse = false }: { d: string; reverse?: boolean }) {
   );
 }
 
-function Card({ c, k, narrow, width, battery }: { c: SceneCard; k: number; narrow: boolean; width: number; battery: number }) {
-  const cw = (c.w ?? 250) * k;
-  const ch = 92 * k;
-  const x = Math.min(narrow ? c.xNarrow ?? c.x : c.x, width - cw - 16);
-  const y = narrow ? c.yNarrow ?? c.y : c.y;
-  const value = c.value.replace("%BATTERY%", `${battery}%`);
-  return (
-    <g>
-      <line x1={x + 20 * k} y1={y + ch} x2={c.to[0]} y2={c.to[1]} stroke="#fff" strokeWidth={3 * k} strokeDasharray={`${4 * k} ${8 * k}`} opacity={0.9} />
-      <circle cx={c.to[0]} cy={c.to[1]} r={9 * k} fill={GREEN} stroke="#fff" strokeWidth={3 * k} />
-      <rect x={x} y={y} width={cw} height={ch} rx={18 * k} fill="#ffffff" opacity={0.93} />
-      <text x={x + 22 * k} y={y + 34 * k} fontSize={22 * k} fontWeight={600} letterSpacing={2 * k} fill="#64748B">{c.label}</text>
-      <text x={x + 22 * k} y={y + 74 * k} fontSize={36 * k} fontWeight={800} fill={c.tone ?? "#0f202e"}>{value}</text>
-    </g>
-  );
-}
-
 function useCountTo(target: number, ms = 4500) {
   const [v, setV] = useState(target);
   const from = useRef(target);
@@ -96,19 +79,6 @@ function useCountTo(target: number, ms = 4500) {
   return Math.round(v);
 }
 
-/** Label scale: 1 on wide screens, up to ~2 on phones. */
-function useLabelScale(ref: React.RefObject<HTMLDivElement | null>) {
-  const [k, setK] = useState(1);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([e]) => setK(Math.max(1, Math.min(2.1, 760 / e.contentRect.width))));
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, [ref]);
-  return k;
-}
-
 const TABS: { key: Mode; tab: string }[] = [
   { key: "day", tab: "Daytime" },
   { key: "night", tab: "Power cut at night" },
@@ -118,11 +88,9 @@ export default function SolarScene({ config }: { config: SceneConfig }) {
   const [mode, setMode] = useState<Mode>("day");
   const [auto, setAuto] = useState(true);
   const battery = useCountTo(config.battery[mode]);
-  const frame = useRef<HTMLDivElement>(null);
-  const k = useLabelScale(frame);
-  const narrow = k > 1.2;
   const { width: W, height: H } = config;
-  const { y0, hc } = narrow ? { y0: 0, hc: H } : config.crop;
+  // With no labels on the picture, the short band works on every screen size.
+  const { y0, hc } = config.crop;
   const objectPosition = `50% ${hc === H ? 0 : (y0 / (H - hc)) * 100}%`;
 
   useEffect(() => {
@@ -149,9 +117,6 @@ export default function SolarScene({ config }: { config: SceneConfig }) {
               />
             </g>
           )}
-          {L.cards.map((c) => (
-            <Card key={c.label} c={c} k={k} narrow={narrow} width={W} battery={battery} />
-          ))}
         </svg>
       </div>
     );
@@ -175,7 +140,7 @@ export default function SolarScene({ config }: { config: SceneConfig }) {
         ))}
       </div>
 
-      <div ref={frame} role="img" aria-label={config.captions[mode]}
+      <div role="img" aria-label={config.captions[mode]}
         className="relative w-full overflow-hidden rounded-2xl shadow-xl" style={{ aspectRatio: `${W} / ${hc}` }}>
         <svg width="0" height="0" className="absolute">
           <defs>
@@ -187,6 +152,25 @@ export default function SolarScene({ config }: { config: SceneConfig }) {
         {layer("day")}
         {layer("night")}
       </div>
+
+      <ul className="flex flex-wrap gap-2" aria-label="System status">
+        {config[mode].cards.map((c) => {
+          const value = c.value.replace("%BATTERY%", `${battery}%`);
+          const tone =
+            c.tone === "#DC2626" ? "text-red-600" : c.tone === "#64748B" ? "text-gray-500" : "text-dark-blue";
+          return (
+            <li key={c.label} className="flex items-center gap-2 rounded-full bg-[#F2F4F7] px-3 py-1.5 text-sm">
+              <span
+                className={`h-2 w-2 rounded-full ${
+                  c.tone === "#DC2626" ? "bg-red-500" : c.tone === "#64748B" ? "bg-gray-400" : "bg-green-500"
+                }`}
+              />
+              <span className="text-gray-500 capitalize">{c.label.toLowerCase()}</span>
+              <span className={`font-semibold ${tone}`}>{value}</span>
+            </li>
+          );
+        })}
+      </ul>
 
       <p key={mode} className="text-lg text-gray-700 font-medium animate-[rise_0.5s_ease-out_both]">
         {config.captions[mode]}
