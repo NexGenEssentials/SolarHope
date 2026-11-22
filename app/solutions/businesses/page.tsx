@@ -11,7 +11,7 @@ import withFinishedInstall from "@/public/images/projects/technician-with-finish
 export const metadata: Metadata = {
   title: "Solar for businesses in Rwanda | SolarHope Africa",
   description:
-    "Stay open through power cuts, spend less on electricity and leave the generator behind. Solar with battery backup for bars, restaurants, shops, offices and factories across Rwanda.",
+    "Stay open through power cuts, spend less on electricity and leave the generator behind. Solar with battery backup for any business in Rwanda, from a small shop to a large factory.",
   alternates: { canonical: "/solutions/businesses" },
   openGraph: {
     title: "Solar for businesses in Rwanda | SolarHope Africa",
@@ -76,8 +76,8 @@ export default function BusinessesPage() {
           <span className="block">Keep the costs down.</span>
         </h1>
         <p className="text-[#BABABA]">
-          Solar power for bars, restaurants, shops, offices and factories
-          across Rwanda. When the grid goes off, your business stays open.
+          Solar power for any business in Rwanda, from a small shop to a
+          large factory. When the grid goes off, your business stays open.
         </p>
         <p className="text-yellow font-semibold">
           Packages from {rwf(LOWEST_PRICE_RWF)} RWF, excluding VAT
