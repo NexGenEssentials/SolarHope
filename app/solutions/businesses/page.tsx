@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import HomeTemplates from "../../components/templates/homeTemplates";
 import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
-import { EQUIPMENT_BRANDS, SITE } from "../../config/site";
+import { SITE } from "../../config/site";
+import BrandMarquee from "../../components/brands/brandMarquee";
 import EnergyFlow from "./_components/energyFlow";
 import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
@@ -227,33 +228,7 @@ export default function BusinessesPage() {
               maker&rsquo;s warranty and by our own.
             </p>
           </div>
-          <div className="overflow-hidden border-y border-gray-200 py-6 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-            <ul className="flex w-max items-center animate-[marquee_35s_linear_infinite] hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:flex-wrap motion-reduce:justify-center">
-              {[...EQUIPMENT_BRANDS, ...EQUIPMENT_BRANDS].map((b, i) => {
-                const copy = i >= EQUIPMENT_BRANDS.length;
-                return (
-                  <li
-                    key={i}
-                    aria-hidden={copy ? true : undefined}
-                    className={`group shrink-0 w-56 h-24 flex items-center justify-center px-8 ${copy ? "motion-reduce:hidden" : ""}`}
-                  >
-                    {b.logo ? (
-                      <img
-                        src={b.logo}
-                        alt={copy ? "" : b.name}
-                        loading="lazy"
-                        className={`${b.stacked ? "max-h-20" : "max-h-12"} max-w-full w-auto object-contain transition-transform duration-300 group-hover:scale-105`}
-                      />
-                    ) : (
-                      <span className="text-lg font-bold tracking-wide text-gray-500">
-                        {b.name}
-                      </span>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+          <BrandMarquee />
         </div>
       </section>
 

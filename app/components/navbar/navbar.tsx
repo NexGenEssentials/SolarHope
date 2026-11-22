@@ -14,6 +14,7 @@ const navLinks = [
   { name: "What We Do", href: "/#impact" },
   { name: "Services", href: "/#services" },
   { name: "For Businesses", href: "/solutions/businesses" },
+  { name: "For Homes", href: "/solutions/homes" },
 ];
 
 const Navbar = () => {

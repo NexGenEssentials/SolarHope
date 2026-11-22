@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SITE } from "@/app/config/site";
 import {
   SEGMENTS,
@@ -23,6 +23,13 @@ const QuoteSection = ({
 }) => {
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
+  const [segment, setSegment] = useState<Segment>(defaultSegment);
+
+  // A link such as "?segment=ev-home#quote" pre-selects what the quote is for.
+  useEffect(() => {
+    const wanted = new URLSearchParams(window.location.search).get("segment");
+    if (wanted && SEGMENTS.some((s) => s.value === wanted)) setSegment(wanted as Segment);
+  }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -117,7 +124,8 @@ const QuoteSection = ({
                   id="q-segment"
                   name="segment"
                   required
-                  defaultValue={defaultSegment}
+                  value={segment}
+                  onChange={(e) => setSegment(e.target.value as Segment)}
                   className={`${field} [&>option]:text-black`}
                 >
                   {SEGMENTS.map((s) => (
