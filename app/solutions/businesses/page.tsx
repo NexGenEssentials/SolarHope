@@ -179,11 +179,6 @@ export default function BusinessesPage() {
                 </li>
               ))}
             </ul>
-            <p>
-              <strong className="text-gray-800">Covered for years:</strong>{" "}
-              panels guaranteed for 10 years, inverter and battery for 5, and
-              our own workmanship for 2.
-            </p>
           </div>
           <div className="flex justify-center">
             <img
