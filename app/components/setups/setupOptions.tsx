@@ -80,21 +80,37 @@ export default function SetupOptions({
   who,
   labelClass,
   container,
+  variant = "white",
 }: {
   who: "home" | "business";
   labelClass: string;
   container: string;
+  /** "blue" uses the businesses page blue-band design. */
+  variant?: "white" | "blue";
 }) {
   const [active, setActive] = useState(1);
   const s = SETUPS[active];
+  const blue = variant === "blue";
 
   return (
-    <section className="bg-white py-20">
+    <section
+      className={
+        blue
+          ? "text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376] py-20"
+          : "bg-white py-20"
+      }
+    >
       <div className={`${container} space-y-10`}>
         <div className="max-w-3xl space-y-4">
-          <p className={labelClass}>Three ways to set it up</p>
-          <h2 className="text-3xl font-bold text-gray-800">Choose how much you rely on the sun</h2>
-          <p className="text-lg text-gray-600 leading-relaxed">
+          {blue ? (
+            <span className="inline-block w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
+              Three ways to set it up
+            </span>
+          ) : (
+            <p className={labelClass}>Three ways to set it up</p>
+          )}
+          <h2 className={`text-3xl font-bold ${blue ? "" : "text-gray-800"}`}>Choose how much you rely on the sun</h2>
+          <p className={`text-lg leading-relaxed ${blue ? "text-white/85" : "text-gray-600"}`}>
             Not sure which fits? We recommend one at the site visit, based on
             your bills, your power cuts and your budget.
           </p>
@@ -102,7 +118,7 @@ export default function SetupOptions({
 
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 items-stretch">
           <div role="tablist" aria-label="Set-ups" className="flex flex-col">
-            <p className="text-xs uppercase tracking-wider text-gray-400 px-1 pb-3">
+            <p className={`text-xs uppercase tracking-wider px-1 pb-3 ${blue ? "text-white/60" : "text-gray-400"}`}>
               From most grid to most sun
             </p>
             <div className="space-y-3">
@@ -115,19 +131,25 @@ export default function SetupOptions({
                     aria-selected={on}
                     onClick={() => setActive(i)}
                     className={`w-full text-left rounded-xl border-2 p-5 flex items-center gap-5 transition-colors ${
-                      on ? "border-yellow bg-yellow/10" : "border-gray-200 hover:border-gray-300"
+                      blue
+                        ? on
+                          ? "border-yellow bg-white/15"
+                          : "border-white/25 bg-white/5 hover:border-white/50"
+                        : on
+                          ? "border-yellow bg-yellow/10"
+                          : "border-gray-200 hover:border-gray-300"
                     }`}
                   >
                     <span
                       className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg font-extrabold ${
-                        on ? "bg-yellow text-dark-blue" : "bg-[#F2F4F7] text-gray-500"
+                        on ? "bg-yellow text-dark-blue" : blue ? "bg-white/15 text-white" : "bg-[#F2F4F7] text-gray-500"
                       }`}
                     >
                       {o.n}
                     </span>
                     <span>
-                      <span className="block font-bold text-gray-800">{o.title}</span>
-                      <span className="block text-sm text-gray-500">{o.short}</span>
+                      <span className={`block font-bold ${blue ? "text-white" : "text-gray-800"}`}>{o.title}</span>
+                      <span className={`block text-sm ${blue ? "text-white/70" : "text-gray-500"}`}>{o.short}</span>
                     </span>
                   </button>
                 );
@@ -135,7 +157,7 @@ export default function SetupOptions({
             </div>
           </div>
 
-          <div key={active} className="rounded-xl bg-[#F2F4F7] p-7 sm:p-9 space-y-6 animate-[rise_0.4s_ease-out_both]">
+          <div key={active} className={`rounded-xl ${blue ? "bg-white shadow-xl" : "bg-[#F2F4F7]"} p-7 sm:p-9 space-y-6 animate-[rise_0.4s_ease-out_both]`}>
             <div className="space-y-2">
               <h3 className="text-2xl font-bold text-gray-800">{s.title}</h3>
               <p className="text-gray-600 leading-relaxed">{s.text(who)}</p>
@@ -153,7 +175,7 @@ export default function SetupOptions({
           </div>
         </div>
 
-        <p className="inline-flex flex-wrap items-center gap-2 rounded-full bg-dark-blue text-white text-sm px-5 py-2">
+        <p className={`inline-flex flex-wrap items-center gap-2 rounded-full text-white text-sm px-5 py-2 ${blue ? "bg-white/15" : "bg-dark-blue"}`}>
           <span className="h-2 w-2 rounded-full bg-green-400" />
           Automatic switching as standard
           <span className="text-white/40">·</span>
