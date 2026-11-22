@@ -26,22 +26,11 @@ export const metadata: Metadata = {
   },
 };
 
-// A power cut on an ordinary evening, told in four moments.
-const EVENING = [
-  { time: "7:02 pm", title: "The street goes dark.", text: "The neighbours' lights go out, and a generator starts up somewhere down the road." },
-  { time: "7:02 pm", title: "Your home doesn't.", text: "Your system switches to the battery by itself. No switch to flip, nothing to start." },
-  { time: "8:30 pm", title: "Life carries on.", text: "Dinner on the table, homework under good light, the fridge cold, the Wi-Fi on." },
-  { time: "Next morning", title: "The sun takes over again.", text: "The panels run the house and refill the battery for whatever the evening brings." },
-];
 
 const FAQ = [
   {
     q: "Do I stay connected to the grid?",
     a: "Yes. Your system works alongside your existing connection. When the grid is on, you use your own solar power first; when it goes off, the battery takes over automatically.",
-  },
-  {
-    q: "Will it be noisy?",
-    a: "No. Panels and batteries are silent, and the inverter makes at most a quiet hum. There is no fuel, no exhaust and nothing to start.",
   },
   {
     q: "Is my roof suitable?",
@@ -54,14 +43,6 @@ const FAQ = [
   {
     q: "What happens if something breaks?",
     a: "Panels are guaranteed for 10 years, the inverter and battery for 5, and our own installation work for 2. We also monitor your system remotely once it is running.",
-  },
-  {
-    q: "Can I add more later?",
-    a: "Yes, with our Hope Series: panels, inverter and battery are separate, so you can add more as your family grows. Plug-and-play Dream Series units are fixed and cannot be expanded.",
-  },
-  {
-    q: "Do you sell EV chargers?",
-    a: "No. You keep your own charger, and we size and connect your solar system to power it.",
   },
 ];
 
@@ -111,36 +92,22 @@ export default function HomesPage() {
         </div>
       </section>
 
-      {/* An evening with a power cut */}
-      <section className="bg-white py-20">
-        <div className={`${container} grid lg:grid-cols-[1fr_1.3fr] gap-14`}>
-          <div className="space-y-4">
-            <p className={label}>An ordinary evening</p>
-            <h2 className="text-3xl font-bold text-gray-800">
-              The only sign of a power cut is the dark street outside
-            </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              Most homes use the most power in the morning and the evening,
-              when the sun is weakest. That is why a good home system is as
-              much about the battery as the panels.
+      {/* A power cut at home: one line, then the day/night scene */}
+      <section className="bg-white py-16">
+        <div className={`${container} space-y-8`}>
+          <div className="grid md:grid-cols-2 gap-x-10 gap-y-3 items-end">
+            <div className="space-y-3">
+              <p className={label}>An ordinary evening</p>
+              <h2 className="text-3xl font-bold text-gray-800">
+                The only sign of a power cut is the dark street outside
+              </h2>
+            </div>
+            <p className="text-gray-600 leading-relaxed">
+              Most homes use the most power in the morning and the evening, when
+              the sun is weakest, so a good home system is as much about the
+              battery as the panels. Switch to night to see it.
             </p>
           </div>
-          <ol className="relative border-l-2 border-yellow/60 pl-8 space-y-9">
-            {EVENING.map((e, i) => (
-              <li key={i} className="relative">
-                <span className="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-yellow ring-4 ring-white" />
-                <p className="text-sm font-semibold text-amber-600">{e.time}</p>
-                <p className="text-xl font-bold text-gray-800">{e.title}</p>
-                <p className="text-gray-600">{e.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      {/* The home, day and night */}
-      <section className="bg-white">
-        <div className={container}>
           <SolarScene config={HOME_SCENE} />
         </div>
       </section>
@@ -163,11 +130,13 @@ export default function HomesPage() {
       </section>
 
       {/* Questions */}
-      <section className="bg-white py-20">
-        <div className={`${container} grid lg:grid-cols-[1fr_1.6fr] gap-12`}>
-          <div className="space-y-4">
-            <p className={label}>Your questions</p>
-            <h2 className="text-3xl font-bold text-gray-800">What homeowners ask us</h2>
+      <section className="bg-white py-16">
+        <div className={`${container} space-y-8`}>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="space-y-3">
+              <p className={label}>Your questions</p>
+              <h2 className="text-3xl font-bold text-gray-800">What homeowners ask us</h2>
+            </div>
             <p className="text-gray-600">
               Something else on your mind? Message us on{" "}
               <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer" className="underline">
@@ -176,9 +145,9 @@ export default function HomesPage() {
               .
             </p>
           </div>
-          <div className="divide-y divide-gray-200 border-y border-gray-200">
+          <div className="grid md:grid-cols-2 gap-x-10 border-t border-gray-200">
             {FAQ.map((f) => (
-              <details key={f.q} className="group py-5">
+              <details key={f.q} className="group py-5 border-b border-gray-200">
                 <summary className="flex justify-between items-center cursor-pointer list-none text-lg font-semibold text-gray-800">
                   {f.q}
                   <span className="text-amber-500 text-2xl transition-transform group-open:rotate-45">+</span>
@@ -191,17 +160,9 @@ export default function HomesPage() {
       </section>
 
       {/* Equipment we trust */}
-      <section className="bg-white text-gray-600">
-        <div className={`${container} pb-20 space-y-10`}>
-          <div className="max-w-3xl space-y-4 text-lg leading-relaxed">
-            <p className={label}>Equipment we trust</p>
-            <h2 className="text-3xl font-bold text-gray-800">Built with brands that last</h2>
-            <p>
-              We install inverters, batteries and panels from established
-              manufacturers, so your system is backed twice: by the
-              maker&rsquo;s warranty and by our own.
-            </p>
-          </div>
+      <section className="bg-white">
+        <div className={`${container} pb-16 space-y-6`}>
+          <p className={label}>Equipment we trust</p>
           <BrandMarquee />
         </div>
       </section>

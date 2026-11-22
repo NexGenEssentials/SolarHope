@@ -219,19 +219,9 @@ export default function BusinessesPage() {
       </section>
 
       {/* Equipment we trust */}
-      <section className="bg-white text-gray-600">
-        <div className={`${container} pb-20 space-y-10`}>
-          <div className="max-w-3xl space-y-4 text-lg leading-relaxed">
-            <p className={label}>Equipment we trust</p>
-            <h2 className="text-3xl font-bold text-gray-800">
-              Built with brands that last
-            </h2>
-            <p>
-              We install inverters, batteries and panels from established
-              manufacturers, so your system is backed twice: by the
-              maker&rsquo;s warranty and by our own.
-            </p>
-          </div>
+      <section className="bg-white">
+        <div className={`${container} pb-16 space-y-6`}>
+          <p className={label}>Equipment we trust</p>
           <BrandMarquee />
         </div>
       </section>
