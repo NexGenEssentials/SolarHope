@@ -24,11 +24,14 @@ const QuoteSection = ({
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   const [segment, setSegment] = useState<Segment>(defaultSegment);
+  const [bill, setBill] = useState("");
 
   // A link such as "?segment=ev-home#quote" pre-selects what the quote is for.
   useEffect(() => {
     const wanted = new URLSearchParams(window.location.search).get("segment");
     if (wanted && SEGMENTS.some((s) => s.value === wanted)) setSegment(wanted as Segment);
+    const billParam = new URLSearchParams(window.location.search).get("bill");
+    if (billParam && /^\d+$/.test(billParam)) setBill(billParam);
   }, []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -48,6 +51,7 @@ const QuoteSection = ({
     if (result.status === "sent") {
       setStatus("sent");
       form.reset();
+      setBill("");
     } else if (result.status === "opened-mail-app") {
       setStatus("mail");
     } else {
@@ -142,6 +146,8 @@ const QuoteSection = ({
                 <input
                   id="q-bill"
                   name="monthlyBill"
+                  value={bill}
+                  onChange={(e) => setBill(e.target.value)}
                   type="number"
                   inputMode="numeric"
                   min={0}

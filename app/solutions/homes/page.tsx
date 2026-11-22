@@ -72,6 +72,9 @@ export default function HomesPage() {
           </p>
           <p className="text-yellow font-semibold">
             Packages from {rwf(LOWEST_PRICE_RWF)} RWF, excluding VAT
+            <a href="/size-my-system" className="block mt-1 text-sm font-normal text-white/80 underline hover:text-white">
+              What size do I need? Check with your bill
+            </a>
           </p>
           <div className="flex flex-wrap items-center gap-x-8 gap-y-4 font-bold">
             <a

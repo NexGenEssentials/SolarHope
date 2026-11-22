@@ -15,6 +15,7 @@ const navLinks = [
   { name: "Services", href: "/#services" },
   { name: "For Businesses", href: "/solutions/businesses" },
   { name: "For Homes", href: "/solutions/homes" },
+  { name: "Size My System", href: "/size-my-system" },
 ];
 
 const Navbar = () => {
@@ -49,7 +50,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden md:flex gap-8 text-sm font-semibold">
+        <ul className="hidden xl:flex gap-7 text-sm font-semibold whitespace-nowrap">
           {navLinks.map((link) => (
             <li key={link.name}>
               <Link
@@ -63,7 +64,7 @@ const Navbar = () => {
         </ul>
 
         {/* Desktop Buttons */}
-        <div className="hidden md:flex items-center space-x-4">
+        <div className="hidden xl:flex items-center space-x-4 whitespace-nowrap">
           <a
             href={SITE.whatsappUrl}
             target="_blank"
@@ -76,7 +77,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <div className="md:hidden text-3xl cursor-pointer">
+        <div className="xl:hidden text-3xl cursor-pointer">
           <button
             type="button"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -91,7 +92,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div
-          className={`md:hidden bg-white text-black px-6 py-4 space-y-4 font-semibold`}
+          className={`xl:hidden bg-white text-black px-6 py-4 space-y-4 font-semibold`}
         >
           {navLinks.map((link) => (
             <Link
