@@ -84,7 +84,14 @@ const TABS: { key: Mode; tab: string }[] = [
   { key: "night", tab: "Power cut at night" },
 ];
 
-export default function SolarScene({ config }: { config: SceneConfig }) {
+export default function SolarScene({
+  config,
+  tone = "light",
+}: {
+  config: SceneConfig;
+  /** "dark" when placed on a coloured or dark background. */
+  tone?: "light" | "dark";
+}) {
   const [mode, setMode] = useState<Mode>("day");
   const [auto, setAuto] = useState(true);
   const battery = useCountTo(config.battery[mode]);
@@ -172,7 +179,7 @@ export default function SolarScene({ config }: { config: SceneConfig }) {
         })}
       </ul>
 
-      <p key={mode} className="text-lg text-gray-700 font-medium animate-[rise_0.5s_ease-out_both]">
+      <p key={mode} className={`text-lg font-medium animate-[rise_0.5s_ease-out_both] ${tone === "dark" ? "text-white" : "text-gray-700"}`}>
         {config.captions[mode]}
       </p>
     </div>

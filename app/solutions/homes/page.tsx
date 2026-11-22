@@ -111,33 +111,35 @@ export default function HomesPage() {
         </div>
       </section>
 
-      {/* An evening with a power cut */}
-      <section className="bg-white py-20">
+      {/* An evening with a power cut (blue band, matching "Built around the way your business runs") */}
+      <section className="text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376] py-20">
         <div className={`${container} grid lg:grid-cols-[1fr_1.3fr] gap-14`}>
-          <div className="space-y-4">
-            <p className={label}>An ordinary evening</p>
-            <h2 className="text-3xl font-bold text-gray-800">
+          <div className="flex flex-col gap-4">
+            <span className="w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
+              An ordinary evening
+            </span>
+            <h2 className="text-3xl font-bold">
               The only sign of a power cut is the dark street outside
             </h2>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-lg text-white/85 leading-relaxed">
               Most homes use the most power in the morning and the evening,
               when the sun is weakest. That is why a good home system is as
               much about the battery as the panels.
             </p>
           </div>
-          <ol className="relative border-l-2 border-yellow/60 pl-8 space-y-9">
+          <ol className="relative border-l-2 border-yellow/70 pl-8 space-y-9">
             {EVENING.map((e, i) => (
               <li key={i} className="relative">
-                <span className="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-yellow ring-4 ring-white" />
-                <p className="text-sm font-semibold text-amber-600">{e.time}</p>
-                <p className="text-xl font-bold text-gray-800">{e.title}</p>
-                <p className="text-gray-600">{e.text}</p>
+                <span className="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-yellow ring-4 ring-[#2C7FD0]" />
+                <p className="text-sm font-semibold text-yellow">{e.time}</p>
+                <p className="text-xl font-bold">{e.title}</p>
+                <p className="text-white/80">{e.text}</p>
               </li>
             ))}
           </ol>
         </div>
         <div className={`${container} pt-16`}>
-          <SolarScene config={HOME_SCENE} />
+          <SolarScene config={HOME_SCENE} tone="dark" />
         </div>
       </section>
 
