@@ -62,7 +62,7 @@ const STEPS = [
   "Remote monitoring of your system once it is running",
 ];
 
-const label = "text-amber-700 text-lg uppercase";
+const label = "text-amber-500 text-lg uppercase";
 // One container so every section shares the same left and right edges.
 const container = "max-w-[1570px] mx-auto px-6 sm:px-20";
 
