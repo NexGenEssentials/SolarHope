@@ -9,6 +9,7 @@ export const SEGMENTS = [
   { value: "school", label: "School" },
   { value: "health", label: "Health facility" },
   { value: "home", label: "Home" },
+  { value: "ev-home", label: "EV charging at home (power for your charger)" },
   { value: "repair", label: "Repair or upgrade of an existing system" },
 ] as const;
 

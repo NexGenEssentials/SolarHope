@@ -51,7 +51,7 @@ export default function PrivacyPolicy() {
           <li>your name;</li>
           <li>your business or organisation name, if you give one;</li>
           <li>your phone or WhatsApp number;</li>
-          <li>what the system is for (business, school, health facility, home or repair);</li>
+          <li>what the system is for (business, school, health facility, home, EV charging at home or repair);</li>
           <li>your approximate monthly electricity bill, if you give it;</li>
           <li>your location.</li>
         </ul>
