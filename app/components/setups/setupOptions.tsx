@@ -45,8 +45,7 @@ const SETUPS: Setup[] = [
     n: "3",
     title: "Off-grid first",
     short: "Run on sun and battery, grid as fallback",
-    text: () =>
-      "You run on solar and battery, and the grid only comes in when the battery runs low or during long cloudy spells.",
+    text: () => "",
     suits: (who) => `A ${who} with a weak or unreliable grid, or that wants to be as independent as possible.`,
     sun: { role: "Main source", size: 92 },
     battery: { role: "Evenings and nights", size: 82 },
@@ -162,7 +161,7 @@ export default function SetupOptions({
           <div key={active} className={`rounded-xl ${blue ? "bg-white shadow-xl" : "bg-[#F2F4F7]"} ${blue ? "p-6 space-y-4" : "p-7 sm:p-9 space-y-6"} animate-[rise_0.4s_ease-out_both]`}>
             <div className="space-y-2">
               <h3 className="text-2xl font-bold text-gray-800">{s.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{s.text(who)}</p>
+              {s.text(who) && <p className="text-gray-600 leading-relaxed">{s.text(who)}</p>}
             </div>
             <div className={blue ? "space-y-3" : "space-y-4"}>
               <p className="text-xs uppercase tracking-wider text-gray-400">Where your power comes from</p>
