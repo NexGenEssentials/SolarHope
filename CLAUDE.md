@@ -25,6 +25,17 @@ Hybrid solar PV systems: solar panels + hybrid inverter + lithium (LiFePO4) batt
 installed alongside the client's existing REG grid connection with **automatic changeover**.
 The grid stays connected. Nothing is off-grid unless the client has no grid at all.
 
+**Three system set-ups (confirmed 22 Nov 2026), each available with manual or automatic
+switching:**
+1. **Backup for power outages:** the system only takes over when the grid goes off.
+2. **Hybrid:** solar, battery and grid work together.
+3. **Off-grid first, grid as backup:** the home or business runs on solar and battery,
+   and the grid is only used as a fallback.
+
+Copy must not say that switching is always automatic: it is automatic *with an
+automatic set-up*; manual switching is also offered. (Details of each set-up, e.g.
+whether option 1 includes panels, still to confirm before describing them in depth.)
+
 Scope of a typical job: site assessment → design → supply → installation → testing and
 commissioning → staff training → handover → warranty and remote monitoring.
 
