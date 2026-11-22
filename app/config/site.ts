@@ -4,6 +4,8 @@ export const SITE = {
   url: "https://solarhopeafrica.com",
   name: "SolarHope Africa",
   legalName: "SolarHope Africa Ltd",
+  slogan: "Solar Ni Sawa",
+  sloganLine: "Switch to smarter energy today",
   tagline: "Light Up Dreams, The Solar Way",
   title: "SolarHope Africa | Solar systems for homes, businesses and institutions in Rwanda",
   description:

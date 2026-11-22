@@ -12,8 +12,9 @@ site is built on a donation template and reads as a non-profit. It is not one. S
   sites, businesses, modern residential, and large commercial systems. Say this through
   range and specifics; do not use unprovable superlatives ("the leading", "No. 1",
   "the main solar company") in copy.
-- Tagline: *Light Up Dreams, The Solar Way*
-- Campaign line used in marketing: *Solar Ni Sawa — Switch to smarter energy today*
+- **Slogan: *Solar Ni Sawa*** (confirmed 22 Nov 2026). Used with the line *Switch to
+  smarter energy today*.
+- Older tagline: *Light Up Dreams, The Solar Way* (still printed under the logo image).
 - Email: info@solarhopeafrica.com
 - Phone / WhatsApp: +250 780 348 624
 - Instagram: @solarhopeafrica · Facebook · LinkedIn: /company/solar-hope-africa
