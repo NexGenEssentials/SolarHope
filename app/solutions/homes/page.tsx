@@ -10,7 +10,6 @@ import HomePicker from "./_components/homePicker";
 import SolarScene from "../../components/scene/solarScene";
 import { HOME_SCENE } from "../../components/scene/scenes";
 import crewValley from "@/public/images/projects/roof-crew-valley-view.jpg";
-import wallInstall from "@/public/images/projects/wall-install-inverter-battery.jpg";
 
 export const metadata: Metadata = {
   title: "Solar for homes in Rwanda | SolarHope Africa",
@@ -156,33 +155,6 @@ export default function HomesPage() {
             </p>
           </div>
           <HomePicker />
-        </div>
-      </section>
-
-      {/* EV charging */}
-      <section className="bg-dark-blue text-white py-20">
-        <div className={`${container} grid lg:grid-cols-2 gap-12 items-center`}>
-          <div className="space-y-5">
-            <p className="text-yellow uppercase tracking-widest text-sm font-semibold">EV charging at home</p>
-            <h2 className="text-3xl sm:text-4xl font-bold">Charge your car on sunshine</h2>
-            <p className="text-lg text-white/80 leading-relaxed">
-              Already drive an electric car? We power your charger from your own
-              solar system: straight from the panels during the day, and from
-              your battery at night.
-            </p>
-            <p className="text-white/70 leading-relaxed">
-              You keep your own charger, and we size your system around how you
-              drive. At night the battery gives the car a top-up, so most of the
-              charging happens in daylight.
-            </p>
-            <Button link="?segment=ev-home#quote" name="Ask about EV charging" />
-          </div>
-          <img
-            src={wallInstall.src}
-            alt="A hybrid inverter above its lithium battery, installed by SolarHope in a family home"
-            loading="lazy"
-            className="w-full max-w-md h-[420px] object-cover rounded-lg justify-self-center"
-          />
         </div>
       </section>
 
