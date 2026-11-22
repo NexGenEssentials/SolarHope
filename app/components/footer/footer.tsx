@@ -25,11 +25,11 @@ const followLinks = [
 const Footer = () => {
   return (
     <footer className="bg-[#0D1B39] text-white">
-      <div className="max-w-[1570px] mx-auto p-8 lg:p-28 ">
-        <div className="flex flex-row w-full justify-between flex-wrap gap-10 border-b border-white pb-10">
-          <div className="mb-4 space-y-2">
+      <div className="max-w-[1570px] mx-auto px-6 sm:px-20 py-10 lg:py-12">
+        <div className="flex flex-row w-full justify-between flex-wrap gap-8 border-b border-white/30 pb-8">
+          <div className="space-y-2">
             <Link href="/" className="block">
-              <div className="relative w-48 h-26 text-lg font-bold">
+              <div className="relative w-40 h-16 text-lg font-bold">
                 <Image
                   src={logo}
                   fill
@@ -41,11 +41,11 @@ const Footer = () => {
             <p className="text-yellow italic font-semibold">{SITE.slogan}</p>
           </div>
 
-          <div className=" hidden md:flex flex-1 items-center flex-wrap flex-row justify-between gap-10">
+          <div className=" hidden md:flex flex-1 items-start flex-wrap flex-row justify-between gap-10">
             {/* Explore */}
             <div className="flex-1">
-              <h3 className="text-lg font-semibold mb-4">Explore</h3>
-              <div className="text-sm space-y-3">
+              <h3 className="text-base font-semibold mb-3">Explore</h3>
+              <div className="text-sm space-y-2">
                 {exploreLinks.map(({ title, link }) => (
                   <Link
                     href={link}
@@ -60,8 +60,8 @@ const Footer = () => {
 
             {/* Follow Us */}
             <div className="flex-1">
-              <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
-              <div className="text-sm space-y-3">
+              <h3 className="text-base font-semibold mb-3">Follow Us</h3>
+              <div className="text-sm space-y-2">
                 {followLinks.map(({ title, link }) => (
                   <a
                     href={link}
@@ -79,8 +79,8 @@ const Footer = () => {
 
           {/* Contact Us */}
           <div>
-            <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <div className="text-sm space-y-3">
+            <h3 className="text-base font-semibold mb-3">Contact Us</h3>
+            <div className="text-sm space-y-2">
               <a href={`mailto:${SITE.email}`} className="block hover:underline">
                 {SITE.email}
               </a>
