@@ -4,7 +4,6 @@ import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
 import { SITE } from "../../config/site";
 import BrandMarquee from "../../components/brands/brandMarquee";
-import SetupOptions from "../../components/setups/setupOptions";
 import SolarScene from "../../components/scene/solarScene";
 import { CAFE_SCENE } from "../../components/scene/scenes";
 import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
@@ -192,8 +191,6 @@ export default function BusinessesPage() {
           </div>
         </div>
       </section>
-
-      <SetupOptions who="business" labelClass={label} container={container} />
 
       {/* Outages */}
       <section className="bg-white text-gray-600">
