@@ -130,10 +130,9 @@ print 376 as "the rate" anywhere on the site, or the pages will contradict each 
 page needs to explain the gap, the line is that 376 is the energy rate and 400 is what the
 bill comes to once everything is added.
 
-**Sizing tool (decided 22 Nov 2026):** 400 RWF/kWh is used for both businesses and homes,
-**in the background only**. The rate itself is never shown on the site, not even in the
-"how we estimate" note. Schools and health facilities are left out of the tool for now
-(their 214 tariff needs separate, careful wording).
+**Sizing tool:** built and then dropped at the owner's request (22 Nov 2026). Do not
+re-add a bill-based calculator page unless asked. If it returns: 400 RWF/kWh in the
+background only, never shown.
 
 **Standard warranty terms:** panels 10 years · inverter 5 years · battery 5 years ·
 installation workmanship 2 years.

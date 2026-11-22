@@ -84,9 +84,6 @@ export default function BusinessesPage() {
         </p>
         <p className="text-yellow font-semibold">
           Packages from {rwf(LOWEST_PRICE_RWF)} RWF, excluding VAT
-          <a href="/size-my-system" className="block mt-1 text-sm font-normal text-white/80 underline hover:text-white">
-            What size do I need? Check with your bill
-          </a>
         </p>
         <div className="flex items-center gap-8 justify-center font-bold">
           <Button link="#quote" name="Get a quote" />

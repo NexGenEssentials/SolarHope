@@ -15,7 +15,6 @@ const navLinks = [
   { name: "Services", href: "/#services" },
   { name: "For Businesses", href: "/solutions/businesses" },
   { name: "For Homes", href: "/solutions/homes" },
-  { name: "Size My System", href: "/size-my-system" },
 ];
 
 const Navbar = () => {
