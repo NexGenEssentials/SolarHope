@@ -7,6 +7,8 @@ import SetupOptions from "../../components/setups/setupOptions";
 import { SITE } from "../../config/site";
 import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
 import HomePicker from "./_components/homePicker";
+import SolarScene from "../../components/scene/solarScene";
+import { HOME_SCENE } from "../../components/scene/scenes";
 import crewValley from "@/public/images/projects/roof-crew-valley-view.jpg";
 import wallInstall from "@/public/images/projects/wall-install-inverter-battery.jpg";
 
@@ -134,6 +136,9 @@ export default function HomesPage() {
               </li>
             ))}
           </ol>
+        </div>
+        <div className={`${container} pt-16`}>
+          <SolarScene config={HOME_SCENE} />
         </div>
       </section>
 

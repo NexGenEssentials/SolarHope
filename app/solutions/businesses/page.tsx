@@ -5,7 +5,8 @@ import QuoteSection from "../../components/quote/quoteSection";
 import { SITE } from "../../config/site";
 import BrandMarquee from "../../components/brands/brandMarquee";
 import SetupOptions from "../../components/setups/setupOptions";
-import EnergyFlow from "./_components/energyFlow";
+import SolarScene from "../../components/scene/solarScene";
+import { CAFE_SCENE } from "../../components/scene/scenes";
 import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
 import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
@@ -213,7 +214,7 @@ export default function BusinessesPage() {
                 equipment.
               </p>
             </div>
-            <EnergyFlow />
+            <SolarScene config={CAFE_SCENE} />
         </div>
       </section>
 
