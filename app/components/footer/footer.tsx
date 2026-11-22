@@ -25,26 +25,21 @@ const followLinks = [
 const Footer = () => {
   return (
     <footer className="bg-[#0D1B39] text-white">
-      {/* Slogan lockup, as on SolarHope's printed material */}
-      <div className="bg-yellow text-dark-blue">
-        <div className="max-w-[1570px] mx-auto px-6 sm:px-20 py-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-center">
-          <span className="text-xl font-extrabold italic">{SITE.slogan}</span>
-          <span className="hidden sm:inline opacity-50">·</span>
-          <span className="font-semibold">{SITE.sloganLine}</span>
-        </div>
-      </div>
       <div className="max-w-[1570px] mx-auto p-8 lg:p-28 ">
         <div className="flex flex-row w-full justify-between flex-wrap gap-10 border-b border-white pb-10">
-          <Link href="/" className="text-2xl font-bold mb-4">
-            <div className="relative w-48 h-26 text-lg font-bold">
-              <Image
-                src={logo}
-                fill
-                alt="SolarHope Africa home page"
-                className="object-contain w-full h-full"
-              />
-            </div>
-          </Link>
+          <div className="mb-4 space-y-2">
+            <Link href="/" className="block">
+              <div className="relative w-48 h-26 text-lg font-bold">
+                <Image
+                  src={logo}
+                  fill
+                  alt="SolarHope Africa home page"
+                  className="object-contain w-full h-full"
+                />
+              </div>
+            </Link>
+            <p className="text-yellow italic font-semibold">{SITE.slogan}</p>
+          </div>
 
           <div className=" hidden md:flex flex-1 items-center flex-wrap flex-row justify-between gap-10">
             {/* Explore */}

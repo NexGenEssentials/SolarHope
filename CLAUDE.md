@@ -15,7 +15,7 @@ site is built on a donation template and reads as a non-profit. It is not one. S
 - **Both stay (confirmed 22 Nov 2026):**
   - Tagline: *Light Up Dreams, The Solar Way* (home page headline; printed under the logo).
   - Slogan: *Solar Ni Sawa*, used with the line *Switch to smarter energy today*
-    (footer lockup on every page).
+    (small gold line under the footer logo on every page; no full-width bar).
 - Email: info@solarhopeafrica.com
 - Phone / WhatsApp: +250 780 348 624
 - Instagram: @solarhopeafrica · Facebook · LinkedIn: /company/solar-hope-africa
