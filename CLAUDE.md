@@ -41,9 +41,15 @@ Customer segments, in order of commercial importance:
 **Home EV charging powered by solar (confirmed 22 Nov 2026):** SolarHope sets up home
 charging for electric vehicles, powered by the client's solar system. **SolarHope supplies
 the power only, not the charger:** it sizes and connects the solar system to run the
-client's own EV charger. Never say or imply SolarHope sells chargers. Still to confirm
-before publishing specifics: cars and/or e-motos, day-only vs battery-backed charging,
-pricing. Belongs on the Homes page, not the Businesses page.
+client's own EV charger. Never say or imply SolarHope sells chargers.
+- Mainly **electric cars**, but the setup can power any EV charger the client has.
+- Charging works **day and night**: from the panels by day, from the home battery at night.
+- Pricing: **on request** (quoted per home); do not publish a price.
+- Honesty rule, same as backup: a car battery (often 40–60 kWh) is larger than most
+  home batteries, so night charging from the battery is a top-up, not a full charge.
+  Never imply a full overnight charge on solar; how much depends on battery size and
+  the household's other evening use.
+- Belongs on the Homes page, not the Businesses page.
 
 A fifth line worth building out: **repairs and upgrades** of existing failed or badly
 installed systems. The company has done several of these and it is an underserved market.
