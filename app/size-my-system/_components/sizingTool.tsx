@@ -3,145 +3,146 @@ import React, { useMemo, useState } from "react";
 import { rwf } from "@/app/config/packages";
 import { sizeFromBill } from "@/app/lib/sizing";
 
-const PRESETS = [50_000, 100_000, 200_000, 300_000, 500_000];
+// Fill-in-the-sentence sizing tool, set on the dark hero. The rate behind the
+// calculation is never shown (CLAUDE.md §4).
 
 type Who = "business" | "home";
 
+// Slider stops: fine steps for small bills, coarser for large ones.
+const STOPS = [
+  ...Array.from({ length: 9 }, (_, i) => 20_000 + i * 10_000), // 20k–100k
+  ...Array.from({ length: 16 }, (_, i) => 125_000 + i * 25_000), // 125k–500k
+  ...Array.from({ length: 10 }, (_, i) => 600_000 + i * 100_000), // 600k–1.5M
+];
+const nearestStop = (v: number) =>
+  STOPS.reduce((best, s, i) => (Math.abs(s - v) < Math.abs(STOPS[best] - v) ? i : best), 0);
+
 export default function SizingTool() {
   const [who, setWho] = useState<Who>("business");
-  const [raw, setRaw] = useState("200000");
-  const bill = Number(raw.replace(/[^\d]/g, ""));
+  const [bill, setBill] = useState(200_000);
   const result = useMemo(() => sizeFromBill(bill), [bill]);
-
-  const quoteHref = `?segment=${who}${bill > 0 ? `&bill=${bill}` : ""}#quote`;
   const years = result?.kind === "package" ? Math.max(1, Math.round(result.paybackYears * 2) / 2) : 0;
+  const quoteHref = `?segment=${who}${bill > 0 ? `&bill=${bill}` : ""}#quote`;
+  const shown = bill > 0 ? bill.toLocaleString("en-US") : "";
+
+  const whoButton = (w: Who) => (
+    <button
+      type="button"
+      role="radio"
+      aria-checked={who === w}
+      onClick={() => setWho(w)}
+      className={`underline decoration-2 underline-offset-8 transition-colors ${
+        who === w ? "text-yellow decoration-yellow" : "text-white/35 decoration-transparent hover:text-white/70"
+      }`}
+    >
+      {w}
+    </button>
+  );
 
   return (
-    <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 items-start">
-      {/* Inputs */}
-      <div className="space-y-7">
-        <div role="radiogroup" aria-label="Is this for a business or a home?" className="inline-flex rounded-full bg-[#F2F4F7] p-1">
-          {(["business", "home"] as Who[]).map((w) => (
-            <button
-              key={w}
-              type="button"
-              role="radio"
-              aria-checked={who === w}
-              onClick={() => setWho(w)}
-              className={`px-5 py-2 text-sm font-semibold rounded-full transition-colors ${
-                who === w ? "bg-dark-blue text-white" : "text-gray-600 hover:text-gray-900"
-              }`}
-            >
-              {w === "business" ? "For my business" : "For my home"}
-            </button>
-          ))}
-        </div>
+    <div className="space-y-12">
+      {/* The sentence */}
+      <div className="space-y-8">
+        <p className="text-3xl sm:text-5xl font-bold leading-[1.35] text-white">
+          My{" "}
+          <span role="radiogroup" aria-label="Business or home" className="inline-flex gap-3">
+            {whoButton("business")}
+            <span className="text-white/25">/</span>
+            {whoButton("home")}
+          </span>{" "}
+          pays about{" "}
+          <label htmlFor="bill" className="sr-only">Monthly electricity bill in RWF</label>
+          <input
+            id="bill"
+            inputMode="numeric"
+            autoComplete="off"
+            value={shown}
+            onChange={(e) => setBill(Number(e.target.value.replace(/[^\d]/g, "")) || 0)}
+            style={{ width: `${Math.max(shown.length, 3) + 0.5}ch` }}
+            className="bg-transparent text-yellow border-b-2 border-yellow/60 focus:border-yellow outline-none text-center"
+          />{" "}
+          RWF a month for electricity.
+        </p>
 
-        <div className="space-y-3">
-          <label htmlFor="bill" className="block text-lg font-semibold text-gray-800">
-            Your average monthly electricity bill
-          </label>
-          <div className="flex items-center rounded-xl border-2 border-gray-200 focus-within:border-yellow bg-white overflow-hidden">
-            <input
-              id="bill"
-              inputMode="numeric"
-              autoComplete="off"
-              value={bill > 0 ? bill.toLocaleString("en-US") : raw}
-              onChange={(e) => setRaw(e.target.value)}
-              className="w-full px-5 py-4 text-3xl font-bold text-dark-blue outline-none"
-              placeholder="e.g. 200,000"
-            />
-            <span className="px-5 text-gray-500 font-semibold">RWF</span>
+        <div className="max-w-3xl space-y-2">
+          <input
+            type="range"
+            aria-label="Adjust your monthly bill"
+            min={0}
+            max={STOPS.length - 1}
+            value={nearestStop(bill)}
+            onChange={(e) => setBill(STOPS[Number(e.target.value)])}
+            className="w-full accent-[#FBBF24] cursor-pointer"
+          />
+          <div className="flex justify-between text-xs text-white/40">
+            <span>20,000</span>
+            <span>Drag, or type your bill above</span>
+            <span>1,500,000</span>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {PRESETS.map((p) => (
-              <button
-                key={p}
-                type="button"
-                onClick={() => setRaw(String(p))}
-                className={`px-3 py-1.5 rounded-full text-sm border transition-colors ${
-                  bill === p ? "bg-dark-blue border-dark-blue text-white" : "border-gray-300 text-gray-700 hover:border-gray-500"
-                }`}
-              >
-                {rwf(p)}
-              </button>
-            ))}
-          </div>
-          <p className="text-sm text-gray-500">
-            Not sure? Look at your last two or three bills and take a rough average.
-          </p>
         </div>
       </div>
 
-      {/* Result */}
-      <div aria-live="polite" className="rounded-xl bg-white border-t-4 border-yellow shadow-lg p-7 space-y-5">
-        {!result && <p className="text-gray-500">Enter your monthly bill to see a suggested system.</p>}
+      <div className="h-px bg-white/15" />
+
+      {/* The answer */}
+      <div aria-live="polite" className="space-y-6">
+        {!result && <p className="text-2xl text-white/60">Type your monthly bill to see what you need.</p>}
 
         {result?.kind === "custom" && (
           <>
-            <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">A system designed for you</p>
-            <h3 className="text-3xl font-bold text-gray-800">Larger than our standard packages</h3>
-            <p className="text-gray-600 leading-relaxed">
-              A bill this size needs a system built around your site. We design
-              it after a visit, so it fits your roof, your equipment and your
-              busiest hours.
+            <p className="text-3xl sm:text-5xl font-bold text-white">
+              You need a system <span className="text-yellow">built for your site.</span>
+            </p>
+            <p className="text-white/70 max-w-2xl text-lg">
+              A bill this size is beyond our standard packages. We design it after
+              a visit, around your roof, your equipment and your busiest hours.
             </p>
           </>
         )}
 
         {result?.kind === "package" && (
           <>
-            <p className="text-sm font-semibold uppercase tracking-wider text-gray-500">A good place to start</p>
-            <h3 className="text-3xl font-bold text-gray-800">{result.pkg.name}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">
-              <span className="font-semibold text-gray-700">Runs: </span>
-              {result.pkg.runs}
+            <p className="text-3xl sm:text-5xl font-bold text-white">
+              You need <span className="text-yellow">{result.pkg.name}.</span>
             </p>
-            <dl className="grid grid-cols-2 gap-4 border-y border-gray-100 py-5">
-              <div>
-                <dt className="text-xs uppercase tracking-wider text-gray-400">Price</dt>
-                <dd className="text-xl font-extrabold text-dark-blue">{rwf(result.pkg.priceRwf)}</dd>
-                <dd className="text-xs text-gray-500">RWF, excl. VAT</dd>
+            <p className="text-white/70 max-w-2xl text-lg">It runs {result.pkg.runs.charAt(0).toLowerCase() + result.pkg.runs.slice(1)}.</p>
+            <dl className="flex flex-wrap gap-y-4 text-white">
+              <div className="w-full sm:w-auto sm:pr-8 sm:mr-8 sm:border-r border-white/15">
+                <dt className="text-sm text-white/50">Price, excl. VAT</dt>
+                <dd className="text-2xl font-bold">{rwf(result.pkg.priceRwf)} RWF</dd>
               </div>
               <div>
-                <dt className="text-xs uppercase tracking-wider text-gray-400">Pays back</dt>
-                <dd className="text-xl font-extrabold text-dark-blue">from ~{years} years</dd>
-                <dd className="text-xs text-gray-500">if you use most of the solar power</dd>
+                <dt className="text-sm text-white/50">Pays for itself</dt>
+                <dd className="text-2xl font-bold">from about {years} years</dd>
               </div>
             </dl>
-            {years > 6 ? (
-              <p className="text-sm bg-yellow/15 rounded-lg p-3 text-gray-700">
-                With a bill this size, solar pays for itself slowly. Most{" "}
-                {who === "home" ? "households" : "businesses"} like yours choose it
-                for power during cuts rather than for savings, and a backup
-                set-up may suit you better.
-              </p>
-            ) : (
-              <p className="text-sm text-gray-600">
-                Your bill drops, but it won&rsquo;t disappear: how much depends on how
-                much power you use after dark.
-              </p>
-            )}
+            <p className="text-white/60 max-w-2xl">
+              {years > 6
+                ? `At this bill size solar pays back slowly, so most ${who === "home" ? "households" : "businesses"} like yours choose it for power during cuts. A backup set-up may suit you better.`
+                : "Your bill drops, but it won’t disappear: how much depends on how much power you use after dark."}
+            </p>
           </>
         )}
 
-        <a
-          href={quoteHref}
-          className="inline-block bg-yellow/80 text-dark-blue font-bold hover:bg-yellow px-5 py-3 text-sm rounded-md"
-        >
-          Get an exact quote
-        </a>
-        <details className="text-sm text-gray-500">
-          <summary className="cursor-pointer text-gray-700 font-medium">How we estimate this</summary>
-          <p className="mt-2 leading-relaxed">
-            From your bill we work out roughly how much power you buy each month,
-            then how many solar panels it takes to make that much on an average day
-            in Rwanda, and match it to the nearest of our packages. Payback compares
-            the price with what that solar power would otherwise cost you, assuming
-            you use most of it. Everything here is indicative: your quote is based
-            on your actual bills and a site visit.
-          </p>
-        </details>
+        <div className="flex flex-wrap items-center gap-x-8 gap-y-4 pt-2">
+          <a
+            href={quoteHref}
+            className="bg-yellow text-dark-blue font-bold hover:bg-yellow/90 px-6 py-3 rounded-md"
+          >
+            Get an exact quote
+          </a>
+          <details className="text-white/60 text-sm max-w-xl">
+            <summary className="cursor-pointer hover:text-white">How we estimate this</summary>
+            <p className="mt-2 leading-relaxed">
+              From your bill we work out roughly how much power you buy each month,
+              how many solar panels it takes to make that much on an average day in
+              Rwanda, and match it to the nearest of our packages. Payback compares
+              the price with what that solar power would otherwise cost you,
+              assuming you use most of it. It is a starting point: your quote is
+              based on your actual bills and a site visit.
+            </p>
+          </details>
+        </div>
       </div>
     </div>
   );

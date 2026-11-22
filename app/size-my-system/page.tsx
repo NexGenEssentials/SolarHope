@@ -19,26 +19,17 @@ export const metadata: Metadata = {
   },
 };
 
-const container = "max-w-[1570px] mx-auto px-6 sm:px-20";
-
 export default function SizeMySystemPage() {
   return (
     <HomeTemplates>
-      <div className="flex flex-col gap-5 w-11/12 lg:w-4/5 mx-auto py-14 items-center text-center">
-        <p className="text-yellow uppercase tracking-widest text-sm font-semibold">Size my system</p>
-        <h1 className="text-3xl sm:text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold">
-          What size system do you need?
-        </h1>
-        <p className="text-[#BABABA] max-w-2xl">
-          Start with your electricity bill. In a few seconds you&rsquo;ll see which
-          package fits, what it costs and roughly how quickly it pays for itself.
-        </p>
-      </div>
-
-      <section className="bg-[#F2F4F7] py-16">
-        <div className={container}>
-          <SizingTool />
+      <section className="max-w-[1570px] mx-auto px-6 sm:px-20 pt-10 pb-20 space-y-10">
+        <div className="space-y-3">
+          <p className="text-yellow uppercase tracking-widest text-sm font-semibold">Size my system</p>
+          <h1 className="text-white/60 text-lg max-w-xl">
+            Start with your electricity bill. We&rsquo;ll tell you which system fits.
+          </h1>
         </div>
+        <SizingTool />
       </section>
 
       <QuoteSection id="quote" />
