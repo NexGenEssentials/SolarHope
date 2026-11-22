@@ -96,12 +96,13 @@ export default function SetupOptions({
     <section
       className={
         blue
-          ? "text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376] py-20"
+          ? "text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376] py-12"
           : "bg-white py-20"
       }
     >
-      <div className={`${container} space-y-10`}>
-        <div className="max-w-3xl space-y-4">
+      <div className={`${container} ${blue ? "space-y-7" : "space-y-10"}`}>
+        <div className={blue ? "grid md:grid-cols-2 gap-x-10 gap-y-3 items-end" : "max-w-3xl space-y-4"}>
+          <div className={blue ? "space-y-3" : "space-y-4"}>
           {blue ? (
             <span className="inline-block w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
               Three ways to set it up
@@ -110,18 +111,19 @@ export default function SetupOptions({
             <p className={labelClass}>Three ways to set it up</p>
           )}
           <h2 className={`text-3xl font-bold ${blue ? "" : "text-gray-800"}`}>Choose how much you rely on the sun</h2>
-          <p className={`text-lg leading-relaxed ${blue ? "text-white/85" : "text-gray-600"}`}>
+          </div>
+          <p className={`leading-relaxed ${blue ? "text-white/85" : "text-lg text-gray-600"}`}>
             Not sure which fits? We recommend one at the site visit, based on
             your bills, your power cuts and your budget.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 items-stretch">
+        <div className={`grid lg:grid-cols-[1fr_1.2fr] items-stretch ${blue ? "gap-6" : "gap-8"}`}>
           <div role="tablist" aria-label="Set-ups" className="flex flex-col">
             <p className={`text-xs uppercase tracking-wider px-1 pb-3 ${blue ? "text-white/60" : "text-gray-400"}`}>
               From most grid to most sun
             </p>
-            <div className="space-y-3">
+            <div className={blue ? "space-y-2" : "space-y-3"}>
               {SETUPS.map((o, i) => {
                 const on = i === active;
                 return (
@@ -130,7 +132,7 @@ export default function SetupOptions({
                     role="tab"
                     aria-selected={on}
                     onClick={() => setActive(i)}
-                    className={`w-full text-left rounded-xl border-2 p-5 flex items-center gap-5 transition-colors ${
+                    className={`w-full text-left rounded-xl border-2 ${blue ? "px-4 py-3" : "p-5"} flex items-center gap-5 transition-colors ${
                       blue
                         ? on
                           ? "border-yellow bg-white/15"
@@ -141,7 +143,7 @@ export default function SetupOptions({
                     }`}
                   >
                     <span
-                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg font-extrabold ${
+                      className={`flex ${blue ? "h-9 w-9" : "h-11 w-11"} shrink-0 items-center justify-center rounded-full text-lg font-extrabold ${
                         on ? "bg-yellow text-dark-blue" : blue ? "bg-white/15 text-white" : "bg-[#F2F4F7] text-gray-500"
                       }`}
                     >
@@ -157,12 +159,12 @@ export default function SetupOptions({
             </div>
           </div>
 
-          <div key={active} className={`rounded-xl ${blue ? "bg-white shadow-xl" : "bg-[#F2F4F7]"} p-7 sm:p-9 space-y-6 animate-[rise_0.4s_ease-out_both]`}>
+          <div key={active} className={`rounded-xl ${blue ? "bg-white shadow-xl" : "bg-[#F2F4F7]"} ${blue ? "p-6 space-y-4" : "p-7 sm:p-9 space-y-6"} animate-[rise_0.4s_ease-out_both]`}>
             <div className="space-y-2">
               <h3 className="text-2xl font-bold text-gray-800">{s.title}</h3>
               <p className="text-gray-600 leading-relaxed">{s.text(who)}</p>
             </div>
-            <div className="space-y-4">
+            <div className={blue ? "space-y-3" : "space-y-4"}>
               <p className="text-xs uppercase tracking-wider text-gray-400">Where your power comes from</p>
               <Bar icon={<MdWbSunny />} name="Sun" src={s.sun} />
               <Bar icon={<MdBatteryChargingFull />} name="Battery" src={s.battery} />
