@@ -112,7 +112,7 @@ export default function HomesPage() {
       </section>
 
       {/* An evening with a power cut (blue band, matching "Built around the way your business runs") */}
-      <section className="text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376] py-20">
+      <section className="text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376] py-16">
         <div className={`${container} grid lg:grid-cols-[1fr_1.3fr] gap-14`}>
           <div className="flex flex-col gap-4">
             <span className="w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
@@ -138,8 +138,12 @@ export default function HomesPage() {
             ))}
           </ol>
         </div>
-        <div className={`${container} pt-16`}>
-          <SolarScene config={HOME_SCENE} tone="dark" />
+      </section>
+
+      {/* The home, day and night */}
+      <section className="bg-white pt-20">
+        <div className={container}>
+          <SolarScene config={HOME_SCENE} />
         </div>
       </section>
 
