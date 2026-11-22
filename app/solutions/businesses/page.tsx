@@ -4,6 +4,7 @@ import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
 import { SITE } from "../../config/site";
 import BrandMarquee from "../../components/brands/brandMarquee";
+import SetupOptions from "../../components/setups/setupOptions";
 import EnergyFlow from "./_components/energyFlow";
 import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
 import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
@@ -190,6 +191,8 @@ export default function BusinessesPage() {
           </div>
         </div>
       </section>
+
+      <SetupOptions who="business" labelClass={label} container={container} />
 
       {/* Outages */}
       <section className="bg-white text-gray-600">

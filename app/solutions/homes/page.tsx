@@ -3,6 +3,7 @@ import HomeTemplates from "../../components/templates/homeTemplates";
 import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
 import BrandMarquee from "../../components/brands/brandMarquee";
+import SetupOptions from "../../components/setups/setupOptions";
 import { SITE } from "../../config/site";
 import { LOWEST_PRICE_RWF, rwf } from "../../config/packages";
 import HomePicker from "./_components/homePicker";
@@ -135,6 +136,8 @@ export default function HomesPage() {
           </ol>
         </div>
       </section>
+
+      <SetupOptions who="home" labelClass={label} container={container} />
 
       {/* What can your home run? */}
       <section id="what-can-you-run" className="bg-[#F2F4F7] py-20 scroll-mt-24">

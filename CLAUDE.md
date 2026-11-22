@@ -27,14 +27,16 @@ The grid stays connected. Nothing is off-grid unless the client has no grid at a
 
 **Three system set-ups (confirmed 22 Nov 2026), each available with manual or automatic
 switching:**
-1. **Backup for power outages:** the system only takes over when the grid goes off.
-2. **Hybrid:** solar, battery and grid work together.
-3. **Off-grid first, grid as backup:** the home or business runs on solar and battery,
-   and the grid is only used as a fallback.
+1. **Backup for power outages:** the system only takes over when the grid goes off. It
+   recharges from solar panels or from the grid, depending on the client's needs.
+2. **Hybrid:** the sun runs things first, the battery stores the extra for the evening,
+   and the grid tops up when needed.
+3. **Off-grid first, grid as backup:** the client runs on solar and battery; the grid
+   only comes in when the battery runs low or during long cloudy spells.
 
-Copy must not say that switching is always automatic: it is automatic *with an
-automatic set-up*; manual switching is also offered. (Details of each set-up, e.g.
-whether option 1 includes panels, still to confirm before describing them in depth.)
+**Switching:** automatic is the default and the recommendation; automatic set-ups also
+include a manual override. A manual-only set-up is possible on request. Copy may say the
+system "switches over by itself" as the standard, but should not claim it is the only way.
 
 Scope of a typical job: site assessment → design → supply → installation → testing and
 commissioning → staff training → handover → warranty and remote monitoring.
