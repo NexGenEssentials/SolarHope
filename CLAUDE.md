@@ -38,6 +38,12 @@ Customer segments, in order of commercial importance:
 | Households | Cost and reliability |
 | NGOs / institutions | Grant- or donor-funded installations, often multi-site |
 
+**Home EV charging powered by solar (confirmed 22 Nov 2026):** SolarHope sets up home
+charging for electric vehicles, powered by the client's solar system. Details still to
+confirm before publishing specifics: cars and/or e-motos, whether SolarHope supplies the
+charger, day-only vs battery-backed charging, pricing. Belongs on the Homes page, not the
+Businesses page.
+
 A fifth line worth building out: **repairs and upgrades** of existing failed or badly
 installed systems. The company has done several of these and it is an underserved market.
 
