@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../button/button";
 import { GoDotFill } from "react-icons/go";
+import { BsArrowRight } from "react-icons/bs";
 import { SITE } from "@/app/config/site";
 
 const HeroSection = () => {
@@ -25,6 +26,14 @@ const HeroSection = () => {
             className="hover:text-yellow transition-colors"
           >
             WhatsApp us
+          </a>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-semibold">
+          <a href="/solutions/businesses" className="flex items-center gap-2 text-yellow hover:underline">
+            Solar for businesses <BsArrowRight />
+          </a>
+          <a href="/solutions/homes" className="flex items-center gap-2 text-yellow hover:underline">
+            Solar for homes <BsArrowRight />
           </a>
         </div>
       </div>

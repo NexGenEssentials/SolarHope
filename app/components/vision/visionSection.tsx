@@ -1,14 +1,13 @@
 import { SITE } from "@/app/config/site";
 import React from "react";
-import { LuLightbulbOff } from "react-icons/lu";
-import { MdOutlineSolarPower, MdTransform } from "react-icons/md";
+import { MdOutlineSolarPower, MdTransform, MdVerified } from "react-icons/md";
 import Button from "../button/button";
 
 const visions = [
   {
     icon: <MdTransform />,
-    title: "Our Vision ",
-    desc: " To become the leading ,most trusted clean energy provider powering lives and development across Africa, one household and institution at a time through smart, scalable solar power",
+    title: "Our Vision",
+    desc: "To be a trusted solar partner for homes, businesses and institutions across Africa, powering lives and development one site at a time through smart, scalable solar power.",
   },
   {
     icon: <MdOutlineSolarPower />,
@@ -16,9 +15,9 @@ const visions = [
     desc: "To deliver affordable, scalable solar energy solutions that light up dreams, drive productivity, and build climate-resilient communities.",
   },
   {
-    icon: <LuLightbulbOff />,
-    title: "Light Up the Gap",
-    desc: "Together, we can transform rural Africa with light.",
+    icon: <MdVerified />,
+    title: "Our Promise",
+    desc: "Honest quotes: every panel counted, the battery shown as what you can really use, and backup given in hours at your own load.",
   },
 ];
 
