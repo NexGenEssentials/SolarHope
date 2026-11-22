@@ -49,7 +49,7 @@ const AutoImageSlider = () => {
   return (
     <div className="max-w-[1570px] mx-auto">
       <div
-        className="overflow-hidden w-full py-12"
+        className="overflow-hidden w-full pt-16"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >

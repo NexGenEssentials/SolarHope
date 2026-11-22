@@ -11,8 +11,8 @@ import { SITE } from "@/app/config/site";
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/#about" },
-  { name: "How We Work", href: "/#services" },
-  { name: "Our Work", href: "/#work" },
+  { name: "What We Do", href: "/#impact" },
+  { name: "Services", href: "/#services" },
   { name: "For Businesses", href: "/solutions/businesses" },
   { name: "For Homes", href: "/solutions/homes" },
 ];

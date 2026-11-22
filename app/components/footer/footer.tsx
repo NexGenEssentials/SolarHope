@@ -9,8 +9,8 @@ import CurrentYear from "./currentYear";
 const exploreLinks = [
   { title: "Home", link: "/" },
   { title: "About Us", link: "/#about" },
-  { title: "How We Work", link: "/#services" },
-  { title: "Our Work", link: "/#work" },
+  { title: "What We Do", link: "/#impact" },
+  { title: "Services", link: "/#services" },
   { title: "For Businesses", link: "/solutions/businesses" },
   { title: "For Homes", link: "/solutions/homes" },
   { title: "Get a quote", link: "/#quote" },
