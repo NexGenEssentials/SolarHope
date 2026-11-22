@@ -1,25 +1,80 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
+import { MdWbSunny, MdBatteryChargingFull, MdElectricalServices } from "react-icons/md";
 
-// The three system set-ups SolarHope offers (CLAUDE.md §2). Shared by the
-// solution pages; `who` adjusts the wording for homes or businesses.
+// The three system set-ups SolarHope offers (CLAUDE.md §2), shown as a chooser:
+// pick a set-up and see the role each power source plays. Roles are described
+// in words, not percentages; bar lengths are only a visual guide.
 
-const SETUPS = (who: "home" | "business") => [
+type Source = { role: string; size: number; optional?: boolean };
+type Setup = {
+  n: string;
+  title: string;
+  short: string;
+  text: (who: string) => string;
+  suits: (who: string) => string;
+  sun: Source;
+  battery: Source;
+  grid: Source;
+};
+
+const SETUPS: Setup[] = [
   {
     n: "1",
     title: "Backup for power cuts",
-    text: `Sits ready and only takes over when the grid goes off. It recharges from solar panels or from the grid, depending on what your ${who} needs.`,
+    short: "The grid as usual, a battery for cuts",
+    text: (who) =>
+      `Your ${who} runs on the grid as usual. When the power goes off, the battery takes over. It recharges from solar panels or from the grid, depending on what you need.`,
+    suits: (who) => `A ${who} on a reliable bill that mainly wants to stop losing power during cuts.`,
+    grid: { role: "Main source", size: 92 },
+    battery: { role: "During power cuts", size: 40 },
+    sun: { role: "Optional: recharges the battery", size: 28, optional: true },
   },
   {
     n: "2",
     title: "Hybrid",
-    text: "The sun runs things first, the battery stores the extra for the evening, and the grid tops up when needed.",
+    short: "Sun first, battery for evenings, grid tops up",
+    text: () =>
+      "The sun runs things first, the battery stores the extra for the evening, and the grid tops up when needed.",
+    suits: (who) => `A ${who} that wants a much lower bill and to stay powered through cuts.`,
+    sun: { role: "Main source by day", size: 85 },
+    battery: { role: "Evenings and power cuts", size: 60 },
+    grid: { role: "Tops up when needed", size: 35 },
   },
   {
     n: "3",
     title: "Off-grid first",
-    text: "You run on solar and battery, and the grid only comes in when the battery runs low or during long cloudy spells.",
+    short: "Run on sun and battery, grid as fallback",
+    text: () =>
+      "You run on solar and battery, and the grid only comes in when the battery runs low or during long cloudy spells.",
+    suits: (who) => `A ${who} with a weak or unreliable grid, or that wants to be as independent as possible.`,
+    sun: { role: "Main source", size: 92 },
+    battery: { role: "Evenings and nights", size: 82 },
+    grid: { role: "Fallback only", size: 14 },
   },
 ];
+
+function Bar({ icon, name, src }: { icon: React.ReactNode; name: string; src: Source }) {
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center justify-between text-sm">
+        <span className="flex items-center gap-2 font-semibold text-gray-800">
+          <span className="text-amber-500 text-lg">{icon}</span>
+          {name}
+        </span>
+        <span className="text-gray-500">{src.role}</span>
+      </div>
+      <div className="h-2.5 rounded-full bg-gray-200 overflow-hidden">
+        <div
+          className={`h-full rounded-full transition-[width] duration-700 ease-out ${
+            src.optional ? "bg-yellow/50" : "bg-yellow"
+          }`}
+          style={{ width: `${src.size}%` }}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default function SetupOptions({
   who,
@@ -30,32 +85,79 @@ export default function SetupOptions({
   labelClass: string;
   container: string;
 }) {
+  const [active, setActive] = useState(1);
+  const s = SETUPS[active];
+
   return (
     <section className="bg-white py-20">
       <div className={`${container} space-y-10`}>
         <div className="max-w-3xl space-y-4">
           <p className={labelClass}>Three ways to set it up</p>
-          <h2 className="text-3xl font-bold text-gray-800">
-            Choose how much you rely on the sun
-          </h2>
+          <h2 className="text-3xl font-bold text-gray-800">Choose how much you rely on the sun</h2>
           <p className="text-lg text-gray-600 leading-relaxed">
             Not sure which fits? We recommend one at the site visit, based on
             your bills, your power cuts and your budget.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {SETUPS(who).map((s) => (
-            <div key={s.n} className="rounded-lg bg-[#F2F4F7] p-7 space-y-3 border-t-4 border-yellow">
-              <p className="text-4xl font-extrabold text-amber-500 leading-none">{s.n}</p>
-              <h3 className="text-xl font-bold text-gray-800">{s.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{s.text}</p>
+
+        <div className="grid lg:grid-cols-[1fr_1.2fr] gap-8 items-stretch">
+          <div role="tablist" aria-label="Set-ups" className="flex flex-col">
+            <p className="text-xs uppercase tracking-wider text-gray-400 px-1 pb-3">
+              From most grid to most sun
+            </p>
+            <div className="space-y-3">
+              {SETUPS.map((o, i) => {
+                const on = i === active;
+                return (
+                  <button
+                    key={o.n}
+                    role="tab"
+                    aria-selected={on}
+                    onClick={() => setActive(i)}
+                    className={`w-full text-left rounded-xl border-2 p-5 flex items-center gap-5 transition-colors ${
+                      on ? "border-yellow bg-yellow/10" : "border-gray-200 hover:border-gray-300"
+                    }`}
+                  >
+                    <span
+                      className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-lg font-extrabold ${
+                        on ? "bg-yellow text-dark-blue" : "bg-[#F2F4F7] text-gray-500"
+                      }`}
+                    >
+                      {o.n}
+                    </span>
+                    <span>
+                      <span className="block font-bold text-gray-800">{o.title}</span>
+                      <span className="block text-sm text-gray-500">{o.short}</span>
+                    </span>
+                  </button>
+                );
+              })}
             </div>
-          ))}
+          </div>
+
+          <div key={active} className="rounded-xl bg-[#F2F4F7] p-7 sm:p-9 space-y-6 animate-[rise_0.4s_ease-out_both]">
+            <div className="space-y-2">
+              <h3 className="text-2xl font-bold text-gray-800">{s.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{s.text(who)}</p>
+            </div>
+            <div className="space-y-4">
+              <p className="text-xs uppercase tracking-wider text-gray-400">Where your power comes from</p>
+              <Bar icon={<MdWbSunny />} name="Sun" src={s.sun} />
+              <Bar icon={<MdBatteryChargingFull />} name="Battery" src={s.battery} />
+              <Bar icon={<MdElectricalServices />} name="Grid" src={s.grid} />
+            </div>
+            <p className="text-sm text-gray-700 border-t border-gray-200 pt-4">
+              <span className="font-semibold">Best for: </span>
+              {s.suits(who)}
+            </p>
+          </div>
         </div>
-        <p className="text-gray-600 max-w-3xl">
-          <strong className="text-gray-800">Switching:</strong> every set-up
-          switches over automatically as standard, and you can still switch
-          manually whenever you want to take control.
+
+        <p className="inline-flex flex-wrap items-center gap-2 rounded-full bg-dark-blue text-white text-sm px-5 py-2">
+          <span className="h-2 w-2 rounded-full bg-green-400" />
+          Automatic switching as standard
+          <span className="text-white/40">·</span>
+          manual override included on every set-up
         </p>
       </div>
     </section>
