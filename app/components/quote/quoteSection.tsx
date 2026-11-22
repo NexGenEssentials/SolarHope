@@ -69,10 +69,10 @@ const QuoteSection = ({
           <div className="absolute inset-0 bg-[#0D1B39] opacity-60"></div>
         </div>
 
-        <div className="relative z-10 max-w-[1570px] mx-auto p-8 sm:p-28 space-y-12">
-          <div className="flex flex-col items-center justify-center gap-6 text-center">
+        <div className="relative z-10 max-w-[1570px] mx-auto px-6 sm:px-20 py-14 lg:py-16 grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-14 items-start">
+          <div className="space-y-4 text-center lg:text-left">
             <h2 className="font-bold text-3xl sm:text-4xl">Get a quote</h2>
-            <p className="max-w-2xl">
+            <p className="max-w-md mx-auto lg:mx-0 text-white/85">
               Tell us a little about your site and your electricity bill. We
               will get back to you to arrange a site assessment and a quote.
             </p>
@@ -81,14 +81,14 @@ const QuoteSection = ({
           {status === "sent" ? (
             <p
               role="status"
-              className="max-w-2xl mx-auto text-center text-lg font-semibold"
+              className="text-center lg:text-left text-lg font-semibold self-center"
             >
               Thank you. We have your request and will call or WhatsApp you shortly.
             </p>
           ) : (
             <form
               onSubmit={onSubmit}
-              className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6"
+              className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"
             >
               <div>
                 <label htmlFor="q-name" className={label}>
@@ -163,7 +163,7 @@ const QuoteSection = ({
                 />
               </div>
 
-              <div className="md:col-span-2 flex flex-col items-center gap-4 text-center">
+              <div className="md:col-span-2 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 text-center sm:text-left pt-1">
                 <button
                   type="submit"
                   disabled={status === "sending"}
