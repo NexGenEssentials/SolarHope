@@ -35,6 +35,15 @@ const ImpactSection = ({ id }: { id?: string }) => {
               <span className="text-amber-500 text-sm">Solar for businesses</span>
               <BsArrowRight className="text-[#E58411] text-xl" />
             </a>
+
+            {/* Plain links (full load) so the quote form reads ?segment= */}
+            <p className="text-sm text-gray-500 pt-2">
+              We also work with{" "}
+              <a href="/?segment=school#quote" className="font-semibold text-gray-800 hover:text-amber-500">schools</a>,{" "}
+              <a href="/?segment=health#quote" className="font-semibold text-gray-800 hover:text-amber-500">health facilities</a>{" "}
+              and{" "}
+              <a href="/?segment=repair#quote" className="font-semibold text-gray-800 hover:text-amber-500">repairs of existing systems</a>.
+            </p>
           </div>
 
           <div className="md:w-1/2 rounded-lg flex items-center gap-2 justify-center">

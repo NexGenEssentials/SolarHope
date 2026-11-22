@@ -41,7 +41,7 @@ const SolarJourneySection = ({ id }: { id?: string }) =>  {
       <div className="max-w-[1570px] mx-auto p-8 sm:p-20">
         <div className="flex flex-col items-center gap-16">
           <h1 className="font-bold text-3xl sm:text-5xl text-center">
-            The Solar Journey
+            How We Work
           </h1>
 
           <div className="flex flex-wrap justify-center gap-12">
@@ -50,7 +50,7 @@ const SolarJourneySection = ({ id }: { id?: string }) =>  {
                 {/* Arrow between cards only */}
                 {index > 0 && (
                   <PiArrowBendUpRightBold
-                    className="max-lg:hidden text-8xl text-dark-blue mx-4 animate-pulse "
+                    className="max-lg:hidden text-8xl text-dark-blue mx-4"
                     style={{
                       background: "linear-gradient(to right, #FFD700, #0D1B39)",
                       WebkitBackgroundClip: "text",

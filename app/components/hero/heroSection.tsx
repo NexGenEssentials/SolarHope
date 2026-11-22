@@ -1,6 +1,5 @@
 import React from "react";
 import Button from "../button/button";
-import { GoDotFill } from "react-icons/go";
 import { BsArrowRight } from "react-icons/bs";
 import { SITE } from "@/app/config/site";
 
@@ -36,12 +35,6 @@ const HeroSection = () => {
             Solar for homes <BsArrowRight />
           </a>
         </div>
-      </div>
-      <div className=" absolute top-1/3 right-4 sm:right-18 w-8 h-8 border border-white backdrop-blur-sm flex items-center justify-center rounded-full bg-slate-500/60">
-        <GoDotFill className="text-white" size={20}/>
-      </div>
-      <div className=" absolute top-4/5 left-4 sm:left-18 bottom-0 w-8 h-8 border border-white backdrop-blur-sm flex items-center justify-center rounded-full bg-slate-500/60">
-        <GoDotFill className="text-white" size={20}/>
       </div>
     </div>
   );

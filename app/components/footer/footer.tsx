@@ -10,7 +10,7 @@ const exploreLinks = [
   { title: "Home", link: "/" },
   { title: "About Us", link: "/#about" },
   { title: "What We Do", link: "/#impact" },
-  { title: "Services", link: "/#services" },
+  { title: "How We Work", link: "/#services" },
   { title: "For Businesses", link: "/solutions/businesses" },
   { title: "For Homes", link: "/solutions/homes" },
   { title: "Get a quote", link: "/#quote" },
