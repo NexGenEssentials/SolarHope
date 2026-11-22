@@ -70,12 +70,12 @@ export default function BusinessesPage() {
   return (
     <HomeTemplates>
       {/* Hero */}
-      <div className="flex flex-col gap-8 w-3/4 md:w-1/2 mx-auto py-16 items-center text-center">
-        <h1 className="text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold">
-          <span className="block">Keep the lights on.</span>
-          <span className="block">Keep the costs down.</span>
+      <div className="flex flex-col gap-8 w-11/12 lg:w-4/5 mx-auto py-16 items-center text-center">
+        <h1 className="text-3xl sm:text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold lg:whitespace-nowrap">
+          <span className="block lg:inline">Keep the lights on. </span>
+          <span className="block lg:inline">Keep the costs down.</span>
         </h1>
-        <p className="text-[#BABABA]">
+        <p className="text-[#BABABA] max-w-2xl">
           Solar power for any business in Rwanda, from a small shop to a
           large factory. When the grid goes off, your business stays open.
         </p>
