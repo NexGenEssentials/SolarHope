@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import BrandLines from "../brand/brandLines";
 import { MdWbSunny, MdBatteryChargingFull, MdElectricalServices } from "react-icons/md";
 
 // The three system set-ups SolarHope offers (CLAUDE.md §2), shown as a chooser:
@@ -95,10 +96,11 @@ export default function SetupOptions({
     <section
       className={
         blue
-          ? "text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376] py-12"
+          ? "relative isolate overflow-hidden text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376] py-12"
           : "bg-white py-20"
       }
     >
+      {blue && <BrandLines className="hidden md:block -right-48 -top-40 w-[560px] opacity-40 rotate-180" />}
       <div className={`${container} ${blue ? "space-y-7" : "space-y-10"}`}>
         <div className={blue ? "grid md:grid-cols-2 gap-x-10 gap-y-3 items-end" : "max-w-3xl space-y-4"}>
           <div className={blue ? "space-y-3" : "space-y-4"}>

@@ -2,7 +2,9 @@ import React from "react";
 
 // Thin gold outlines of the logo's slanted, rounded "panel cell", as used on
 // the brand presentation (dark slides, ID badge, bottle, tote bag). Purely
-// decorative: place inside a `relative overflow-hidden` dark section.
+// decorative, dark or coloured sections only, one corner per section.
+// Place inside a `relative isolate overflow-hidden` parent: the drawing sits
+// behind the content (-z-10) and never covers text.
 
 // The logo cells lean right by about 13 degrees.
 const SLANT = Math.tan((13 * Math.PI) / 180);
@@ -50,7 +52,7 @@ export default function BrandLines({ className = "" }: { className?: string }) {
       aria-hidden="true"
       focusable="false"
       viewBox={`${-H * SLANT - 40} -10 ${2 * W + GAP + H * SLANT + 120} ${2 * H + GAP + 20}`}
-      className={`pointer-events-none absolute ${className}`}
+      className={`pointer-events-none absolute -z-10 ${className}`}
       fill="none"
     >
       {PATHS.map((d, i) => (
@@ -76,5 +78,22 @@ export function BrandBlock({ className = "" }: { className?: string }) {
     >
       <path d={cell(0, 0, w, h, 34)} fill="#EA9D13" />
     </svg>
+  );
+}
+
+/**
+ * The brand pattern, from the designer's original file (PATTERN.pdf,
+ * exported to /images/brand/pattern.svg). Use faintly. Place inside a
+ * `relative isolate overflow-hidden` parent.
+ */
+export function BrandPattern({ className = "" }: { className?: string }) {
+  return (
+    <img
+      src="/images/brand/pattern.svg"
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+      className={`pointer-events-none absolute -z-10 object-cover ${className}`}
+    />
   );
 }

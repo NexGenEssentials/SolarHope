@@ -5,6 +5,7 @@ import Image from "next/image";
 import logo from "@/public/images/logo/log2.png";
 import { SITE } from "@/app/config/site";
 import CurrentYear from "./currentYear";
+import { BrandPattern } from "../brand/brandLines";
 
 const exploreLinks = [
   { title: "Home", link: "/" },
@@ -26,7 +27,8 @@ const followLinks = [
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0D1B39] text-white">
+    <footer className="relative isolate overflow-hidden bg-[#0D1B39] text-white">
+      <BrandPattern className="inset-0 w-full h-full opacity-40 [mask-image:linear-gradient(to_left,black,transparent_75%)]" />
       <div className="max-w-[1570px] mx-auto px-6 sm:px-20 py-10 lg:py-12">
         <div className="flex flex-row w-full justify-between flex-wrap gap-8 border-b border-white/30 pb-8">
           <div className="space-y-2">

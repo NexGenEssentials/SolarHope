@@ -2,6 +2,7 @@ import { SITE } from "@/app/config/site";
 import React from "react";
 import { MdOutlineSolarPower, MdTransform, MdVerified } from "react-icons/md";
 import Button from "../button/button";
+import BrandLines from "../brand/brandLines";
 
 const visions = [
   {
@@ -24,7 +25,8 @@ const visions = [
 const VisionSection = ({ id }: { id?: string }) =>  {
   return (
     <section id={id}>
-    <div className="text-white bg-linear-to-b from-[#2C98F0]  from-10% to-95% to-[#044376]">
+    <div className="relative isolate overflow-hidden text-white bg-linear-to-b from-[#2C98F0]  from-10% to-95% to-[#044376]">
+      <BrandLines className="hidden md:block -right-48 -bottom-40 w-[560px] opacity-40" />
       <div className="max-w-[1570px] mx-auto p-8 sm:px-28 sm:py-28 space-y-16 ">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="flex flex-col gap-4">

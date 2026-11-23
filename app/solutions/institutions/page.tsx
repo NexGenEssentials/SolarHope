@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeTemplates from "../../components/templates/homeTemplates";
+import BrandLines from "../../components/brand/brandLines";
 import QuoteSection from "../../components/quote/quoteSection";
 import BrandMarquee from "../../components/brands/brandMarquee";
 import { SITE } from "../../config/site";
@@ -70,6 +71,8 @@ export default function InstitutionsPage() {
   return (
     <HomeTemplates>
       {/* Hero */}
+      <div className="relative isolate overflow-hidden">
+      <BrandLines className="hidden md:block -right-64 -top-28 w-[560px] lg:w-[720px] opacity-50 rotate-180" />
       <div className="flex flex-col gap-8 w-11/12 lg:w-4/5 mx-auto py-16 items-center text-center">
         <h1 className="text-3xl sm:text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold">
           Power for the places people depend on
@@ -84,6 +87,7 @@ export default function InstitutionsPage() {
           <a href="#health" className={pill}>Health facilities</a>
           <a href="#funded" className={pill}>Funded projects</a>
         </div>
+      </div>
       </div>
 
       {/* Schools */}
@@ -121,8 +125,9 @@ export default function InstitutionsPage() {
       {/* Health facilities */}
       <section
         id="health"
-        className="scroll-mt-24 text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376]"
+        className="relative isolate overflow-hidden scroll-mt-24 text-white bg-linear-to-b from-[#2C98F0] from-10% to-95% to-[#044376]"
       >
+        <BrandLines className="hidden md:block -right-48 -bottom-40 w-[560px] opacity-40" />
         <div className={`${container} py-20 space-y-12`}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="flex flex-col gap-4">
