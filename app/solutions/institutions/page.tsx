@@ -112,7 +112,7 @@ export default function InstitutionsPage() {
             <img
               src={classroomBlock.src}
               alt="Classroom block at a secondary school powered by a SolarHope system"
-              className="w-full max-w-md h-[420px] object-cover rounded-lg shadow-lg shadow-gray-500"
+              className="w-full max-w-sm h-auto rounded-lg shadow-lg shadow-gray-500"
             />
           </div>
         </div>
@@ -174,7 +174,7 @@ export default function InstitutionsPage() {
             <img
               src={batteryBank.src}
               alt="A SolarHope installation: hybrid inverter, battery combiner box and two lithium batteries"
-              className="w-full max-w-md h-[420px] object-cover rounded-lg shadow-lg shadow-gray-500"
+              className="w-full max-w-sm h-auto rounded-lg shadow-lg shadow-gray-500"
             />
           </div>
         </div>
