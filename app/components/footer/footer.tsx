@@ -28,7 +28,7 @@ const followLinks = [
 const Footer = () => {
   return (
     <footer className="relative isolate overflow-hidden bg-[#0D1B39] text-white">
-      <BrandPattern className="inset-0 w-full h-full opacity-40 [mask-image:linear-gradient(to_left,black,transparent_75%)]" />
+      <BrandPattern className="inset-0 w-full h-full opacity-40 [mask-image:linear-gradient(to_right,transparent_15%,black_45%,black_55%,transparent_85%)]" />
       <div className="max-w-[1570px] mx-auto px-6 sm:px-20 py-10 lg:py-12">
         <div className="flex flex-row w-full justify-between flex-wrap gap-8 border-b border-white/30 pb-8">
           <div className="space-y-2">
