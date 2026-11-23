@@ -2,7 +2,7 @@
 // submitQuote() and knows nothing else; to switch to the CRM, implement the
 // "crm" branch and change QUOTE_TRANSPORT in app/config/site.ts.
 
-import { QUOTE_TRANSPORT, SITE } from "@/app/config/site";
+import { QUOTE_TRANSPORT, SITE, WEB3FORMS_ACCESS_KEY } from "@/app/config/site";
 
 export const SEGMENTS = [
   { value: "business", label: "Business / commercial" },
@@ -29,7 +29,7 @@ export type SubmitResult =
   | { status: "opened-mail-app" }
   | { status: "error"; message: string };
 
-const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? "";
+const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY || WEB3FORMS_ACCESS_KEY;
 
 function segmentLabel(v: Segment) {
   return SEGMENTS.find((s) => s.value === v)?.label ?? v;

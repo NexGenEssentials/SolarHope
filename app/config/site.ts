@@ -43,8 +43,13 @@ export const SHOW_ACHIEVEMENTS = false;
 
 // Phase 0.6 — where quote requests go. See app/lib/quote/submitQuote.ts.
 //   "web3forms": POST to Web3Forms, which emails the request to the address the
-//                access key was created with. Needs NEXT_PUBLIC_WEB3FORMS_KEY.
+//                access key was created with (solarhopeafrica@gmail.com).
 //   "mailto":    opens the visitor's mail app with the request filled in.
 //   "crm":       reserved for the CRM endpoint once it exists.
 // If "web3forms" is selected but no key is set, the adapter falls back to mailto.
 export const QUOTE_TRANSPORT: "web3forms" | "mailto" | "crm" = "web3forms";
+
+// Web3Forms access key. This is a public key by design (it only lets the site
+// send messages to our inbox), so it lives here rather than in a secret.
+// NEXT_PUBLIC_WEB3FORMS_KEY, if set at build time, overrides it.
+export const WEB3FORMS_ACCESS_KEY = "5fd4bcc0-4890-4aa4-b4f3-6937366863e8";

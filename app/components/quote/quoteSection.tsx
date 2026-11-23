@@ -38,6 +38,12 @@ const QuoteSection = ({
     e.preventDefault();
     const form = e.currentTarget;
     const d = new FormData(form);
+    // Spam trap: people never see this box, bots tick it. Show the normal
+    // thank-you without sending anything.
+    if (d.get("botcheck")) {
+      setStatus("sent");
+      return;
+    }
     const request: QuoteRequest = {
       name: String(d.get("name") ?? "").trim(),
       businessName: String(d.get("businessName") ?? "").trim(),
@@ -94,6 +100,14 @@ const QuoteSection = ({
               onSubmit={onSubmit}
               className="w-full grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4"
             >
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                className="hidden"
+              />
               <div>
                 <label htmlFor="q-name" className={label}>
                   Your name *
