@@ -43,3 +43,9 @@ body {
 @media (prefers-reduced-motion: reduce) {
   [class*="animate-"] { animation: none !important; }
 }
+
+/* Brand page: slow drift of the pattern band */
+@keyframes drift {
+  from { transform: scale(1.15) translate(0, 0); }
+  to { transform: scale(1.15) translate(-4%, -5%); }
+}

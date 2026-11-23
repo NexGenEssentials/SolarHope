@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import HomeTemplates from "../components/templates/homeTemplates";
 import BrandLines from "../components/brand/brandLines";
+import LogoBuild from "../components/brand/logoBuild";
+import Reveal from "../components/brand/reveal";
 import { SITE } from "../config/site";
 
 const TITLE = "Our brand | SolarHope Africa";
@@ -98,11 +100,7 @@ export default function BrandPage() {
             </ul>
           </div>
           <div className="flex justify-center">
-            <img
-              src="/images/brand/logo-concept.jpg"
-              alt="Diagram: highlighted cells in a solar panel grid form the S of the SolarHope logo"
-              className="w-full max-w-lg h-auto"
-            />
+            <LogoBuild />
           </div>
         </div>
       </section>
@@ -110,24 +108,27 @@ export default function BrandPage() {
       {/* Logo versions and colours */}
       <section className="bg-white">
         <div className={`${container} pb-20 space-y-12`}>
-          <img
-            src="/images/brand/logo-versions.jpg"
-            alt="The SolarHope logo and S mark on white and on dark backgrounds"
-            loading="lazy"
-            className="w-full h-auto rounded-lg border border-gray-100"
-          />
+          <Reveal>
+            <img
+              src="/images/brand/logo-versions.jpg"
+              alt="The SolarHope logo and S mark on white and on dark backgrounds"
+              loading="lazy"
+              className="w-full h-auto rounded-lg border border-gray-100"
+            />
+          </Reveal>
           <div className="space-y-6">
             <p className={label}>Colours</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {COLOURS.map((c) => (
+              {COLOURS.map((c, i) => (
+                <Reveal key={c.hex} delay={i * 120}>
                 <div
-                  key={c.hex}
                   className={`rounded-lg h-40 p-5 flex flex-col justify-end border border-gray-100 ${c.text}`}
                   style={{ backgroundColor: c.hex }}
                 >
                   <p className="font-bold">{c.name}</p>
                   <p className="text-sm opacity-80">{c.hex}</p>
                 </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -141,7 +142,7 @@ export default function BrandPage() {
           alt=""
           aria-hidden="true"
           loading="lazy"
-          className="absolute inset-0 -z-10 w-full h-full object-cover opacity-80"
+          className="absolute inset-0 -z-10 w-full h-full object-cover opacity-80 animate-[drift_40s_ease-in-out_infinite_alternate]"
         />
         <div className={`${container} py-28 text-center`}>
           <p className="text-yellow text-lg uppercase">The pattern</p>
@@ -164,11 +165,13 @@ export default function BrandPage() {
             </p>
           </div>
           <div className="columns-1 md:columns-2 lg:columns-3 gap-6">
-            {IN_USE.map((m) => (
-              <figure key={m.src} className="mb-6 break-inside-avoid space-y-2">
-                <img src={m.src} alt={m.alt} loading="lazy" className="w-full h-auto rounded-lg" />
-                <figcaption className="text-sm text-gray-500">{m.caption}</figcaption>
-              </figure>
+            {IN_USE.map((m, i) => (
+              <Reveal key={m.src} delay={(i % 3) * 120} className="mb-6 break-inside-avoid">
+                <figure className="space-y-2">
+                  <img src={m.src} alt={m.alt} loading="lazy" className="w-full h-auto rounded-lg" />
+                  <figcaption className="text-sm text-gray-500">{m.caption}</figcaption>
+                </figure>
+              </Reveal>
             ))}
           </div>
         </div>

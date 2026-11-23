@@ -7,10 +7,10 @@ import React from "react";
 // behind the content (-z-10) and never covers text.
 
 // The logo cells lean right by about 13 degrees.
-const SLANT = Math.tan((13 * Math.PI) / 180);
+export const SLANT = Math.tan((13 * Math.PI) / 180);
 
 /** Rounded parallelogram: top edge from (x + s, y), leaning right. */
-function cell(x: number, y: number, w: number, h: number, r: number) {
+export function cell(x: number, y: number, w: number, h: number, r: number) {
   const s = h * SLANT;
   const pts: [number, number][] = [
     [x + s, y],
