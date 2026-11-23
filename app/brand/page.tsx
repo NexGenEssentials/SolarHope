@@ -3,7 +3,6 @@ import HomeTemplates from "../components/templates/homeTemplates";
 import BrandLines from "../components/brand/brandLines";
 import LogoBuild from "../components/brand/logoBuild";
 import Reveal from "../components/brand/reveal";
-import PlayfulS from "../components/brand/playfulS";
 import Swatches from "../components/brand/swatches";
 import SunPattern from "../components/brand/sunPattern";
 import FunFacts from "../components/brand/funFacts";
@@ -65,16 +64,14 @@ export default function BrandPage() {
       {/* Hero */}
       <div className="relative isolate overflow-hidden">
         <BrandLines className="hidden md:block -left-64 -top-28 w-[560px] lg:w-[720px] opacity-60" />
-        <div className="flex flex-col gap-6 w-11/12 lg:w-3/5 mx-auto py-14 items-center text-center">
-          <PlayfulS />
-          <p className="text-yellow text-sm font-semibold uppercase tracking-widest">Behind the S</p>
-          <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
-            <span className="block text-white">It&rsquo;s not a snake. It&rsquo;s not a dollar sign.</span>
-            <span className="block text-yellow">It&rsquo;s solar panels.</span>
+        <div className="flex flex-col gap-6 w-11/12 lg:w-3/5 mx-auto py-16 items-center text-center">
+          <h1 className="text-3xl sm:text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold">
+            Behind the S
           </h1>
           <p className="text-[#BABABA] max-w-2xl">
-            Our logo is built from the thing we install every day. Here is how
-            it was made, the colours that come with it, and where it turns up.
+            Our logo is built from the thing we install every day: the solar
+            panel. Here is how it was made, the colours and pattern that go with
+            it, and how it looks out in the world.
           </p>
         </div>
       </div>
