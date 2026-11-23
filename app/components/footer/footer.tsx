@@ -83,9 +83,11 @@ const Footer = () => {
           <div>
             <h3 className="text-base font-semibold mb-3">Contact Us</h3>
             <div className="text-sm space-y-2">
-              <a href={`mailto:${SITE.email}`} className="block hover:underline">
-                {SITE.email}
-              </a>
+              {SITE.emails.map((e) => (
+                <a key={e} href={`mailto:${e}`} className="block hover:underline">
+                  {e}
+                </a>
+              ))}
               <a href={SITE.phoneHref} className="block hover:underline">
                 Tel: {SITE.phoneDisplay}
               </a>

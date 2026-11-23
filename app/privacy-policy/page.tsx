@@ -46,10 +46,14 @@ export default function PrivacyPolicy() {
         <p>
           {SITE.legalName} is a solar installation company based in{" "}
           {SITE.location}. For anything in this policy, contact us at{" "}
-          <a className="underline" href={`mailto:${SITE.email}`}>
-            {SITE.email}
+          <a className="underline" href={`mailto:${SITE.emails[0]}`}>
+            {SITE.emails[0]}
           </a>{" "}
-          or {SITE.phoneDisplay}.
+          or{" "}
+          <a className="underline" href={`mailto:${SITE.emails[1]}`}>
+            {SITE.emails[1]}
+          </a>
+          , or call {SITE.phoneDisplay}.
         </p>
 
         <h2 className={h2}>What we collect</h2>
@@ -116,8 +120,12 @@ export default function PrivacyPolicy() {
         </ul>
         <p>
           Email{" "}
-          <a className="underline" href={`mailto:${SITE.email}`}>
-            {SITE.email}
+          <a className="underline" href={`mailto:${SITE.emails[0]}`}>
+            {SITE.emails[0]}
+          </a>{" "}
+          or{" "}
+          <a className="underline" href={`mailto:${SITE.emails[1]}`}>
+            {SITE.emails[1]}
           </a>{" "}
           and we will respond as quickly as we can. If you are not satisfied
           with our answer, you can complain to Rwanda&rsquo;s data protection

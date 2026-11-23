@@ -69,7 +69,7 @@ async function viaWeb3Forms(q: QuoteRequest): Promise<SubmitResult> {
 function viaMailto(q: QuoteRequest): SubmitResult {
   const subject = encodeURIComponent(`Quote request — ${q.name}`);
   const body = encodeURIComponent(toLines(q).join("\n"));
-  window.location.href = `mailto:${SITE.email}?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:${SITE.emails.join(",")}?subject=${subject}&body=${body}`;
   return { status: "opened-mail-app" };
 }
 

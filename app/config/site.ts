@@ -11,6 +11,8 @@ export const SITE = {
   description:
     "SolarHope Africa designs and installs solar systems across Rwanda for homes, businesses, schools, health facilities and large commercial sites. Hybrid systems with automatic changeover where there is grid, and stand-alone systems where there is none.",
   email: "info@solarhopeafrica.com",
+  // Both addresses are always shown on the site (decided 24 Nov 2026).
+  emails: ["info@solarhopeafrica.com", "solarhopeafrica@gmail.com"],
   phoneDisplay: "+250 780 348 624",
   phoneHref: "tel:+250780348624",
   whatsappUrl: "https://wa.me/250780348624",

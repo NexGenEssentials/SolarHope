@@ -44,13 +44,13 @@ const SolarJourneySection = ({ id }: { id?: string }) =>  {
             How We Work
           </h1>
 
-          <div className="flex flex-wrap justify-center gap-12">
+          <div className="flex flex-wrap lg:flex-nowrap justify-center gap-8 lg:gap-4">
             {content.map((item, index) => (
               <div key={index} className="flex items-start gap-4">
                 {/* Arrow between cards only */}
                 {index > 0 && (
                   <PiArrowBendUpRightBold
-                    className="max-lg:hidden text-8xl text-dark-blue mx-4"
+                    className="max-lg:hidden text-6xl text-dark-blue mx-2 shrink-0"
                     style={{
                       background: "linear-gradient(to right, #FFD700, #0D1B39)",
                       WebkitBackgroundClip: "text",

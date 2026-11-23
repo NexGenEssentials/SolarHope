@@ -16,7 +16,7 @@ site is built on a donation template and reads as a non-profit. It is not one. S
   - Tagline: *Light Up Dreams, The Solar Way* (home page headline; printed under the logo).
   - Slogan: *Solar Ni Sawa*, used with the line *Switch to smarter energy today*
     (small gold line under the footer logo on every page; no full-width bar).
-- Email: info@solarhopeafrica.com
+- Email: info@solarhopeafrica.com and solarhopeafrica@gmail.com. **Always show both** on the site (decided 24 Nov 2026). Quote-form requests are delivered by Web3Forms to solarhopeafrica@gmail.com.
 - Phone / WhatsApp: +250 780 348 624
 - Instagram: @solarhopeafrica · Facebook · LinkedIn: /company/solar-hope-africa
 - Jackson Ngabonziza — Chief Strategy Officer (**not** Managing Director; do not use MD in any copy)

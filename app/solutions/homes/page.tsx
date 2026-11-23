@@ -87,14 +87,6 @@ export default function HomesPage() {
             >
               What can my home run?
             </a>
-            <a
-              href={SITE.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-yellow transition-colors"
-            >
-              WhatsApp us
-            </a>
           </div>
         </div>
       </section>
