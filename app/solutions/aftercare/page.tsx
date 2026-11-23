@@ -5,7 +5,6 @@ import BrandLines from "../../components/brand/brandLines";
 import { SITE } from "../../config/site";
 import inverterSingle from "@/public/images/projects/install-inverter-battery-single.jpg";
 import dashboard from "@/public/images/projects/monitoring-dashboard.jpg";
-import LoopVideo from "../../components/media/loopVideo";
 
 const TITLE = "Aftercare and warranty | SolarHope Africa";
 const DESCRIPTION =
@@ -173,14 +172,21 @@ export default function AftercarePage() {
               </figcaption>
             </figure>
           </div>
-          <div className="flex justify-center">
-            <LoopVideo
-              src="/videos/monitoring-room.mp4"
-              poster="/videos/monitoring-room-poster.jpg"
-              label="A SolarHope technician checking client systems on the monitoring screen"
+          <figure className="flex flex-col items-center gap-3">
+            {/* Tap to play, with sound. Nothing downloads until play is pressed. */}
+            <video
+              src="/videos/monitoring-explained.mp4"
+              poster="/videos/monitoring-explained-poster.jpg"
+              controls
+              playsInline
+              preload="none"
+              aria-label="A SolarHope technician explains the monitoring screen"
               className="w-full max-w-xs aspect-[9/16] object-cover rounded-xl shadow-xl border-4 border-yellow bg-dark-blue"
             />
-          </div>
+            <figcaption className="text-sm text-gray-500">
+              Watch: one of our technicians explains the screen (30 seconds).
+            </figcaption>
+          </figure>
         </div>
       </section>
 
