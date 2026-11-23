@@ -3,8 +3,8 @@ import HomeTemplates from "../../components/templates/homeTemplates";
 import QuoteSection from "../../components/quote/quoteSection";
 import BrandMarquee from "../../components/brands/brandMarquee";
 import { SITE } from "../../config/site";
-import finishedRows from "@/public/images/projects/roof-finished-rows.jpg";
-import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
+import classroomBlock from "@/public/images/projects/school-classroom-block.jpg";
+import batteryBank from "@/public/images/projects/install-battery-bank.jpg";
 
 const TITLE = "Solar for schools and health facilities in Rwanda | SolarHope Africa";
 const DESCRIPTION =
@@ -110,8 +110,8 @@ export default function InstitutionsPage() {
           </div>
           <div className="flex justify-center">
             <img
-              src={finishedRows.src}
-              alt="Rows of newly installed solar panels on a corrugated roof"
+              src={classroomBlock.src}
+              alt="Classroom block at a secondary school powered by a SolarHope system"
               className="w-full max-w-md h-[420px] object-cover rounded-lg shadow-lg shadow-gray-500"
             />
           </div>
@@ -172,8 +172,8 @@ export default function InstitutionsPage() {
           </div>
           <div className="flex justify-center">
             <img
-              src={teamInstalling.src}
-              alt="Three SolarHope technicians installing a hybrid inverter and battery"
+              src={batteryBank.src}
+              alt="A SolarHope installation: hybrid inverter, battery combiner box and two lithium batteries"
               className="w-full max-w-md h-[420px] object-cover rounded-lg shadow-lg shadow-gray-500"
             />
           </div>
