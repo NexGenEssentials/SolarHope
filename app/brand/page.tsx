@@ -192,7 +192,7 @@ export default function BrandPage() {
       {/* Credit */}
       <section className="bg-white border-t border-gray-100">
         <p className={`${container} py-6 text-sm text-gray-500`}>
-          Brand identity and design by{" "}
+          Brand identity, marketing and PR by our partners since day one,{" "}
           <a
             href="https://250brands.com/"
             target="_blank"
