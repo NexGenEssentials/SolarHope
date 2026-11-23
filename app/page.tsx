@@ -3,6 +3,7 @@ import HeroSection from "./components/hero/heroSection";
 import ImpactSection from "./components/impact/impactSection";
 import VisionSection from "./components/vision/visionSection";
 import AchievementSection from "./components/achievement/achievementSection";
+import { SHOW_ACHIEVEMENTS } from "./config/site";
 import QuoteSection from "./components/quote/quoteSection";
 import SolorJourneySection from "./components/solarJourney/solorJourneySection";
 import MarqueeSlider from "./components/gallery/gallerySection2";
@@ -24,7 +25,7 @@ export default function Home() {
         </div>
       </section>
       {/* Hidden until SHOW_ACHIEVEMENTS is on — see app/config/site.ts */}
-      <AchievementSection />
+      {SHOW_ACHIEVEMENTS && <AchievementSection />}
       <QuoteSection id="quote" />
     </HomeTemplates>
   );

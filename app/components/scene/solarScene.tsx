@@ -110,7 +110,7 @@ export default function SolarScene({
     const L = config[m];
     return (
       <div key={m} className="absolute inset-0 transition-opacity duration-1000" style={{ opacity: mode === m ? 1 : 0 }} aria-hidden={mode !== m}>
-        <img src={L.image} alt={L.alt} className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition }} />
+        <img src={L.image} alt={L.alt} loading={m === "night" ? "lazy" : "eager"} decoding="async" className="absolute inset-0 w-full h-full object-cover" style={{ objectPosition }} />
         <svg viewBox={`0 ${y0} ${W} ${hc}`} className="absolute inset-0 w-full h-full">
           {L.runs.map((r, i) => (
             <Run key={i} d={r.d} reverse={r.reverse} />

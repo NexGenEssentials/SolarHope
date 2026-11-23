@@ -64,6 +64,7 @@ export default function HomesPage() {
         <img
           src={crewValley.src}
           alt="SolarHope crew installing solar panels on a family home in Nyagatare"
+          fetchPriority="high"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-linear-to-r from-dark-blue via-dark-blue/75 to-dark-blue/10" />

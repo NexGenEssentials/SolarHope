@@ -68,7 +68,15 @@ const MarqueeSlider = () => {
                     className={cls}
                   />
                 ) : (
-                  <img src={item.src} alt={copy ? "" : item.alt} loading="lazy" className={cls} />
+                  <img
+                    src={item.src}
+                    alt={copy ? "" : item.alt}
+                    // The first tiles are on screen at load; the rest can wait.
+                    loading={idx < 4 ? "eager" : "lazy"}
+                    fetchPriority={idx === 0 ? "high" : undefined}
+                    decoding="async"
+                    className={cls}
+                  />
                 )}
               </div>
             );
