@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import HomeTemplates from "../../components/templates/homeTemplates";
-import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
 import { SITE } from "../../config/site";
 import BrandMarquee from "../../components/brands/brandMarquee";
@@ -84,17 +83,6 @@ export default function BusinessesPage() {
         <p className="text-yellow font-semibold">
           Packages from {rwf(LOWEST_PRICE_RWF)} RWF, excluding VAT
         </p>
-        <div className="flex items-center gap-8 justify-center font-bold">
-          <Button link="#quote" name="Get a quote" />
-          <a
-            href={SITE.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-yellow transition-colors"
-          >
-            WhatsApp us
-          </a>
-        </div>
       </div>
 
       {/* Why businesses switch */}
