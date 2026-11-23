@@ -188,6 +188,21 @@ export default function BrandPage() {
           </p>
         </div>
       </section>
+
+      {/* Credit */}
+      <section className="bg-white border-t border-gray-100">
+        <p className={`${container} py-6 text-sm text-gray-500`}>
+          Brand identity and design by{" "}
+          <a
+            href="https://250brands.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-gray-800 hover:text-yellow transition-colors"
+          >
+            250Brands ↗
+          </a>
+        </p>
+      </section>
     </HomeTemplates>
   );
 }
