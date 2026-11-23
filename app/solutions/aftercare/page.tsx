@@ -4,6 +4,8 @@ import HomeTemplates from "../../components/templates/homeTemplates";
 import BrandLines from "../../components/brand/brandLines";
 import { SITE } from "../../config/site";
 import inverterSingle from "@/public/images/projects/install-inverter-battery-single.jpg";
+import dashboard from "@/public/images/projects/monitoring-dashboard.jpg";
+import LoopVideo from "../../components/media/loopVideo";
 
 const TITLE = "Aftercare and warranty | SolarHope Africa";
 const DESCRIPTION =
@@ -49,6 +51,15 @@ const CARE = [
     title: "Room to grow",
     text: "Bought a new fridge, opened longer hours? Hope Series systems can be expanded, so we build on what you have instead of starting again.",
   },
+];
+
+// What the monitoring screen shows (all visible on the real dashboard).
+const WE_SEE = [
+  "How much power the sun is giving you",
+  "How full the battery is",
+  "What your home or business is using right now",
+  "Whether the grid is on or off",
+  "Warnings and alarms from the equipment",
 ];
 
 const TIPS = [
@@ -127,6 +138,48 @@ export default function AftercarePage() {
                 <p className="text-sm leading-relaxed">{c.text}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Remote monitoring */}
+      <section className="bg-white">
+        <div className={`${container} py-20 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-12 items-center`}>
+          <div className="space-y-6 text-gray-600 leading-relaxed">
+            <p className={label}>Remote monitoring</p>
+            <h2 className="text-3xl font-bold text-gray-800">We can see your system from our office</h2>
+            <p className="text-lg">
+              Systems we install can be connected to our monitoring screen. At a
+              glance, our team sees:
+            </p>
+            <ul className="space-y-2">
+              {WE_SEE.map((w) => (
+                <li key={w} className="flex gap-3">
+                  <span className="text-yellow font-bold">✓</span>
+                  <span>{w}</span>
+                </li>
+              ))}
+            </ul>
+            <figure className="space-y-2 pt-2">
+              <img
+                src={dashboard.src}
+                alt="Monitoring dashboard: grid off, the battery discharging to power the backup load"
+                loading="lazy"
+                className="w-full h-auto rounded-lg shadow-lg shadow-gray-400"
+              />
+              <figcaption className="text-sm text-gray-500">
+                A real system we monitor, at 1:45 in the morning: the grid is
+                down and the battery is keeping everything running.
+              </figcaption>
+            </figure>
+          </div>
+          <div className="flex justify-center">
+            <LoopVideo
+              src="/videos/monitoring-room.mp4"
+              poster="/videos/monitoring-room-poster.jpg"
+              label="A SolarHope technician checking client systems on the monitoring screen"
+              className="w-full max-w-xs aspect-[9/16] object-cover rounded-xl shadow-xl border-4 border-yellow bg-dark-blue"
+            />
           </div>
         </div>
       </section>
