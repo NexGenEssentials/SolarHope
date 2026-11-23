@@ -112,14 +112,12 @@ export default function BrandPage() {
       {/* Logo versions and colours */}
       <section className="bg-white">
         <div className={`${container} pb-20 space-y-12`}>
-          <Reveal>
-            <img
-              src="/images/brand/logo-versions.jpg"
-              alt="The SolarHope logo and S mark on white and on dark backgrounds"
-              loading="lazy"
-              className="w-full h-auto rounded-lg border border-gray-100"
-            />
-          </Reveal>
+          <img
+            src="/images/brand/logo-versions.jpg"
+            alt="The SolarHope logo and S mark on white and on dark backgrounds"
+            loading="lazy"
+            className="w-full h-auto rounded-lg border border-gray-100"
+          />
           <div className="space-y-6">
             <p className={label}>Colours</p>
             <h2 className="text-3xl font-bold text-gray-800">Four colours. Zero beige.</h2>
