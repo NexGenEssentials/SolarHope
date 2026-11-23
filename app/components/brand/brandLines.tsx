@@ -59,3 +59,22 @@ export default function BrandLines({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+/**
+ * One solid gold logo cell, cut off by the section edge, as on the brand
+ * polo shirts and bottle. Bolder than the lines: use in one place only.
+ */
+export function BrandBlock({ className = "" }: { className?: string }) {
+  const w = 420;
+  const h = 300;
+  return (
+    <svg
+      aria-hidden="true"
+      focusable="false"
+      viewBox={`0 0 ${w + h * SLANT} ${h}`}
+      className={`pointer-events-none absolute ${className}`}
+    >
+      <path d={cell(0, 0, w, h, 34)} fill="#EA9D13" />
+    </svg>
+  );
+}
