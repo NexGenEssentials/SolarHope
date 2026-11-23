@@ -139,7 +139,7 @@ export default function BrandPage() {
       {/* Pattern */}
       <section className="relative isolate overflow-hidden bg-dark-blue">
         <div className="absolute inset-0 -z-10 overflow-hidden opacity-80">
-          <ParallaxImage src="/images/brand/pattern.svg" alt="" speed={0.3} />
+          <ParallaxImage src="/images/brand/pattern.svg" alt="" speed={0.35} />
         </div>
         <div className={`${container} py-28 text-center`}>
           <p className="text-yellow text-lg uppercase">The pattern</p>

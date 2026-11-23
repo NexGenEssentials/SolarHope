@@ -71,7 +71,7 @@ const QuoteSection = ({
     <section id={id}>
       <div className="relative text-white bg-[#0D1B39] overflow-hidden">
         <div className="absolute inset-0">
-          <ParallaxImage src="/images/quote-background.jpg" alt="" speed={0.2} />
+          <ParallaxImage src="/images/quote-background.jpg" alt="" speed={0.3} />
           <div className="absolute inset-0 bg-[#0D1B39] opacity-60"></div>
         </div>
 

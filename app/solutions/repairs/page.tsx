@@ -115,7 +115,7 @@ export default function RepairsPage() {
             </div>
             <div className="md:w-1/2 flex justify-center">
               <div className="relative overflow-hidden w-full max-w-md h-[380px] rounded-lg shadow-lg shadow-gray-500">
-                <ParallaxImage src={inspecting.src} alt="SolarHope technician inspecting an inverter installation" speed={0.12} />
+                <ParallaxImage src={inspecting.src} alt="SolarHope technician inspecting an inverter installation" speed={0.2} />
               </div>
             </div>
           </div>
@@ -184,7 +184,7 @@ export default function RepairsPage() {
           </div>
           <div className="flex justify-center">
             <div className="relative overflow-hidden w-full max-w-md h-[460px] rounded-lg shadow-lg shadow-gray-500">
-              <ParallaxImage src={wiringInverter.src} alt="SolarHope technician wiring a hybrid inverter above its battery" speed={0.12} />
+              <ParallaxImage src={wiringInverter.src} alt="SolarHope technician wiring a hybrid inverter above its battery" speed={0.2} />
             </div>
           </div>
         </div>

@@ -65,7 +65,7 @@ export default function HomesPage() {
         <ParallaxImage
           src={crewValley.src}
           alt="SolarHope crew installing solar panels on a family home in Nyagatare"
-          speed={0.25}
+          speed={0.4}
           priority
         />
         <div className="absolute inset-0 bg-linear-to-r from-dark-blue via-dark-blue/75 to-dark-blue/10" />

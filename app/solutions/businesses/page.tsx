@@ -113,7 +113,7 @@ export default function BusinessesPage() {
             </div>
             <div className="md:w-1/2 flex justify-center">
               <div className="relative overflow-hidden w-full max-w-md h-[380px] rounded-lg shadow-lg shadow-gray-500">
-                <ParallaxImage src={teamInstalling.src} alt="Three SolarHope technicians installing a hybrid inverter and battery" speed={0.12} />
+                <ParallaxImage src={teamInstalling.src} alt="Three SolarHope technicians installing a hybrid inverter and battery" speed={0.2} />
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@ export default function BusinessesPage() {
           </div>
           <div className="flex justify-center">
             <div className="relative overflow-hidden w-full max-w-md h-[460px] rounded-lg shadow-lg shadow-gray-500">
-              <ParallaxImage src={withFinishedInstall.src} alt="SolarHope technician beside a finished inverter and battery installation" speed={0.12} />
+              <ParallaxImage src={withFinishedInstall.src} alt="SolarHope technician beside a finished inverter and battery installation" speed={0.2} />
             </div>
           </div>
         </div>

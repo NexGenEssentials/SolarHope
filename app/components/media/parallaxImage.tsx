@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from "react";
 
 // A photo that moves a little slower than the page as you scroll (parallax).
 // It fills its parent, which must be `relative overflow-hidden` and sized.
-// The image is drawn slightly taller than its frame so the movement never
-// shows an edge. Text and buttons are never moved, only pictures.
+// The image is drawn taller than its frame (sized from the frame and the
+// window) so the movement never shows an edge. Text and buttons are never moved, only pictures.
 // Off for visitors who prefer reduced motion.
 
 export default function ParallaxImage({
@@ -16,7 +16,7 @@ export default function ParallaxImage({
 }: {
   src: string;
   alt: string;
-  /** Fraction of the scroll distance the image lags behind (0.1–0.25). */
+  /** How much slower than the page the image moves (0.15 gentle – 0.4 strong). */
   speed?: number;
   className?: string;
   priority?: boolean;
@@ -31,13 +31,21 @@ export default function ParallaxImage({
 
     let raf = 0;
     let visible = false;
+    let size = "";
     const update = () => {
       raf = 0;
       const r = frame.getBoundingClientRect();
+      // Furthest the image travels while the frame is on screen.
+      const travel = ((window.innerHeight + r.height) / 2) * speed;
+      const key = `${r.height}|${travel}`;
+      if (key !== size) {
+        size = key;
+        img.style.top = `${-travel}px`;
+        img.style.height = `${r.height + 2 * travel}px`;
+      }
       // 0 when the frame is centred in the window; +/- as it moves away.
       const offset = r.top + r.height / 2 - window.innerHeight / 2;
-      const max = (r.height * (EXTRA / 100)) / 2;
-      const y = Math.max(-max, Math.min(max, -offset * speed));
+      const y = Math.max(-travel, Math.min(travel, -offset * speed));
       img.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
     };
     const onScroll = () => {
@@ -65,11 +73,7 @@ export default function ParallaxImage({
       src={src}
       alt={alt}
       {...(priority ? { fetchPriority: "high" as const } : { loading: "lazy" as const })}
-      className={`absolute left-0 w-full object-cover will-change-transform ${className}`}
-      style={{ top: `-${EXTRA / 2}%`, height: `${100 + EXTRA}%` }}
+      className={`absolute left-0 top-0 w-full h-full object-cover will-change-transform ${className}`}
     />
   );
 }
-
-// How much taller than its frame the image is drawn, in percent.
-const EXTRA = 24;
