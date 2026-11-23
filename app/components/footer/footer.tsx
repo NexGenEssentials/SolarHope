@@ -16,6 +16,7 @@ const exploreLinks = [
   { title: "For Homes", link: "/solutions/homes" },
   { title: "Schools & Health", link: "/solutions/institutions" },
   { title: "Repairs & upgrades", link: "/solutions/repairs" },
+  { title: "Aftercare & warranty", link: "/solutions/aftercare" },
   { title: "Behind the S", link: "/brand" },
   { title: "Get a quote", link: "/#quote" },
 ];
