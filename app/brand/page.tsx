@@ -189,19 +189,35 @@ export default function BrandPage() {
         </div>
       </section>
 
-      {/* Credit */}
-      <section className="bg-white border-t border-gray-100">
-        <p className={`${container} py-6 text-sm text-gray-500`}>
-          Brand identity, marketing and PR by our partners since day one,{" "}
+      {/* Partner credit */}
+      <section className="bg-white">
+        <div className={`${container} py-12`}>
           <a
             href="https://250brands.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-gray-800 hover:text-yellow transition-colors"
+            className="group flex flex-col sm:flex-row sm:items-center gap-6 rounded-xl border border-gray-200 p-6 sm:p-8 hover:border-yellow transition-colors"
           >
-            250Brands ↗
+            <img
+              src="/images/partners/250brands.png"
+              alt="250Brands"
+              loading="lazy"
+              className="h-14 w-auto shrink-0"
+            />
+            <div className="space-y-1 sm:border-l sm:border-gray-200 sm:pl-6">
+              <p className="text-xs uppercase tracking-wider text-gray-400">
+                Brand, marketing and PR partners
+              </p>
+              <p className="text-gray-700">
+                <span className="font-semibold text-gray-900">250Brands</span> has shaped our brand,
+                marketing and PR since day one, from the S itself to everything on this page.
+              </p>
+              <p className="text-sm font-semibold text-gray-900 group-hover:text-yellow transition-colors">
+                Visit 250Brands ↗
+              </p>
+            </div>
           </a>
-        </p>
+        </div>
       </section>
     </HomeTemplates>
   );
