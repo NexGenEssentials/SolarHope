@@ -17,7 +17,7 @@ const navLinks = [
   { name: "For Homes", href: "/solutions/homes" },
   { name: "Schools & Health", href: "/solutions/institutions" },
   { name: "Repairs", href: "/solutions/repairs" },
-  { name: "Our Brand", href: "/brand" },
+  { name: "Behind the S", href: "/brand" },
 ];
 
 const Navbar = () => {
@@ -52,7 +52,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden lg:flex items-center gap-5 xl:gap-7 text-sm font-semibold whitespace-nowrap">
+        <ul className="hidden lg:flex items-center gap-4 xl:gap-7 text-[13px] xl:text-sm font-semibold whitespace-nowrap mr-4 xl:mr-0">
           {navLinks.map((link) => (
             <li key={link.name}>
               <Link href={link.href} className="hover:text-yellow transition-colors">

@@ -6,7 +6,7 @@ import Reveal from "../components/brand/reveal";
 import ParallaxImage from "../components/media/parallaxImage";
 import { SITE } from "../config/site";
 
-const TITLE = "Our brand | SolarHope Africa";
+const TITLE = "Behind the S: our brand | SolarHope Africa";
 const DESCRIPTION =
   "The SolarHope Africa identity: how our logo was made from a solar panel grid, our colours, our pattern, and the brand in use.";
 
@@ -71,7 +71,7 @@ export default function BrandPage() {
         <BrandLines className="hidden md:block -left-64 -top-28 w-[560px] lg:w-[720px] opacity-60" />
         <div className="flex flex-col gap-6 w-11/12 lg:w-3/5 mx-auto py-16 items-center text-center">
           <h1 className="text-3xl sm:text-4xl bg-linear-to-r from-white to-yellow/80 bg-clip-text text-transparent font-bold">
-            Our brand
+            Behind the S
           </h1>
           <p className="text-[#BABABA] max-w-2xl">
             Our logo is built from the thing we install every day: the solar
