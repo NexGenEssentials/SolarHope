@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeTemplates from "../../components/templates/homeTemplates";
+import ParallaxImage from "../../components/media/parallaxImage";
 import BrandLines from "../../components/brand/brandLines";
 import QuoteSection from "../../components/quote/quoteSection";
 import { SITE } from "../../config/site";
@@ -111,11 +112,9 @@ export default function BusinessesPage() {
               </p>
             </div>
             <div className="md:w-1/2 flex justify-center">
-              <img
-                src={teamInstalling.src}
-                alt="Three SolarHope technicians installing a hybrid inverter and battery"
-                className="w-full max-w-md h-[380px] object-cover rounded-lg shadow-lg shadow-gray-500"
-              />
+              <div className="relative overflow-hidden w-full max-w-md h-[380px] rounded-lg shadow-lg shadow-gray-500">
+                <ParallaxImage src={teamInstalling.src} alt="Three SolarHope technicians installing a hybrid inverter and battery" speed={0.12} />
+              </div>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -182,11 +181,9 @@ export default function BusinessesPage() {
             </ul>
           </div>
           <div className="flex justify-center">
-            <img
-              src={withFinishedInstall.src}
-              alt="SolarHope technician beside a finished inverter and battery installation"
-              className="w-full max-w-md h-[460px] object-cover rounded-lg shadow-lg shadow-gray-500"
-            />
+            <div className="relative overflow-hidden w-full max-w-md h-[460px] rounded-lg shadow-lg shadow-gray-500">
+              <ParallaxImage src={withFinishedInstall.src} alt="SolarHope technician beside a finished inverter and battery installation" speed={0.12} />
+            </div>
           </div>
         </div>
       </section>

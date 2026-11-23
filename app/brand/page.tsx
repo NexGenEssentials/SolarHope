@@ -3,6 +3,7 @@ import HomeTemplates from "../components/templates/homeTemplates";
 import BrandLines from "../components/brand/brandLines";
 import LogoBuild from "../components/brand/logoBuild";
 import Reveal from "../components/brand/reveal";
+import ParallaxImage from "../components/media/parallaxImage";
 import { SITE } from "../config/site";
 
 const TITLE = "Our brand | SolarHope Africa";
@@ -137,13 +138,9 @@ export default function BrandPage() {
 
       {/* Pattern */}
       <section className="relative isolate overflow-hidden bg-dark-blue">
-        <img
-          src="/images/brand/pattern.svg"
-          alt=""
-          aria-hidden="true"
-          loading="lazy"
-          className="absolute inset-0 -z-10 w-full h-full object-cover opacity-80 animate-[drift_40s_ease-in-out_infinite_alternate]"
-        />
+        <div className="absolute inset-0 -z-10 overflow-hidden opacity-80">
+          <ParallaxImage src="/images/brand/pattern.svg" alt="" speed={0.3} />
+        </div>
         <div className={`${container} py-28 text-center`}>
           <p className="text-yellow text-lg uppercase">The pattern</p>
           <p className="mt-3 text-white/80 max-w-xl mx-auto">

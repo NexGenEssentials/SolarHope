@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import HomeTemplates from "../../components/templates/homeTemplates";
+import ParallaxImage from "../../components/media/parallaxImage";
 import Button from "../../components/button/button";
 import QuoteSection from "../../components/quote/quoteSection";
 import BrandMarquee from "../../components/brands/brandMarquee";
@@ -61,11 +62,11 @@ export default function HomesPage() {
     <HomeTemplates>
       {/* Hero: full-width home picture */}
       <section className="relative min-h-[520px] h-[70vh] overflow-hidden">
-        <img
+        <ParallaxImage
           src={crewValley.src}
           alt="SolarHope crew installing solar panels on a family home in Nyagatare"
-          fetchPriority="high"
-          className="absolute inset-0 w-full h-full object-cover"
+          speed={0.25}
+          priority
         />
         <div className="absolute inset-0 bg-linear-to-r from-dark-blue via-dark-blue/75 to-dark-blue/10" />
         <div className={`${container} relative h-full flex flex-col justify-center gap-6`}>
