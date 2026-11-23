@@ -50,7 +50,7 @@ export const HOME_SCENE: SceneConfig = {
   battery: { day: 88, night: 46 },
   captions: {
     day: "The sun runs your home, charges your car and fills the battery.",
-    night: "The grid goes off. Your home stays lit and the car keeps charging from the battery.",
+    night: "The grid goes off. Your home stays lit and the car can still top up from the battery.",
   },
   day: {
     image: "/images/scene/home-day.jpg",
@@ -75,7 +75,7 @@ export const HOME_SCENE: SceneConfig = {
   },
   night: {
     image: "/images/scene/home-night.jpg",
-    alt: "The same home at night during a power cut, lights on and the car still charging from the battery",
+    alt: "The same home at night during a power cut, lights on and the car topping up from the battery",
     runs: [
       // battery -> inverter (power flowing out of the battery)
       { d: "M 455 450 L 455 485", reverse: true },

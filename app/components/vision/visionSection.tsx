@@ -17,7 +17,7 @@ const visions = [
   {
     icon: <MdVerified />,
     title: "Our Promise",
-    desc: "Honest quotes: every panel counted, the battery shown as what you can really use, and backup given in hours at your own load.",
+    desc: "Honest quotes: every panel counted, the battery shown as what you can really use, and backup given in hours for what you actually run.",
   },
 ];
 

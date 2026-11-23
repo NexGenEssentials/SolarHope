@@ -16,6 +16,12 @@ export const metadata: Metadata = {
   description:
     "Keep your home running through power cuts and bring your electricity bill down. See what your home can run, choose a package, and power your electric car charger with sunshine.",
   alternates: { canonical: "/solutions/homes" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solar for homes in Rwanda | SolarHope Africa",
+    description: "Keep your home running through power cuts and bring your electricity bill down.",
+    images: ["/og-image.png"],
+  },
   openGraph: {
     title: "Solar for homes in Rwanda | SolarHope Africa",
     description: "Keep your home running through power cuts and bring your electricity bill down.",
@@ -30,7 +36,7 @@ export const metadata: Metadata = {
 const FAQ = [
   {
     q: "Do I stay connected to the grid?",
-    a: "Yes. Your system works alongside your existing connection. When the grid is on, you use your own solar power first; when it goes off, the battery takes over automatically.",
+    a: "Yes. Your system works alongside your existing connection, and when the grid goes off, the battery takes over automatically. Depending on the set-up you choose, your home can also run on solar first and use the grid less.",
   },
   {
     q: "Is my roof suitable?",

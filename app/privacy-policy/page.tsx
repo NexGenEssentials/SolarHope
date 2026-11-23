@@ -7,6 +7,13 @@ export const metadata: Metadata = {
   description:
     "How SolarHope Africa collects, uses and protects the personal data you share with us.",
   alternates: { canonical: "/privacy-policy" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | SolarHope Africa",
+    description:
+      "How SolarHope Africa collects, uses and protects the personal data you share with us.",
+    images: ["/og-image.png"],
+  },
   openGraph: {
     title: "Privacy Policy | SolarHope Africa",
     url: "/privacy-policy",

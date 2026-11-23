@@ -14,6 +14,12 @@ export const metadata: Metadata = {
   description:
     "Stay open through power cuts, spend less on electricity and leave the generator behind. Solar with battery backup for any business in Rwanda, from a small shop to a large factory.",
   alternates: { canonical: "/solutions/businesses" },
+  twitter: {
+    card: "summary_large_image",
+    title: "Solar for businesses in Rwanda | SolarHope Africa",
+    description: "Stay open through power cuts, spend less on electricity and leave the generator behind.",
+    images: ["/og-image.png"],
+  },
   openGraph: {
     title: "Solar for businesses in Rwanda | SolarHope Africa",
     description:
@@ -32,7 +38,7 @@ const REASONS = [
   },
   {
     title: "Generators are an expensive fix",
-    text: "Fuel every time the power goes, regular servicing, noise your customers can hear and fumes nobody wants near the door. Solar runs silently, burns nothing and needs no fuel at all.",
+    text: "Fuel every time the power goes, regular servicing, noise your customers can hear and fumes nobody wants near the door. Solar runs silently and needs no fuel.",
   },
   {
     title: "Electricity bills keep growing",
@@ -92,7 +98,7 @@ export default function BusinessesPage() {
             <div className="md:w-1/2 space-y-4">
               <p className={label}>Why businesses switch</p>
               <h2 className="text-3xl font-bold text-gray-800">
-                Your power should work as hard as you do
+                What power problems really cost you
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
                 Power cuts, generator fuel and rising bills all eat into what
