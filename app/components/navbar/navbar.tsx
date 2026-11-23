@@ -15,6 +15,7 @@ const navLinks = [
   { name: "How We Work", href: "/#services" },
   { name: "For Businesses", href: "/solutions/businesses" },
   { name: "For Homes", href: "/solutions/homes" },
+  { name: "Repairs", href: "/solutions/repairs" },
 ];
 
 const Navbar = () => {

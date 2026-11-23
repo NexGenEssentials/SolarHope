@@ -42,7 +42,7 @@ const ImpactSection = ({ id }: { id?: string }) => {
               <a href="/?segment=school#quote" className="font-semibold text-gray-800 hover:text-amber-500">schools</a>,{" "}
               <a href="/?segment=health#quote" className="font-semibold text-gray-800 hover:text-amber-500">health facilities</a>{" "}
               and{" "}
-              <a href="/?segment=repair#quote" className="font-semibold text-gray-800 hover:text-amber-500">repairs of existing systems</a>.
+              <a href="/solutions/repairs" className="font-semibold text-gray-800 hover:text-amber-500">repairs of existing systems</a>.
             </p>
           </div>
 

@@ -13,6 +13,7 @@ const exploreLinks = [
   { title: "How We Work", link: "/#services" },
   { title: "For Businesses", link: "/solutions/businesses" },
   { title: "For Homes", link: "/solutions/homes" },
+  { title: "Repairs & upgrades", link: "/solutions/repairs" },
   { title: "Get a quote", link: "/#quote" },
 ];
 
