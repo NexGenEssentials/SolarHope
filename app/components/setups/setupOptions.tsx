@@ -58,7 +58,7 @@ function Bar({ icon, name, src }: { icon: React.ReactNode; name: string; src: So
     <div className="space-y-2">
       <div className="flex items-center justify-between text-sm">
         <span className="flex items-center gap-2 font-semibold text-gray-800">
-          <span className="text-amber-500 text-lg">{icon}</span>
+          <span className="text-yellow text-lg">{icon}</span>
           {name}
         </span>
         <span className="text-gray-500">{src.role}</span>

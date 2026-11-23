@@ -69,7 +69,7 @@ const STEPS = [
   "Remote monitoring of your system once it is running",
 ];
 
-const label = "text-amber-500 text-lg uppercase";
+const label = "text-yellow text-lg uppercase";
 // One container so every section shares the same left and right edges.
 const container = "max-w-[1570px] mx-auto px-6 sm:px-20";
 
@@ -170,7 +170,7 @@ export default function BusinessesPage() {
             <ul className="space-y-2">
               {STEPS.map((s) => (
                 <li key={s} className="flex gap-3">
-                  <span className="text-amber-500 font-bold">✓</span>
+                  <span className="text-yellow font-bold">✓</span>
                   <span>{s}</span>
                 </li>
               ))}

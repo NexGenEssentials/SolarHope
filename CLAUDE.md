@@ -156,14 +156,23 @@ Do not introduce a new design system, swap the typeface, or restyle existing pag
 If a new section needs a pattern that does not exist yet, derive it from what is already
 there.
 
-Colours taken from existing marketing material — confirm against the master brand file
-before hard-coding:
+Colours **confirmed against the brand presentation** (logo design presentation PDF,
+read 24 Nov 2026). The site uses gold and navy via `--color-yellow` / `--color-dark-blue`
+in `app/globals.css`:
 
 ```
---navy:  #142640   /* headings, dark sections, panel graphics */
---gold:  #D99A33   /* accent, prices, CTA bars */
---green: #7CB33E   /* badges, pills, icon circles */
+--navy:  #091928   /* headings, dark sections, panel graphics */
+--gold:  #EA9D13   /* accent, prices, CTA bars, section labels */
+--green: #71AA1F   /* "Hope" in the logo; badges, pills */
+--cream: #FFF5E6   /* light backgrounds (not used on the site yet) */
 ```
+
+Brand fonts (from the same PDF): headlines **JT Millburn Wide Black Slanted**, body
+**Avenir LT Pro** (oblique weights). Both are commercial; the site stays on Arial until
+the company confirms a *web* licence and supplies the web font files.
+
+Brand motif: thin gold outlines of the logo's slanted, rounded panel cell
+(`app/components/brand/brandLines.tsx`), used sparingly on dark sections only.
 
 The logo is a gold block mark with "Solar" in navy and "Hope" in green. On dark
 backgrounds "Solar" reverses to white; the mark and "Hope" stay as they are.

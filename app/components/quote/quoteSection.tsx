@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { SITE } from "@/app/config/site";
+import BrandLines from "../brand/brandLines";
 import {
   SEGMENTS,
   submitQuote,
@@ -78,6 +79,7 @@ const QuoteSection = ({
           />
           <div className="absolute inset-0 bg-[#0D1B39] opacity-60"></div>
         </div>
+        <BrandLines className="hidden lg:block -left-40 -bottom-52 w-[560px] opacity-70" />
 
         <div className="relative z-10 max-w-[1570px] mx-auto px-6 sm:px-20 py-14 lg:py-16 grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-14 items-start">
           <div className="space-y-4 text-center lg:text-left">

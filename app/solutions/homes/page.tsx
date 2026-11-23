@@ -52,7 +52,7 @@ const FAQ = [
   },
 ];
 
-const label = "text-amber-500 text-lg uppercase";
+const label = "text-yellow text-lg uppercase";
 // One container so every section shares the same left and right edges.
 const container = "max-w-[1570px] mx-auto px-6 sm:px-20";
 
@@ -142,7 +142,7 @@ export default function HomesPage() {
               <details key={f.q} className="group py-5 border-b border-gray-200">
                 <summary className="flex justify-between items-center cursor-pointer list-none text-lg font-semibold text-gray-800">
                   {f.q}
-                  <span className="text-amber-500 text-2xl transition-transform group-open:rotate-45">+</span>
+                  <span className="text-yellow text-2xl transition-transform group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-3 text-gray-600 leading-relaxed">{f.a}</p>
               </details>

@@ -20,7 +20,7 @@ export default function Home() {
       {/* Equipment we trust */}
       <section className="bg-white">
         <div className="max-w-[1570px] mx-auto px-6 sm:px-20 pb-16 space-y-6">
-          <p className="text-amber-500 text-lg uppercase">Equipment we trust</p>
+          <p className="text-yellow text-lg uppercase">Equipment we trust</p>
           <BrandMarquee />
         </div>
       </section>

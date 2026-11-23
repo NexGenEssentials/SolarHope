@@ -12,7 +12,7 @@ const ImpactSection = ({ id }: { id?: string }) => {
         <div className="flex flex-col md:flex-row gap-12 items-center">
           {/* Text Content */}
           <div className="md:w-1/2 space-y-4">
-            <h1 className="text-amber-500 text-lg">WHAT WE DO</h1>
+            <h1 className="text-yellow text-lg">WHAT WE DO</h1>
 
             <h2 className="text-3xl w-3/4 font-bold text-gray-800 mb-6">
               From a family home to a factory roof
@@ -32,16 +32,16 @@ const ImpactSection = ({ id }: { id?: string }) => {
               href="/solutions/businesses"
               className="flex items-end gap-4 w-fit hover:underline"
             >
-              <span className="text-amber-500 text-sm">Solar for businesses</span>
-              <BsArrowRight className="text-[#E58411] text-xl" />
+              <span className="text-yellow text-sm">Solar for businesses</span>
+              <BsArrowRight className="text-yellow text-xl" />
             </a>
 
                         <p className="text-sm text-gray-500 pt-2">
               We also work with{" "}
-              <a href="/solutions/institutions#schools" className="font-semibold text-gray-800 hover:text-amber-500">schools</a>,{" "}
-              <a href="/solutions/institutions#health" className="font-semibold text-gray-800 hover:text-amber-500">health facilities</a>{" "}
+              <a href="/solutions/institutions#schools" className="font-semibold text-gray-800 hover:text-yellow">schools</a>,{" "}
+              <a href="/solutions/institutions#health" className="font-semibold text-gray-800 hover:text-yellow">health facilities</a>{" "}
               and{" "}
-              <a href="/solutions/repairs" className="font-semibold text-gray-800 hover:text-amber-500">repairs of existing systems</a>.
+              <a href="/solutions/repairs" className="font-semibold text-gray-800 hover:text-yellow">repairs of existing systems</a>.
             </p>
           </div>
 

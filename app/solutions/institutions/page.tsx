@@ -60,7 +60,7 @@ const FUNDED = [
   "Remote monitoring of every site once it is running",
 ];
 
-const label = "text-amber-500 text-lg uppercase";
+const label = "text-yellow text-lg uppercase";
 // One container so every section shares the same left and right edges.
 const container = "max-w-[1570px] mx-auto px-6 sm:px-20";
 const pill =
@@ -102,7 +102,7 @@ export default function InstitutionsPage() {
             <ul className="space-y-3">
               {SCHOOL_USES.map((u) => (
                 <li key={u} className="flex gap-3">
-                  <span className="text-amber-500 font-bold">✓</span>
+                  <span className="text-yellow font-bold">✓</span>
                   <span>{u}</span>
                 </li>
               ))}
@@ -164,7 +164,7 @@ export default function InstitutionsPage() {
             <ul className="space-y-3">
               {FUNDED.map((f) => (
                 <li key={f} className="flex gap-3">
-                  <span className="text-amber-500 font-bold">✓</span>
+                  <span className="text-yellow font-bold">✓</span>
                   <span>{f}</span>
                 </li>
               ))}
