@@ -3,7 +3,7 @@ import HomeTemplates from "../../components/templates/homeTemplates";
 import QuoteSection from "../../components/quote/quoteSection";
 import BrandMarquee from "../../components/brands/brandMarquee";
 import { SITE } from "../../config/site";
-import classroomBlock from "@/public/images/projects/school-classroom-block.jpg";
+import schoolCompound from "@/public/images/projects/school-compound.jpg";
 import batteryBank from "@/public/images/projects/install-battery-bank.jpg";
 
 const TITLE = "Solar for schools and health facilities in Rwanda | SolarHope Africa";
@@ -110,9 +110,9 @@ export default function InstitutionsPage() {
           </div>
           <div className="flex justify-center">
             <img
-              src={classroomBlock.src}
-              alt="Classroom block at a secondary school powered by a SolarHope system"
-              className="w-full max-w-sm h-auto rounded-lg shadow-lg shadow-gray-500"
+              src={schoolCompound.src}
+              alt="The classroom blocks and courtyard of a secondary school powered by a SolarHope system"
+              className="w-full max-w-xl h-auto rounded-lg shadow-lg shadow-gray-500"
             />
           </div>
         </div>
