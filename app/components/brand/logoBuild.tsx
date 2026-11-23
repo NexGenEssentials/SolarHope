@@ -85,23 +85,57 @@ export default function LogoBuild() {
         role="img"
         aria-label="Cells of a solar panel grid light up to form the S of the SolarHope logo"
       >
-        {/* The panel grid */}
+        <defs>
+          <linearGradient id="lb-cell" x1="0" y1="0" x2="0.4" y2="1">
+            <stop offset="0" stopColor="#2A4A7F" />
+            <stop offset="0.55" stopColor="#14284D" />
+            <stop offset="1" stopColor="#0C1A36" />
+          </linearGradient>
+          <linearGradient id="lb-frame" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#E3E7EC" />
+            <stop offset="0.5" stopColor="#B9C1CB" />
+            <stop offset="1" stopColor="#D6DBE1" />
+          </linearGradient>
+          <linearGradient id="lb-glass" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#fff" stopOpacity="0" />
+            <stop offset="0.35" stopColor="#fff" stopOpacity="0.16" />
+            <stop offset="0.45" stopColor="#fff" stopOpacity="0" />
+            <stop offset="0.7" stopColor="#fff" stopOpacity="0.07" />
+            <stop offset="1" stopColor="#fff" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        {/* A real-looking solar panel: frame, backsheet, cells, busbars, glass */}
         <g
           className="transition-opacity duration-1000"
           style={{ opacity: phase === 2 ? 0 : 1 }}
         >
+          <path d={cell(bx(ROWS - 1, 0) - 7, -7, COLS * W + 14, ROWS * H + 14, 6)} fill="url(#lb-frame)" />
+          <path d={cell(bx(ROWS - 1, 0) - 2, -2, COLS * W + 4, ROWS * H + 4, 2)} fill="#EEF1F4" />
           {Array.from({ length: ROWS }, (_, r) =>
-            Array.from({ length: COLS }, (_, c) => (
-              <path
-                key={`${r}-${c}`}
-                d={cell(bx(r, c), r * H, W, H, 0)}
-                fill="none"
-                stroke="#CBD5E1"
-                strokeWidth={1}
-                vectorEffect="non-scaling-stroke"
-              />
-            )),
+            Array.from({ length: COLS }, (_, c) => {
+              const x = bx(r, c);
+              const y = r * H;
+              return (
+                <g key={`${r}-${c}`}>
+                  <path d={cell(x + 1.8, y + 1.8, W - 3.6, H - 3.6, 2)} fill="url(#lb-cell)" />
+                  {[0.33, 0.66].map((f) => (
+                    <line
+                      key={f}
+                      x1={x + S + f * W}
+                      y1={y + 2}
+                      x2={x + f * W}
+                      y2={y + H - 2}
+                      stroke="#A9BBD6"
+                      strokeOpacity={0.45}
+                      strokeWidth={0.8}
+                    />
+                  ))}
+                </g>
+              );
+            }),
           )}
+          <path d={cell(bx(ROWS - 1, 0) - 2, -2, COLS * W + 4, ROWS * H + 4, 2)} fill="url(#lb-glass)" />
         </g>
 
         {/* Cells lighting up in order */}
