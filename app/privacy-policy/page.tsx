@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 };
 
-const LAST_UPDATED = "21 November 2026";
+const LAST_UPDATED = "24 November 2026";
 
 const h2 = "text-2xl font-bold text-yellow pt-6";
 
