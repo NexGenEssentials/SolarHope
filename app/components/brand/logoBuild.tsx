@@ -8,20 +8,20 @@ import { cell, SLANT } from "./brandLines";
 // Plays once when scrolled into view; "Watch again" replays it. Visitors who
 // prefer reduced motion see the finished mark straight away.
 
-const COLS = 5;
-const ROWS = 6;
-const W = 66; // column pitch
-const H = 44; // row pitch
+export const COLS = 5;
+export const ROWS = 6;
+export const W = 66; // column pitch
+export const H = 44; // row pitch
 const S = H * SLANT; // horizontal shift per row (the logo's lean)
 const GAP = 2.5;
 const RAD = 6;
 const GOLD = "#EA9D13";
 
 /** Bottom-left x of the cell at row r, column c. */
-const bx = (r: number, c: number) => c * W + (ROWS - r - 1) * S;
+export const bx = (r: number, c: number) => c * W + (ROWS - r - 1) * S;
 
 /** Parallelogram covering `n` cells from (r, c), inset by GAP. */
-const piece = (r: number, c: number, n = 1, rad = RAD) =>
+export const piece = (r: number, c: number, n = 1, rad = RAD) =>
   cell(bx(r, c) + GAP, r * H + GAP, n * W - 2 * GAP, H - 2 * GAP, rad);
 
 // The S, cell by cell, in the order it is "drawn".
@@ -34,7 +34,7 @@ const ORDER: [number, number][] = [
   [4, 2],
 ];
 // The finished mark: top cell, two bars, bottom cell.
-const MARK: [number, number, number][] = [
+export const MARK: [number, number, number][] = [
   [1, 2, 1],
   [2, 1, 2],
   [3, 2, 2],
@@ -50,20 +50,31 @@ export default function LogoBuild() {
   // 0 = grid only, 1 = cells lighting up, 2 = finished mark
   const [phase, setPhase] = useState(0);
   const [run, setRun] = useState(0);
+  const [caption, setCaption] = useState("A solar panel grid. Boring? Watch.");
 
   useEffect(() => {
     if (!inView) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setPhase(2);
+      setCaption("Ta-da! S for Solar (and for Hope).");
       return;
     }
     setPhase(0);
-    const t1 = setTimeout(() => setPhase(1), 400);
-    const t2 = setTimeout(() => setPhase(2), 400 + ORDER.length * STEP + 700);
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-    };
+    setCaption("A solar panel grid. Boring? Watch.");
+    const steps: [number, string][] = [
+      [400, "One panel…"],
+      [400 + 2 * STEP, "Two… three…"],
+      [400 + 4 * STEP, "Getting there…"],
+    ];
+    const timers = steps.map(([t, text]) => setTimeout(() => setCaption(text), t));
+    timers.push(setTimeout(() => setPhase(1), 400));
+    timers.push(
+      setTimeout(() => {
+        setPhase(2);
+        setCaption("Ta-da! S for Solar (and for Hope).");
+      }, 400 + ORDER.length * STEP + 700),
+    );
+    return () => timers.forEach(clearTimeout);
   }, [inView, run]);
 
   return (
@@ -119,9 +130,9 @@ export default function LogoBuild() {
         ))}
       </svg>
 
-      <div className="flex items-center justify-between text-sm">
+      <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-sm">
         <p className="text-gray-500">
-          {phase === 2 ? "S for Solar, and for Hope." : "A solar panel grid…"}
+          {caption}
         </p>
         <button
           type="button"
