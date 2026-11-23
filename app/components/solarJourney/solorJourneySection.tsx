@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../button/button";
-import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
+import site2 from "@/public/images/site2.jpg";
 import crewValley from "@/public/images/projects/roof-crew-valley-view.jpg";
 import LoopVideo from "../media/loopVideo";
 import inspecting from "@/public/images/projects/technician-inspecting-inverter.jpg";
@@ -14,8 +14,8 @@ const content = [
     description: "We visit your site, look at your electricity bills and work out what you really need.",
   },
   {
-    image: withFinishedInstall.src,
-    alt: "SolarHope technician beside a finished inverter and battery installation",
+    image: site2.src,
+    alt: "Technician in a hard hat checking a tablet on a solar array",
     title: "Agreement",
     description: "We agree the system, the price and the timeline with you in writing.",
   },
