@@ -33,9 +33,9 @@ const VisionSection = ({ id }: { id?: string }) =>  {
             <span className="w-fit border border-yellow rounded-full bg-yellow/10 px-8 py-1 text-yellow font-semibold">
               Vision
             </span>
-            <span className="font-bold text-4xl">
+            <h2 className="font-bold text-4xl">
               Our Mission and Vision for the Future
-            </span>
+            </h2>
           </div>
           <div>
             <p className="">
@@ -51,9 +51,9 @@ const VisionSection = ({ id }: { id?: string }) =>  {
           {visions.map((item, idx) => (
             <div key={idx} className="p-4 bg-white/7 rounded space-y-6 w-full">
               <div className="text-5xl">{item.icon}</div>
-              <h1 className="text-3xl font-bold leading-normal">
+              <h3 className="text-3xl font-bold leading-normal">
                 {item.title}
-              </h1>
+              </h3>
               <p className="text-sm">{item.desc}</p>
             </div>
           ))}

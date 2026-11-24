@@ -15,7 +15,7 @@ import crewValley from "@/public/images/projects/roof-crew-valley-view.jpg";
 export const metadata: Metadata = {
   title: "Solar for homes in Rwanda | SolarHope Africa",
   description:
-    "Keep your home running through power cuts and bring your electricity bill down. See what your home can run, choose a package, and power your electric car charger with sunshine.",
+    "Keep your home running through power cuts and bring your electricity bill down. See what your home can run and find the right solar package.",
   alternates: { canonical: "/solutions/homes" },
   twitter: {
     card: "summary_large_image",

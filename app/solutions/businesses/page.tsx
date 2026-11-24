@@ -14,7 +14,7 @@ import withFinishedInstall from "@/public/images/projects/technician-with-finish
 export const metadata: Metadata = {
   title: "Solar for businesses in Rwanda | SolarHope Africa",
   description:
-    "Stay open through power cuts, spend less on electricity and leave the generator behind. Solar with battery backup for any business in Rwanda, from a small shop to a large factory.",
+    "Stay open through power cuts, spend less on electricity and leave the generator behind. Solar with battery backup for any business in Rwanda.",
   alternates: { canonical: "/solutions/businesses" },
   twitter: {
     card: "summary_large_image",

@@ -7,9 +7,9 @@ export const SITE = {
   slogan: "Solar Ni Sawa",
   sloganLine: "Switch to smarter energy today",
   tagline: "Light Up Dreams, The Solar Way",
-  title: "SolarHope Africa | Solar systems for homes, businesses and institutions in Rwanda",
+  title: "Solar installation in Rwanda | SolarHope Africa",
   description:
-    "SolarHope Africa designs and installs solar systems across Rwanda for homes, businesses, schools, health facilities and large commercial sites. Hybrid systems with automatic changeover where there is grid, and stand-alone systems where there is none.",
+    "Solar with battery backup for homes, businesses, schools and clinics across Rwanda. Designed, installed and looked after by our own team in Kigali.",
   email: "info@solarhopeafrica.com",
   // Both addresses are always shown on the site (decided 24 Nov 2026).
   emails: ["info@solarhopeafrica.com", "solarhopeafrica@gmail.com"],

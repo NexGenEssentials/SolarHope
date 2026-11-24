@@ -40,9 +40,9 @@ const SolarJourneySection = ({ id }: { id?: string }) =>  {
     <div className="bg-white text-dark-blue">
       <div className="max-w-[1570px] mx-auto p-8 sm:p-20">
         <div className="flex flex-col items-center gap-16">
-          <h1 className="font-bold text-3xl sm:text-5xl text-center">
+          <h2 className="font-bold text-3xl sm:text-5xl text-center">
             How We Work
-          </h1>
+          </h2>
 
           <div className="flex flex-wrap lg:flex-nowrap justify-center gap-8 lg:gap-4">
             {content.map((item, index) => (

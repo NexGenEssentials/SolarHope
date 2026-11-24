@@ -8,7 +8,7 @@ import dashboard from "@/public/images/projects/monitoring-dashboard.jpg";
 
 const TITLE = "Aftercare and warranty | SolarHope Africa";
 const DESCRIPTION =
-  "We do not disappear after switch-on. Warranty on panels, inverter, battery and our own installation work, remote monitoring, and support from the team that installed your system.";
+  "We do not disappear after switch-on: warranty, remote monitoring and support from the team that installed your solar system.";
 
 export const metadata: Metadata = {
   title: TITLE,

@@ -9,7 +9,7 @@ import batteryBank from "@/public/images/projects/install-battery-bank.jpg";
 
 const TITLE = "Solar for schools and health facilities in Rwanda | SolarHope Africa";
 const DESCRIPTION =
-  "Solar with battery backup for schools, clinics and health centres: evening study, computer labs, fridges and equipment that keep running through power cuts. Itemised quotes for funded and multi-site projects.";
+  "Solar with battery backup for schools, clinics and health centres in Rwanda: evening study, labs and fridges that keep running through power cuts.";
 
 export const metadata: Metadata = {
   title: TITLE,

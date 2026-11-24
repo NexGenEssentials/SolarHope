@@ -12,7 +12,7 @@ const ImpactSection = ({ id }: { id?: string }) => {
         <div className="flex flex-col md:flex-row gap-12 items-center">
           {/* Text Content */}
           <div className="md:w-1/2 space-y-4">
-            <h1 className="text-yellow text-lg">WHAT WE DO</h1>
+            <p className="text-yellow text-lg">WHAT WE DO</p>
 
             <h2 className="text-3xl w-3/4 font-bold text-gray-800 mb-6">
               From a family home to a factory roof

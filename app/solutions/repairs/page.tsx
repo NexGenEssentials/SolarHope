@@ -9,7 +9,7 @@ import wiringInverter from "@/public/images/projects/technician-wiring-inverter.
 
 const TITLE = "Solar repairs and upgrades in Rwanda | SolarHope Africa";
 const DESCRIPTION =
-  "Solar system not working the way it should? We find out why and fix it properly, whoever installed it. Repairs, battery and panel upgrades, and automatic switching.";
+  "Solar system not working as it should? We find out why and fix it properly, whoever installed it. Repairs, battery and panel upgrades in Rwanda.";
 
 export const metadata: Metadata = {
   title: TITLE,
