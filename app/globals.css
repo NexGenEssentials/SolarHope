@@ -62,3 +62,9 @@ body {
   72% { opacity: 0.6; }
   100% { opacity: 0.94; }
 }
+
+/* Lab: Rwanda map, active cells breathe like sunlight */
+@keyframes cellglow {
+  0%, 100% { fill-opacity: 0.75; }
+  50% { fill-opacity: 1; }
+}
