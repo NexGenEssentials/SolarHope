@@ -17,6 +17,7 @@ const navLinks = [
   { name: "For Homes", href: "/solutions/homes" },
   { name: "Schools & Health", href: "/solutions/institutions" },
   { name: "Repairs", href: "/solutions/repairs" },
+  { name: "Aftercare", href: "/solutions/aftercare" },
   { name: "Behind the S", href: "/brand" },
 ];
 
@@ -40,7 +41,7 @@ const Navbar = () => {
     >
       <div className="max-w-[1570px] mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="relative w-28 xl:w-32 h-12 shrink-0">
+        <Link href="/" className="relative w-32 h-12 shrink-0">
           <Image
             src={scrolled ? logo1 : logo}
             fill
@@ -52,7 +53,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Links */}
-        <ul className="hidden lg:flex items-center gap-4 xl:gap-7 text-[13px] xl:text-sm font-semibold whitespace-nowrap mr-4 xl:mr-0">
+        <ul className="hidden xl:flex items-center gap-5 2xl:gap-7 text-sm font-semibold whitespace-nowrap">
           {navLinks.map((link) => (
             <li key={link.name}>
               <Link href={link.href} className="hover:text-yellow transition-colors">
@@ -63,7 +64,7 @@ const Navbar = () => {
         </ul>
 
         {/* Desktop Buttons */}
-        <div className="hidden lg:flex items-center space-x-3 xl:space-x-4 whitespace-nowrap">
+        <div className="hidden xl:flex items-center space-x-4 whitespace-nowrap">
           <a
             href={SITE.whatsappUrl}
             target="_blank"
@@ -76,7 +77,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Toggle */}
-        <div className="lg:hidden text-3xl cursor-pointer">
+        <div className="xl:hidden text-3xl cursor-pointer">
           <button
             type="button"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -91,7 +92,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {mobileOpen && (
         <div
-          className={`lg:hidden bg-white text-black px-6 py-4 space-y-4 font-semibold`}
+          className={`xl:hidden bg-white text-black px-6 py-4 space-y-4 font-semibold`}
         >
           {navLinks.map((link) => (
             <Link
