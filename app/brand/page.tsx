@@ -202,7 +202,7 @@ export default function BrandPage() {
               src="/images/partners/250brands.png"
               alt="250Brands"
               loading="lazy"
-              className="h-14 w-auto shrink-0"
+              className="h-12 sm:h-14 w-auto self-start sm:self-center object-contain shrink-0"
             />
             <div className="space-y-1 sm:border-l sm:border-gray-200 sm:pl-6">
               <p className="text-xs uppercase tracking-wider text-gray-400">
