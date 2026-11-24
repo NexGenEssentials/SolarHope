@@ -49,14 +49,15 @@ const Footer = () => {
 
           <div className=" hidden md:flex flex-1 items-start flex-wrap flex-row justify-between gap-10">
             {/* Explore */}
-            <div className="flex-1">
+            <div className="flex-[2]">
               <h3 className="text-base font-semibold mb-3">Explore</h3>
-              <div className="text-sm space-y-2">
+              {/* Two columns so the footer stays short. */}
+              <div className="text-sm grid grid-rows-6 grid-flow-col gap-x-10 gap-y-2 w-fit">
                 {exploreLinks.map(({ title, link }) => (
                   <Link
                     href={link}
                     key={title}
-                    className="block hover:underline hover:text-hover-color"
+                    className="block whitespace-nowrap hover:underline hover:text-hover-color"
                   >
                     {title}
                   </Link>
