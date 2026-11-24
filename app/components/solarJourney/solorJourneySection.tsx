@@ -1,9 +1,9 @@
 import React from "react";
 import Button from "../button/button";
-import site2 from "@/public/images/site2.jpg";
-import crewValley from "@/public/images/projects/roof-crew-valley-view.jpg";
+const site2 = { src: "/images/thumbs/journey-agreement.jpg" };
+const crewValley = { src: "/images/thumbs/journey-installation.jpg" };
 import LoopVideo from "../media/loopVideo";
-import inspecting from "@/public/images/projects/technician-inspecting-inverter.jpg";
+const inspecting = { src: "/images/thumbs/journey-assessment.jpg" };
 import {  PiArrowBendUpRightBold } from "react-icons/pi";
 
 const content = [

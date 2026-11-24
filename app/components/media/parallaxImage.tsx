@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from "react";
 
 // A photo that moves a little slower than the page as you scroll (parallax).
 // It fills its parent, which must be `relative overflow-hidden` and sized.
-// The image is drawn taller than its frame (sized from the frame and the
-// window) so the movement never shows an edge. Text and buttons are never moved, only pictures.
+// The image is scaled up (from the frame and window size) so the movement
+// never shows an edge. Text and buttons are never moved, only pictures.
 // Off for visitors who prefer reduced motion.
 
 export default function ParallaxImage({
@@ -31,22 +31,19 @@ export default function ParallaxImage({
 
     let raf = 0;
     let visible = false;
-    let size = "";
     const update = () => {
       raf = 0;
       const r = frame.getBoundingClientRect();
+      if (!r.height) return;
       // Furthest the image travels while the frame is on screen.
       const travel = ((window.innerHeight + r.height) / 2) * speed;
-      const key = `${r.height}|${travel}`;
-      if (key !== size) {
-        size = key;
-        img.style.top = `${-travel}px`;
-        img.style.height = `${r.height + 2 * travel}px`;
-      }
+      // Enlarge with scale (not width/height) so the page never "jumps":
+      // transforms do not move anything else, and do not count as layout shift.
+      const k = (r.height + 2 * travel) / r.height;
       // 0 when the frame is centred in the window; +/- as it moves away.
       const offset = r.top + r.height / 2 - window.innerHeight / 2;
       const y = Math.max(-travel, Math.min(travel, -offset * speed));
-      img.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
+      img.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) scale(${k.toFixed(3)})`;
     };
     const onScroll = () => {
       if (visible && !raf) raf = requestAnimationFrame(update);

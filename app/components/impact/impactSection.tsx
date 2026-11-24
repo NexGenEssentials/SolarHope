@@ -1,8 +1,9 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
-import technicianOnArray from "@/public/images/projects/roof-technician-on-array.jpg";
-import teamInstalling from "@/public/images/projects/team-installing-inverter.jpg";
-import finishedArray from "@/public/images/projects/roof-finished-array.jpg";
+// Right-sized copies of the project photos (see /images/thumbs).
+const technicianOnArray = { src: "/images/thumbs/about-technician-on-array.jpg" };
+const teamInstalling = { src: "/images/thumbs/about-team-installing.jpg" };
+const finishedArray = { src: "/images/thumbs/about-finished-array.jpg" };
 
 const ImpactSection = ({ id }: { id?: string }) => {
   return (

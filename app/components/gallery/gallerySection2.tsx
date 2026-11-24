@@ -1,18 +1,19 @@
 import React from "react";
 import LoopVideo from "../media/loopVideo";
-import crewFitting from "@/public/images/projects/roof-crew-fitting-panels.jpg";
-import crewCloseUp from "@/public/images/projects/roof-crew-close-up.jpg";
-import crewMidInstall from "@/public/images/projects/roof-crew-mid-install.jpg";
-import crewValley from "@/public/images/projects/roof-crew-valley-view.jpg";
-import finishedRows from "@/public/images/projects/roof-finished-rows.jpg";
-import withFinishedInstall from "@/public/images/projects/technician-with-finished-install.jpg";
-import wallInstall from "@/public/images/projects/wall-install-inverter-battery.jpg";
-import crewWide from "@/public/images/projects/roof-crew-wide.jpg";
-import wiringInverter from "@/public/images/projects/technician-wiring-inverter.jpg";
-import urbanRoof from "@/public/images/projects/roof-urban-panels.jpg";
-import finishedArray from "@/public/images/projects/roof-finished-array.jpg";
+const crewFitting = { src: "/images/gallery/roof-crew-fitting-panels.jpg" };
+const crewCloseUp = { src: "/images/gallery/roof-crew-close-up.jpg" };
+const crewMidInstall = { src: "/images/gallery/roof-crew-mid-install.jpg" };
+const crewValley = { src: "/images/gallery/roof-crew-valley-view.jpg" };
+const finishedRows = { src: "/images/gallery/roof-finished-rows.jpg" };
+const withFinishedInstall = { src: "/images/gallery/technician-with-finished-install.jpg" };
+const wallInstall = { src: "/images/gallery/wall-install-inverter-battery.jpg" };
+const crewWide = { src: "/images/gallery/roof-crew-wide.jpg" };
+const wiringInverter = { src: "/images/gallery/technician-wiring-inverter.jpg" };
+const urbanRoof = { src: "/images/gallery/roof-urban-panels.jpg" };
+const finishedArray = { src: "/images/gallery/roof-finished-array.jpg" };
 
 // SolarHope's own installation photos and silent clips in one sliding row.
+// Photos are tile-sized copies (800x600) in /images/gallery for fast loading.
 // The list is rendered twice so the CSS marquee loops seamlessly; pauses on
 // hover; under reduced motion it stops and the row can be scrolled by hand.
 type Item =
